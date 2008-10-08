@@ -1,9 +1,11 @@
 <?php
+include ('lang.eng.inc');
+DEFINE(WPNEL_VERSION,'0.02');
 /*
 Plugin Name: WP-NoExternalLinks
 Plugin URI: http://jehy.ru/wp-plugins.en.html
 Description: This plugin will allow you to mask all external links to internal. Your own posts, comments pages, authors pages... To set up, visit <a href="options-general.php?page=wp-noexternallinks/wp-noexternallinks.php">configuration panel</a>. 
-Version: 0.01
+Version: 0.02
 Author: Jehy
 Author URI: http://jehy.ru/index.en.html
 Update Server: http://jehy.ru/wp-plugins.en.html
@@ -119,31 +121,31 @@ function wp_noextrenallinks_option_page()
 	if(FALSE===$mask_author=get_option('noexternallinks_mask_author'))
 		$mask_author=1;
 ?><div style="margin-left: 1em;">
-	<h2>WP NoExternalLinks Configuration</h2><br />
+	<h2>WP NoExternalLinks <?php echo WPNEL_CONFIGURATION;?></h2><br />
 	<form name="form1" method="post" action="<?php echo $location ?>">
 		<?php wp_nonce_field('update-options'); ?>
 		<input name="action" type="hidden" value="wp_noextrenallinks_update">
 
 		<div style="float:right; text-align:left;margin-right:1em;">
-			<b>WP NoExternalLinks 0.01</b><br>
-			<a href="http://jehy.ru/wp-plugins.en.html" target="_blank">Plugin home page</a><br />
-			<a href="http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/" target="_blank">Feedback</a>
+			<b>WP NoExternalLinks <?php echo WPNEL_VERSION;?></b><br>
+			<a href="http://jehy.ru/wp-plugins.en.html" target="_blank"><?php echo WPNEL_PLUGIN_HOMEPAGE;?></a><br />
+			<a href="http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/" target="_blank"><?php echo WPNEL_FEEDBACK;?></a>
 		</div>
 		<div style="width:70%; border:1px solid #666; padding:10px; background-color:#CECECE;">
-			<h3>Path to redirect file "goto.php"</i>:</h3>
+			<h3><?php echo WPNEL_PATH_TO_GOTO;?></i>:</h3>
 			<input name="noexternallinks_gotopath" value="<?php echo get_option('noexternallinks_gotopath');?>" type="text" style="width:90%;" /><br />
-			<div style="font-size:smaller;">Default:<br><?php echo NOEXTERNALLINKS_DEFAULT_FILEPATH;?><br>If you use mode rewrite for cute urls, you can do the following:
+			<div style="font-size:smaller;"><?php echo WPNEL_DEFAULT;?>:<br><?php echo NOEXTERNALLINKS_DEFAULT_FILEPATH;?><br><?php echo WPNEL_IF_MODE_REWRITE;?>:
 			<ul>
-			<li>put here smth like "<?php echo $s=get_option('siteurl').'/goto/';?>"</li>
-			<li>put the line like "RewriteRule ^<?$p=@strpos($s,'/',7);if($p)echo substr($s,$p+1);?>(.*) http://$1 [R=301,L]" to your .htaccess file.</li></ul>
-			Then your server will make redirect on apache level, without using of goto.php file.
+			<li><?php echo WPNEL_PUT_HERE_SMTH_LIKE;?> "<?php echo $s=get_option('siteurl').'/goto/';?>"</li>
+			<li><?php echo WPNEL_PUT_LINE_LIKE;?> "RewriteRule ^<?$p=@strpos($s,'/',7);if($p)echo substr($s,$p+1);?>(.*) http://$1 [R=301,L]" <?php echo WPNEL_TO_YOUR_FILE;?> .htaccess</li></ul>
+			<?php echo WPNEL_THEN_APACHE_LEVEL_REDIRECT;?>
 			</div>
-			<input type="checkbox" name="noexternallinks_mask_mine" value="1"<?php if($mask_mine==1) echo ' checked';?>><b>Mask links in your posts</b><br><br>
-			<input type="checkbox" name="noexternallinks_mask_comment" value="1"<?php if($mask_comment==1) echo ' checked';?>><b>Mask links in comments's posts</b><br><br>
-			<input type="checkbox" name="noexternallinks_mask_author" value="1"<?php if($mask_author==1) echo ' checked';?>><b>Mask comments authors's links</b><br><br>
+			<input type="checkbox" name="noexternallinks_mask_mine" value="1"<?php if($mask_mine==1) echo ' checked';?>><b><?php echo WPNEL_MASK_LINKS_IN_POSTS;?></b><br><br>
+			<input type="checkbox" name="noexternallinks_mask_comment" value="1"<?php if($mask_comment==1) echo ' checked';?>><b><?php echo WPNEL_MASK_LINKS_IN_COMMENTS;?></b><br><br>
+			<input type="checkbox" name="noexternallinks_mask_author" value="1"<?php if($mask_author==1) echo ' checked';?>><b><?php echo WPNEL_MASK_LINKS_IN_AUTHORS;?></b><br><br>
 		<div align="right">
-		<input type="submit" style="background-color: #CACACA;" name="Submit" value="<?php _e('Save Changes') ?>"></div></div>
-	</form><p style="font-size:smaller;">That plugins allows you to mask all external links and make them internal - using PHP file with location header, or mod rewrite. Yeah, by the way - it does not change anything in the base - only replaces links on output.<br>P.S. It doesn't mask internal links.</p></div>
+		<input type="submit" style="background-color: #CACACA;" name="Submit" value="<?php echo WPNEL_SAVE_CHANGES;?>"></div></div>
+	</form><p style="font-size:smaller;"><?php echo WPNEL_HINT;?></p></div>
 <?php
 }
 

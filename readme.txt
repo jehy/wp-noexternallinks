@@ -4,7 +4,7 @@ Donate link: http://jehy.ru/index.en.html
 Tags: seo, link, links, publisher, post, posts
 Requires at least: 2.5
 Tested up to: 2.6.2
-Stable tag: 0.01
+Stable tag: 0.02
 
 This plugin will allow you to mask all external links to internal. Your own posts, comments pages, authors page...
 
@@ -18,8 +18,9 @@ In short, your links like "http://gmail.com" will be masked into "http://YourBlo
 == Installation ==
 
 1. Upload the complete folder `wp-noexternallinks` to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Write a post with any kind of links and enjoy bots's stupidity ;)
+2. If you are not english user, change the lang file to what you want
+3. Activate the plugin through the 'Plugins' menu in WordPress
+4. Write a post with any kind of links and enjoy bots's stupidity ;)
 
 == Frequently Asked Questions ==
 
