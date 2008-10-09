@@ -1,6 +1,6 @@
 <?php
 include ('lang.eng.inc');
-DEFINE(WPNEL_VERSION,'0.03');
+DEFINE(WPNEL_VERSION,'0.02');
 /*
 Plugin Name: WP-NoExternalLinks
 Plugin URI: http://jehy.ru/wp-plugins.en.html

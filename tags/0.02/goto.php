@@ -2,7 +2,7 @@
 include 'lang.eng.inc';
 $url=$QUERY_STRING;
 if($url)$url='http://'.$url;
-if($url) @header("Location: ".$url."");
+if($url) @header('Location: '.$url);
 ?>
 <html>
 	<head>
