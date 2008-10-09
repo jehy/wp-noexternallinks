@@ -18,8 +18,8 @@ Now you don't need to worry about your page rank or index, dropping because of s
 
 In short, your links like "http://gmail.com" will be masked into   
 "http://YourBlog.com/wp-content/plugins/wp-noexternallinks/goto?gmail.com" - or   
-"http://YourBlog.com/goto?gmail.com" and if you use mod rewrite -  
- "http://YourBlog.com/goto/gmail.com"   
+"http://YourBlog.com/goto?gmail.com" and if you use mod rewrite - smth like  
+"http://YourBlog.com/goto/gmail.com"   
 
 ####History 
 
