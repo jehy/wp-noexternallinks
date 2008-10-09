@@ -1,7 +1,7 @@
 === WP-NoExternalLinks ===
 Автор: Jehy
 Ссылка: http://jehy.ru/index.html
-Категория: seo, link, links, publisher, post, posts
+Категория: seo, link, links, publisher, post, posts,comments
 Требует как минимум: 2.5
 Протестирован до: 2.6.2
 Стабильная версия: 0.03
