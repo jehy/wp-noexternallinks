@@ -11,6 +11,6 @@ if($url) @header('Location: '.$url);
 		<?php if($url) echo '<meta http-equiv="refresh" content="0; url='.$url.';" />'; ?>
 	</head>
 	<body style="margin:0;">
-		<?php echo WPNEL_REDIRECT1;?> <a href="<?php echo php echo $url?>"><?php echo =WPNEL_REDIRECT2;?></a><?php echo WPNEL_REDIRECT3. $url.WPNEL_REDIRECT4;?> 
+		<?php echo WPNEL_REDIRECT1;?> <a href="<?php echo $url?>"><?php echo WPNEL_REDIRECT2;?></a><?php echo WPNEL_REDIRECT3.$url.WPNEL_REDIRECT4;?> 
 	</body>
 </html>
