@@ -14,9 +14,11 @@ This plugin will allow you to mask all external links to internal. Your own post
 
 Now you don't need to worry about your page rank or index, dropping because of spam bots. You write any kind of http link - and it becomes internal! You can configure plugin to work with your own posts, comments and authors's profiles.
 
+####Example
+
 In short, your links like "http://gmail.com" will be masked into "http://YourBlog.com/wp-content/plugins/wp-noexternallinks/goto?gmail.com" - or "http://YourBlog.com/goto?gmail.com" and if you use mod rewrite - "http://YourBlog.com/goto/gmail.com"
 
-===History=== 
+####History 
 
 0.01 - first release
 
@@ -25,10 +27,9 @@ In short, your links like "http://gmail.com" will be masked into "http://YourBlo
 0.03 - bugfix
 
 
-===Localization===
+####Localization
 * English
 * Russian
-
 
 == Installation ==
 
