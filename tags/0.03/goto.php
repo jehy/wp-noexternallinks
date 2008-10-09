@@ -1,5 +1,5 @@
 <?php
-include 'lang.rus.inc';
+include 'lang.eng.inc';
 header('Content-type: text/html; charset="utf-8"',true);
 $url=$QUERY_STRING;
 if($url)$url='http://'.$url;

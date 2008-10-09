@@ -2,7 +2,7 @@
 $d=getcwd();
 if(strpos($d,'wp-content/plugins/wp-noexternallinks'))
 	die('Error: Plugin does not support standalone calls, damned hacker.');
-include ('lang.rus.inc');
+include ('lang.eng.inc');
 DEFINE(WPNEL_VERSION,'0.03');
 /*
 Plugin Name: WP-NoExternalLinks
