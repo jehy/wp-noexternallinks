@@ -1,11 +1,11 @@
 === WP-NoExternalLinks ===
-Contributors: Jehy
+Author: Jehy
 Donate link: http://jehy.ru/index.en.html
 Tags: seo, link, links, publisher, post, posts
 Requires at least: 2.5
 Tested up to: 2.6.2
 Stable tag: 0.03
-
+version: 0.03
 This plugin will allow you to mask all external links to internal. Your own posts, comments pages, authors page...
 
 == Description ==
