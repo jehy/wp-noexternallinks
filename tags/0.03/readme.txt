@@ -1,16 +1,16 @@
 === WP-NoExternalLinks ===
 Author: Jehy
 Donate link: http://jehy.ru/index.en.html
-Tags: seo, link, links, publisher, post, posts
+Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.5
 Tested up to: 2.6.2
 Stable tag: 0.03
 version: 0.03
-This plugin will allow you to mask all external links to internal. Your own posts, comments pages, authors page...
+Mask all external links - make them internal. On your own posts, comments pages, authors page - no more PR dropping!
 
 == Description ==
 
-This plugin will allow you to mask all external links to internal. Your own posts, comments pages, authors page... It does not change anything or write to base - just processes output.
+Mask all external links to internal! In your own posts, comments pages, authors page... It does not change anything or write to base - just processes output.
 
 Now you don't need to worry about your page rank or index, dropping because of spam bots. You write any kind of http link - and it becomes internal! You can configure plugin to work with your own posts, comments and authors's profiles.
 
