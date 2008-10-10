@@ -4,7 +4,7 @@ Donate link: http://jehy.ru/index.en.html
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.5
 Tested up to: 2.6.2
-Stable tag: 0.03
+Stable tag: 0.04
 Mask all external links - make them internal. On your own posts, comments pages, authors page - no more PR dropping!
 
 == Description ==
@@ -25,6 +25,7 @@ In short, your links like "http://gmail.com" will be masked into
 0.01 - first release  
 0.02 - multilanguagal release  
 0.03 - bugfix  
+0.04 - Activation \ Deactivation improved, optimization, localization settings now stored as options
 
 ####Localization
 

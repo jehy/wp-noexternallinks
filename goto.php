@@ -1,5 +1,9 @@
 <?php
-include 'lang.eng.inc';
+#$lang=get_option('noexternallinks_lang');
+#if(!$lang)
+$lang='eng';
+include('lang/lang.'.htmlspecialchars($lang).'.inc');
+	
 header('Content-type: text/html; charset="utf-8"',true);
 $url=$QUERY_STRING;
 if($url)$url='http://'.$url;
