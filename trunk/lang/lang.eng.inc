@@ -21,4 +21,5 @@ DEFINE(WPNEL_MASK_LINKS_IN_AUTHORS,'Mask comments authors`s links');
 DEFINE(WPNEL_HINT,'That plugins allows you to mask all external links and make them internal - using PHP file with location header, or mod rewrite. Yeah, by the way - it does not change anything in the base - only replaces links on output.<br>P.S. It doesn`t mask internal links.');
 DEFINE(WPNEL_SAVE_CHANGES,'Save changes');
 DEFINE(WPNEL_CONFIGURATION,'Configuration');
+DEFINE(WPNEL_LANGUAGE,'Language');
 ?>
