@@ -36,9 +36,9 @@ In short, your links like "http://gmail.com" will be masked into
 == Installation ==
 
 1. Upload the complete folder `wp-noexternallinks` to the `/wp-content/plugins/` directory
-2. If you are not english user, change the lang file to what you want
 3. Activate the plugin through the 'Plugins' menu in WordPress
-4. Write a post with any kind of links and enjoy bots's stupidity ;)
+2. [Optional] Configure plugin via admin options-&gt;Wp-NoExternalLinks link
+4. Write posts with any kind of links and enjoy =^___^=
 
 == Frequently Asked Questions ==
 
