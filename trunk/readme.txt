@@ -1,6 +1,5 @@
 === WP No External Links ===
 Author: Jehy
-Donate link: http://jehy.ru/index.en.html
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.5
 Tested up to: 2.6.2
@@ -11,7 +10,7 @@ Mask all external links - make them internal. On your own posts, comments pages,
 
 Mask all external links to internal! In your own posts, comments pages, authors page... It does not change anything or write to base - just processes output.
 
-Now you don't need to worry about your page rank or index, dropping because of spam bots. You write any kind of http link - and it becomes internal! You can configure plugin to work with your own posts, comments and authors's profiles.
+Now you don't need to worry about your page rank or index, dropping because of spam bots. You write any kind of http link - and it becomes internal! You can configure plugin to work with your own posts, comments and authors's profiles. Of cause, the link will still be usable - with headers.
 
 ####Example
 
