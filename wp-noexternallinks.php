@@ -1,10 +1,9 @@
 <?php
-$d=getcwd();
-if(strpos($d,'wp-content/plugins/wp-noexternallinks'))
+if(strpos(getcwd(),'wp-content/plugins/wp-noexternallinks'))
 	die('Error: Plugin does not support standalone calls, damned hacker.');
 DEFINE(WPNEL_VERSION,'0.04');
 /*
-Plugin Name: WP-NoExternalLinks
+Plugin Name: WP No External Links
 Plugin URI: http://jehy.ru/wp-plugins.en.html
 Description: This plugin will allow you to mask all external links to internal. Your own posts, comments pages, authors pages... To set up, visit <a href="options-general.php?page=wp-noexternallinks/wp-noexternallinks.php">configuration panel</a>. 
 Version: 0.04
@@ -126,9 +125,9 @@ global $_REQUEST;
 }
 
 //Add to admin menu
-function wp_noextrenallinks_add_new_menu() {
-	add_options_page('WP NoExternalLinks Config', 'WP NoExternalLinks', 9, __FILE__, 'wp_noextrenallinks_option_page');
-}
+#function wp_noextrenallinks_add_new_menu() {
+#	add_options_page('WP NoExternalLinks Config', 'WP NoExternalLinks', 9, __FILE__, #'wp_noextrenallinks_option_page');
+#}
 
 
 function wp_noextrenallinks_option_page()
@@ -145,8 +144,7 @@ function wp_noextrenallinks_option_page()
 		$mask_comment=1;
 	if(FALSE===$mask_author=get_option('noexternallinks_mask_author'))
 		$mask_author=1;
-?><div style="margin-left: 1em;">
-	<h2>WP NoExternalLinks <?php echo WPNEL_CONFIGURATION;?></h2><br />
+?>
 	<form method="post" action="<?php echo $location;?>">
 		<?php wp_nonce_field('update-options'); ?>
 		<input name="action" type="hidden" value="wp_noextrenallinks_update">
@@ -191,7 +189,7 @@ else echo '<font color="red">Crytical error: can not find language files directo
 			<input type="checkbox" name="noexternallinks_mask_author" value="1"<?php if($mask_author==1) echo ' checked';?>><b><?php echo WPNEL_MASK_LINKS_IN_AUTHORS;?></b><br><br>
 		<div align="right"><input type="submit" name="Submit" value="<?php _e('Save Changes') ?>" />
 </div></div>
-	</form><p style="font-size:smaller;"><?php echo WPNEL_HINT;?></p></div>
+	</form><p style="font-size:smaller;"><?php echo WPNEL_HINT;?></p>
 <?php
 }
 
@@ -222,6 +220,28 @@ function wp_noextrenallinks_set_filters()
 	}
 }
 wp_noextrenallinks_set_filters();
-add_action('admin_menu', 'wp_noextrenallinks_add_new_menu'); 
+	
+#add_action('admin_menu', 'wp_noextrenallinks_add_new_menu'); 
 
+function wp_noextrenallinks_admin_options(){
+
+	echo '<div class="wrap"><h2>WP-NoExternalLinks '.WPNEL_VERSION.'</h2>';
+	if($_REQUEST['submit']){
+		wp_noextrenallinks_update();
+	}
+	wp_noextrenallinks_option_page();	
+	echo '</div>';
+}
+
+
+function wp_noextrenallinks_modify_menu(){
+	add_options_page(
+		'WP-NoExternalLinks',
+		'WP-NoExternalLinks',
+		'manage_options',
+		__FILE__,
+		'wp_noextrenallinks_admin_options'
+		);
+}
+add_action('admin_menu', 'wp_noextrenallinks_modify_menu');
 ?>
