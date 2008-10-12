@@ -1,4 +1,4 @@
-=== WP-NoExternalLinks ===
+=== WP No External Links ===
 Автор: Jehy
 Ссылка: http://jehy.ru/index.html
 Категория: seo, link, links, publisher, post, posts,comments

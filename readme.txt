@@ -1,4 +1,4 @@
-=== WP-NoExternalLinks ===
+=== WP No External Links ===
 Author: Jehy
 Donate link: http://jehy.ru/index.en.html
 Tags: seo, link, links, publisher, post, posts, comments
