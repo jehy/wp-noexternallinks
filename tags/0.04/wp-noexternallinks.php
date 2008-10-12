@@ -50,14 +50,6 @@ delete_option('noexternallinks_mask_author');
 delete_option('noexternallinks_lang');
 }
 
-register_activation_hook(__FILE__,'wp_noextrenallinks_Activate');
-register_deactivation_hook(__FILE__,'wp_noextrenallinks_DeActivate');
-
-
-
-if($_REQUEST['action']=='wp_noextrenallinks_update')
-	wp_noextrenallinks_update();
-
 
 function jehy_noextrenallinks($content)
 {
@@ -65,9 +57,7 @@ function jehy_noextrenallinks($content)
 	$p=strpos($site,'/',7);
 	if($p)$site=substr($site,0,$p);
 	if (!$goto =get_option('noexternallinks_gotopath'))
-	 $goto = NOEXTERNALLINKS_DEFAULT_FILEPATH;
-
-	
+		$goto = NOEXTERNALLINKS_DEFAULT_FILEPATH;
 	$p=0;
 	while(true)
 	{
@@ -147,8 +137,6 @@ function wp_noextrenallinks_option_page()
 ?>
 	<form method="post" action="<?php echo $location;?>">
 		<?php wp_nonce_field('update-options'); ?>
-		<input name="action" type="hidden" value="wp_noextrenallinks_update">
-
 		<div style="float:right;margin-right:2em;">
 			<b>WP NoExternalLinks <?php echo WPNEL_VERSION;?></b><br>
 			<a href="http://jehy.ru/wp-plugins.en.html" target="_blank"><?php echo WPNEL_PLUGIN_HOMEPAGE;?></a><br />
@@ -187,7 +175,7 @@ else echo '<font color="red">Crytical error: can not find language files directo
 			<input type="checkbox" name="noexternallinks_mask_mine" value="1"<?php if($mask_mine==1) echo ' checked';?>><b><?php echo WPNEL_MASK_LINKS_IN_POSTS;?></b><br><br>
 			<input type="checkbox" name="noexternallinks_mask_comment" value="1"<?php if($mask_comment==1) echo ' checked';?>><b><?php echo WPNEL_MASK_LINKS_IN_COMMENTS;?></b><br><br>
 			<input type="checkbox" name="noexternallinks_mask_author" value="1"<?php if($mask_author==1) echo ' checked';?>><b><?php echo WPNEL_MASK_LINKS_IN_AUTHORS;?></b><br><br>
-		<div align="right"><input type="submit" name="Submit" value="<?php _e('Save Changes') ?>" />
+		<div align="right"><input type="submit" name="submit" value="<?php _e('Save Changes') ?>" />
 </div></div>
 	</form><p style="font-size:smaller;"><?php echo WPNEL_HINT;?></p>
 <?php
@@ -220,15 +208,13 @@ function wp_noextrenallinks_set_filters()
 	}
 }
 wp_noextrenallinks_set_filters();
-	
-#add_action('admin_menu', 'wp_noextrenallinks_add_new_menu'); 
 
-function wp_noextrenallinks_admin_options(){
-
+function wp_noextrenallinks_admin_options()
+{
+global $_REQUEST;
 	echo '<div class="wrap"><h2>WP-NoExternalLinks '.WPNEL_VERSION.'</h2>';
-	if($_REQUEST['submit']){
+	if($_REQUEST['submit'])
 		wp_noextrenallinks_update();
-	}
 	wp_noextrenallinks_option_page();	
 	echo '</div>';
 }
@@ -244,4 +230,6 @@ function wp_noextrenallinks_modify_menu(){
 		);
 }
 add_action('admin_menu', 'wp_noextrenallinks_modify_menu');
+register_activation_hook(__FILE__,'wp_noextrenallinks_Activate');
+register_deactivation_hook(__FILE__,'wp_noextrenallinks_DeActivate');
 ?>
