@@ -32,6 +32,8 @@ In short, your links like "http://gmail.com" will be masked into
 * Russian
 
 
+####Please!
+If yo don't rate my plugin as 5/5 - please write why - and I will change, add options and fix bugs. It's very unpleasant to see silient low rates.
 == Installation ==
 
 1. Upload the complete folder `wp-noexternallinks` to the `/wp-content/plugins/` directory
