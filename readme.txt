@@ -24,8 +24,8 @@ In short, your links like "http://gmail.com" will be masked into
 0.01 - first release  
 0.02 - multilanguagal release  
 0.03 - bugfix  
-0.04 - Activation \ Deactivation improved, optimization, localization settings now stored as options
-0.05 - bugfix
+0.04 - Activation \ Deactivation improved, optimization, localization settings now stored as options  
+0.05 - bugfix for wrong html parsing  
 
 ####Localization
 
@@ -34,13 +34,15 @@ In short, your links like "http://gmail.com" will be masked into
 
 
 ####Please!
-If yo don't rate my plugin as 5/5 - please write why - and I will change, add options and fix bugs. It's very unpleasant to see silient low rates.
+If you don't rate my plugin as 5/5 - please write why - and I will add or change options and fix bugs. It's very unpleasant to see silient low rates.  
+If you don't understand what this plugin does - also don't rate it. SEO specialists only.
+
 == Installation ==
 
 1. Upload the complete folder `wp-noexternallinks` to the `/wp-content/plugins/` directory
 3. Activate the plugin through the 'Plugins' menu in WordPress
 2. [Optional] Configure plugin via admin options-&gt;Wp-NoExternalLinks link
-4. Write posts with any kind of links and enjoy =^___^=
+4. Write posts with any kind of links, watch comments with links - and enjoy =^___^=
 
 == Frequently Asked Questions ==
 
