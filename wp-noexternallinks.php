@@ -71,7 +71,7 @@ function jehy_noextrenallinks($content)
 			else
 			{
 				$p+=7;
-				$p2=0;
+				$p2=strlen($content);
 				$e=array();
 				$e[]=strpos($content,'"',$p);
 				$e[]=strpos($content,"'",$p);
@@ -79,14 +79,18 @@ function jehy_noextrenallinks($content)
 				for($i=0;$i<sizeof($e);$i++)
 					if (($e[$i]<$p2)and($e[$i]!=0)and($e[$i]>$p))
 						$p2=$e[$i];
-				if(!$p2)break;
-				$link=substr($content,$p-7,$p2-$p+7);
-				$link=str_replace(array("'",'"',' '),'',$link);
-				if(substr($link,0,strlen($site))==$site)
-					;
+				if($p2<=$p)
+					$p+=4;
 				else
-					$content=substr($content,0,$p-7).$goto.substr($content,$p);
-				$p=$p2;
+				{
+					$link=substr($content,$p-7,$p2-$p+7);
+					$link=str_replace(array("'",'"',' '),'',$link);
+					if(substr($link,0,strlen($site))==$site)
+						;
+					else
+						$content=substr($content,0,$p-7).$goto.substr($content,$p);
+					$p=$p2;
+				}
 			}
 		}
 	}
