@@ -1,12 +1,12 @@
 <?php
 if(strpos(getcwd(),'wp-content/plugins/wp-noexternallinks'))
 	die('Error: Plugin does not support standalone calls, damned hacker.');
-DEFINE(WPNEL_VERSION,'0.05');
+DEFINE(WPNEL_VERSION,'0.06');
 /*
 Plugin Name: WP No External Links
 Plugin URI: http://jehy.ru/wp-plugins.en.html
 Description: This plugin will allow you to mask all external links to internal. Your own posts, comments pages, authors pages... To set up, visit <a href="options-general.php?page=wp-noexternallinks/wp-noexternallinks.php">configuration panel</a>. 
-Version: 0.05
+Version: 0.06
 Author: Jehy
 Author URI: http://jehy.ru/index.en.html
 Update Server: http://jehy.ru/wp-plugins.en.html
@@ -65,31 +65,31 @@ function jehy_noextrenallinks($content)
 		if($p===FALSE)break;
 		else
 		{
-			$p=strpos($content,'http://',$p);
-			if($p===FALSE)
-				$p+=4;
+			$p2=strpos($content,'http://',$p);
+			if($p2===FALSE)
+				$p+=4;#pass that link
 			else
 			{
-				$p+=7;
-				$p2=strlen($content);
-				$e=array();
-				$e[]=strpos($content,'"',$p);
-				$e[]=strpos($content,"'",$p);
-				$e[]=strpos($content,'>',$p);
-				for($i=0;$i<sizeof($e);$i++)
-					if (($e[$i]<$p2)and($e[$i]!=0)and($e[$i]>$p))
-						$p2=$e[$i];
-				if($p2<=$p)
-					$p+=4;
-				else
+				$p=7+$p2;
+				$p2=false;
+				for(($x=$p+1);($x<$p+255);$x++)##maximum link length
+				{
+					if(in_array($content[$x],array('"',"'",'>',' ')))
+					{
+						$p2=$x;
+						break;
+					}
+				}
+				if($p2!==FALSE)
 				{
 					$link=substr($content,$p-7,$p2-$p+7);
-					$link=str_replace(array("'",'"',' '),'',$link);
-					if(substr($link,0,strlen($site))==$site)
-						;
+					if(substr($link,0,strlen($site))==$site)#internal link
+						$p=$p2;
 					else
+					{
 						$content=substr($content,0,$p-7).$goto.substr($content,$p);
-					$p=$p2;
+						$p=$p-7+strlen($goto);
+					}
 				}
 			}
 		}

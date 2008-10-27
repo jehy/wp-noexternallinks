@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.5
 Tested up to: 2.6.3
-Stable tag: 0.05
+Stable tag: 0.06
 Mask all external links - make them internal. On your own posts, comments pages, authors page - no more PR dropping!
 
 == Description ==
@@ -26,6 +26,7 @@ In short, your links like "http://gmail.com" will be masked into
 0.03 - bugfix  
 0.04 - Activation \ Deactivation improved, optimization, localization settings now stored as options  
 0.05 - bugfix for wrong html parsing  
+0.06 - bugfix for email links  
 
 ####Localization
 
