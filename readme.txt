@@ -27,6 +27,7 @@ In short, your links like "http://gmail.com" will be masked into
 0.04 - Activation \ Deactivation improved, optimization, localization settings now stored as options  
 0.05 - bugfix for wrong html parsing  
 0.06 - bugfix for email links  
+0.07 - better work for sites wihout mod_rewrite  
 
 ####Localization
 
