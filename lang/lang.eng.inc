@@ -22,4 +22,5 @@ DEFINE(WPNEL_HINT,'That plugins allows you to mask all external links and make t
 DEFINE(WPNEL_SAVE_CHANGES,'Save changes');
 DEFINE(WPNEL_CONFIGURATION,'Configuration');
 DEFINE(WPNEL_LANGUAGE,'Language');
+DEFINE(WPNEL_NO_REDIRECT,'Sorry, no url redirect specified. Can`t complete request.');
 ?>
