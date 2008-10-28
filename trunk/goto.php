@@ -3,11 +3,13 @@
 #if(!$lang)
 $lang='eng';
 include('lang/lang.'.htmlspecialchars($lang).'.inc');
-	
 header('Content-type: text/html; charset="utf-8"',true);
-$url=$QUERY_STRING;
-if($url)$url='http://'.$url;
-if($url) @header('Location: '.$url);
+$url=$_SERVER['QUERY_STRING'];
+if($url)
+{
+	$url='http://'.urldecode($url);
+	@header('Location: '.$url);
+}
 ?>
 <html>
 	<head>
@@ -18,7 +20,11 @@ if($url) @header('Location: '.$url);
 	</head>
 	<body style="margin:0;">
 	<div align="center" style="margin-top: 15em;">
-		<?php echo WPNEL_REDIRECT1;?> <a href="<?php echo $url?>"><?php echo WPNEL_REDIRECT2;?></a><?php echo WPNEL_REDIRECT3.$url.WPNEL_REDIRECT4;?> 
+<?php if($url)
+{
+	echo WPNEL_REDIRECT1.'<a href="'.$url.'">'.WPNEL_REDIRECT2.'</a>'.WPNEL_REDIRECT3.$url.WPNEL_REDIRECT4;
+}
+ else echo (WPNEL_NO_REDIRECT);?>
 	</div>
 	</body>
 </html>
