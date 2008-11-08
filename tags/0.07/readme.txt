@@ -19,6 +19,13 @@ In short, your links like "http://gmail.com" will be masked into
 "http://YourBlog.com/goto?gmail.com" and if you use mod rewrite - smth like  
 "http://YourBlog.com/goto/gmail.com"
 
+#####Is it an evil hack and black SEO?!
+Before you tell such awful things, read at lest [Google's topics on SEO][http://www.google.com/support/webmasters/bin/topic.py?topic=8522]
+
+#####How can I set up my .htaccess for using this plugin?
+Please, check [example config][http://jehy.ru/wp-plugins.en.html]
+
+
 ####History
 
 0.01 - first release  
