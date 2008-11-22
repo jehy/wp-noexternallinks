@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.5
 Tested up to: 2.6.3
-Stable tag: 0.07
+Stable tag: 0.071
 Mask all external links - make them internal. On your own posts, comments pages, authors page - no more PR dropping!
 
 == Description ==
@@ -20,7 +20,7 @@ In short, your links like "http://gmail.com" will be masked into
 "http://YourBlog.com/goto/gmail.com"
 
 > Is it an evil hack and black SEO?!   
-Before you tell such awful things, read at lest [Google's topics on SEO](http://www.google.com/support/webmasters/bin/topic.py?topic=8522)
+Before you tell such awful things, read at lest [Google's topics on SEO](http://www.google.com/support/webmasters/bin/topic.py?topic=8522)   
 
 > How can I set up my .htaccess for using this plugin?   
 Please, check [example config](http://jehy.ru/wp-plugins.en.html)
@@ -35,6 +35,7 @@ Please, check [example config](http://jehy.ru/wp-plugins.en.html)
 0.05 - bugfix for wrong html parsing  
 0.06 - bugfix for email links  
 0.07 - better work for sites wihout mod_rewrite  
+0.071 - russian translation corrected  
 
 ####Localization
 
