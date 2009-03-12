@@ -214,7 +214,7 @@ function wp_noextrenallinks($content)
 	if($p)$site=substr($site,0,$p);#site root is excluded
 	
 	$exclude=get_option('noexternallinks_exclude_links');
-	$wp_noexternallinks_exclude_links=explode("\n",$exclude);
+	$wp_noexternallinks_exclude_links=@explode("\n",$exclude);
 	$wp_noexternallinks_exclude_links[]=$site;
   }
   $wp_noexternallinks_if_blank=get_option('noexternallinks_add_blank');
