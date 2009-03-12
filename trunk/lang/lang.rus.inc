@@ -21,4 +21,15 @@ DEFINE(WPNEL_SAVE_CHANGES,'Сохранить изменения');
 DEFINE(WPNEL_CONFIGURATION,'Настройки');
 DEFINE(WPNEL_LANGUAGE,'Язык');
 DEFINE(WPNEL_NO_REDIRECT,'Извините, не найдено пути редиректа, невозможно совершить переход.');
+DEFINE(WPNEL_EXCLUDE_URLS,'Адреса-исключения, к которым не будет применяться маскировка (ко всем, начинающимся с данного текста, по каждый адрес - с новой строки, включая префикс (например, http://jehy.ru))');
+DEFINE(WPNEL_ADD_NOFOLLOW,'Добавлять <b>rel=nofollow</b> для маскируемых ссылок (любит google)');
+DEFINE(WPNEL_ADD_BLANK,'Добавлять <b>target="blank"</b> для всех ссылок (будут открываться в новом окне)');
+DEFINE(WPNEL_PUT_NOINDEX,'Окружать ссылки тегом <b>&lt;noindex&gt;ссылка&lt;/noindex&gt;</b>  (для yandex)');
+DEFINE(WPNEL_DISABLE_MASK_LINKS,'Выключить подмену путей для ссылок (если вам достаточно тега <b>noindex</b> и атрибута <b>rel=nofollow</b>)');
+DEFINE(WPNEL_DEFAULT_OPTIONS,'<h2>Глобальные настройки для маскировки ссылок</h2>(Вы можете отменить действие плагина  на конкретные посты)');
+
+DEFINE(WPNEL_DEFAULT_POLICY,'Использовать общие настройки плагина');
+DEFINE(WPNEL_MASK,'Маскировать ссылки');
+DEFINE(WPNEL_DONT_MASK,'Не маскировать ссылки');
+DEFINE(WPNEL_PERPOST_SETTINGS,'Маскировка ссылок для этого поста');
 ?>
