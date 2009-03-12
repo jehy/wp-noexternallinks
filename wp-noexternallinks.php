@@ -4,12 +4,12 @@ if(strpos(getcwd(),'wp-content/plugins/wp-noexternallinks'))
 DEFINE(WPNEL_VERSION,'2.0');
 /*
 Plugin Name: WP No External Links
-Plugin URI: http://jehy.ru/wp-plugins.en.html
+Plugin URI: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
 Description: This plugin will allow you to mask all external links to internal, or to hide them. Your own posts, comments pages, authors pages... To set up, visit <a href="options-general.php?page=wp-noexternallinks/wp-noexternallinks.php">configuration panel</a>. 
 Version: 2.0
 Author: Jehy
 Author URI: http://jehy.ru/index.en.html
-Update Server: http://jehy.ru/wp-plugins.en.html
+Update Server: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
 Min WP Version: 2.6
 Max WP Version: 2.7.1
 */
@@ -309,7 +309,7 @@ else echo '<font color="red">Crytical error: can not find language files directo
 			<input type="checkbox" name="noexternallinks_put_noindex" value="1"<?php if($put_noindex==1) echo ' checked';?>><?php echo WPNEL_PUT_NOINDEX;?><br><br>
 			<input type="checkbox" name="noexternallinks_disable_mask_links" value="1"<?php if($disable_mask_links==1) echo ' checked';?>><?php echo WPNEL_DISABLE_MASK_LINKS;?><br><br><hr>	
 <?php echo WPNEL_EXCLUDE_URLS;?><br>
-	<textarea cols="70" rows="5" name="noexternallinks_exclude_links"><?echo get_option('noexternallinks_exclude_links');?></textarea>
+	<textarea cols="70" rows="5" name="noexternallinks_exclude_links"><?php echo get_option('noexternallinks_exclude_links');?></textarea>
 		<div align="right"><input type="submit" name="submit" value="<?php _e('Save Changes') ?>" />
 </div></div>
 	</form><p style="font-size:smaller;"><?php echo WPNEL_HINT;?></p>
