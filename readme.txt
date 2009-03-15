@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 2.7.1
-Stable tag: 2.0
+Stable tag: 2.01
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -42,7 +42,8 @@ Before you tell such awful things, read at lest [Google's topics on SEO](http://
 0.06 - bugfix for email links  
 0.07 - better work for sites wihout mod_rewrite  
 0.071 - russian translation corrected  
-2.0 - Many significant changes, including urls and post exclusion from masking, another rewrite structure, and new options.
+2.0 - Many significant changes, including urls and post exclusion from masking, another rewrite structure, and new options.   
+2.01 - little bugfix
 
 ####Localization
 

@@ -6,7 +6,7 @@ DEFINE(WPNEL_VERSION,'2.0');
 Plugin Name: WP No External Links
 Plugin URI: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
 Description: This plugin will allow you to mask all external links to internal, or to hide them. Your own posts, comments pages, authors pages... To set up, visit <a href="options-general.php?page=wp-noexternallinks/wp-noexternallinks.php">configuration panel</a>. 
-Version: 2.0
+Version: 2.01
 Author: Jehy
 Author URI: http://jehy.ru/index.en.html
 Update Server: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
@@ -179,8 +179,9 @@ function parse_noexternallinks($matches)
   
   #no masking for those urls:
   for($i=0;$i<sizeof($wp_noexternallinks_exclude_links);$i++)
-    if(strpos($matches[2] . '//' .$matches[3],$wp_noexternallinks_exclude_links[$i])===0)#if begins with		
-      return '<a'.$ifblank.' href="' . $matches[2] . '//' . $matches[3] . '" ' . $matches[1] . $matches[4] . '>' . $matches[5] . '</a>';
+  	  if($wp_noexternallinks_exclude_links[$i])
+        if(strpos($matches[2] . '//' .$matches[3],$wp_noexternallinks_exclude_links[$i])===0)#if begins with		
+          return '<a'.$ifblank.' href="' . $matches[2] . '//' . $matches[3] . '" ' . $matches[1] . $matches[4] . '>' . $matches[5] . '</a>';
   
   #mask all others!
   	$url=($matches[2] . '//' . $matches[3]);
