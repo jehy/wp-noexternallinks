@@ -329,18 +329,18 @@ function wp_noextrenallinks_set_filters()
 		$mask_author=1;
 
 	if($mask_mine)
-		add_filter('the_content','wp_noextrenallinks',1);
+		add_filter('the_content','wp_noextrenallinks',99);
 	if($mask_comment)
 	{
-		add_filter('comment_text','wp_noextrenallinks',1);
-		add_filter('comment_text_rss','wp_noextrenallinks',1);
-		add_filter('comment_url','wp_noextrenallinks',1);
+		add_filter('comment_text','wp_noextrenallinks',99);
+		add_filter('comment_text_rss','wp_noextrenallinks',99);
+		add_filter('comment_url','wp_noextrenallinks',99);
 	}
 	if($mask_author)
 	{
-		add_filter('get_comment_author_url_link','wp_noextrenallinks',1);
-		add_filter('get_comment_author_link','wp_noextrenallinks',1);
-		add_filter('get_comment_author_url','wp_noextrenallinks',1);
+		add_filter('get_comment_author_url_link','wp_noextrenallinks',99);
+		add_filter('get_comment_author_link','wp_noextrenallinks',99);
+		add_filter('get_comment_author_url','wp_noextrenallinks',99);
 	}
 }
 wp_noextrenallinks_set_filters();
