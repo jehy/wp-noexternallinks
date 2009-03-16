@@ -1,12 +1,12 @@
 <?php
 if(strpos(getcwd(),'wp-content/plugins/wp-noexternallinks'))
 	die('Error: Plugin "wp-noexternallinks" does not support standalone calls, damned hacker.');
-DEFINE(WPNEL_VERSION,'2.0');
+DEFINE(WPNEL_VERSION,'2.02');
 /*
 Plugin Name: WP No External Links
 Plugin URI: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
 Description: This plugin will allow you to mask all external links to internal, or to hide them. Your own posts, comments pages, authors pages... To set up, visit <a href="options-general.php?page=wp-noexternallinks/wp-noexternallinks.php">configuration panel</a>. 
-Version: 2.01
+Version: 2.02
 Author: Jehy
 Author URI: http://jehy.ru/index.en.html
 Update Server: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
@@ -329,18 +329,18 @@ function wp_noextrenallinks_set_filters()
 		$mask_author=1;
 
 	if($mask_mine)
-		add_filter('the_content','wp_noextrenallinks');
+		add_filter('the_content','wp_noextrenallinks',1);
 	if($mask_comment)
 	{
-		add_filter('comment_text','wp_noextrenallinks');
-		add_filter('comment_text_rss','wp_noextrenallinks');
-		add_filter('comment_url','wp_noextrenallinks');
+		add_filter('comment_text','wp_noextrenallinks',1);
+		add_filter('comment_text_rss','wp_noextrenallinks',1);
+		add_filter('comment_url','wp_noextrenallinks',1);
 	}
 	if($mask_author)
 	{
-		add_filter('get_comment_author_url_link','wp_noextrenallinks');
-		add_filter('get_comment_author_link','wp_noextrenallinks');
-		add_filter('get_comment_author_url','wp_noextrenallinks');
+		add_filter('get_comment_author_url_link','wp_noextrenallinks',1);
+		add_filter('get_comment_author_link','wp_noextrenallinks',1);
+		add_filter('get_comment_author_url','wp_noextrenallinks',1);
 	}
 }
 wp_noextrenallinks_set_filters();
