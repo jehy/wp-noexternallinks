@@ -13,7 +13,7 @@ Mask all external links to internal! In your own posts, comments pages, authors 
 Now you don't need to worry about your page rank or index, dropping because of spam bots. You write any kind of http link - and it becomes internal or hidden! You can configure plugin to work with your own posts, pages comments and authors's profiles. Of cause, the link will still be usable :).
 
 ####NEW!!!!!
- + Now you can also disable link rewriting, and use **"rel=nofollow"** and **&lt;noindex&gt;** tag instead of it - everything as you wish!   
++ Now you can also disable link rewriting, and use **"rel=nofollow"** and **&lt;noindex&gt;** tag instead of it - everything as you wish!   
 + In version 2.0 you can **make all links open in new window!**   
 + After many requests, I finally made an option to **disable masking** for concrete URLs and posts.  
 + Plugin works now without any magic with .htacess - you just install it and it works, and determines itself, if you need to rewrite permalinks, or use default link structure.  
@@ -28,10 +28,9 @@ In short, your links like "http://gmail.com" will be masked into
 Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&lt;/a&gt;" to   
 "&lt;noindex&gt;&lt;a rel="nofollow" target="_blank" href="http://google.com"&gt;google&lt;/a&gt;&lt;/noindex&gt;"
 
-Also you can add **rel=nofollow** attribute, **&lt;noindex&gt;** tag, and **target="_blank"** to your links!
-
+####Just one poplular question :)
 >  **- Is it an evil hack and black SEO?!**   
-Before you tell such awful things, read at lest [Google's topics on SEO](http://www.google.com/support/webmasters/bin/topic.py?topic=8522)   
+ - Before you say such awful things, read at lest [Google's topics on SEO](http://www.google.com/support/webmasters/bin/topic.py?topic=8522)   
 
 
 
@@ -55,6 +54,7 @@ Before you tell such awful things, read at lest [Google's topics on SEO](http://
 
 * English
 * Russian
+* Your language also can be here - just send me language file :)
 
 
 ####Please!
