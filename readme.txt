@@ -4,7 +4,7 @@ Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 2.7.1
 Stable tag: 2.02
-Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
+Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - **no more PR\CY dropping!**
 
 == Description ==
 
@@ -13,10 +13,10 @@ Mask all external links to internal! In your own posts, comments pages, authors 
 Now you don't need to worry about your page rank or index, dropping because of spam bots. You write any kind of http link - and it becomes internal or hidden! You can configure plugin to work with your own posts, pages comments and authors's profiles. Of cause, the link will still be usable :).
 
 ####NEW!!!!!
-Now you can also disable link rewriting, and use "rel=nofollow" and &lt;noindex&gt; tag instead of it - everything as you wish!   
-Also in version 2.0 you can make all links open ine new window!   
-Also, after many requests, I finally made an option to disable masking for concrete URLs and posts.  
-Also, plugin works now without any magic with .htacess - you just install it and it works, and determines itself, if you need to rewrite permalinks, or use default link structure.  
+ + Now you can also disable link rewriting, and use **"rel=nofollow"** and **&lt;noindex&gt;** tag instead of it - everything as you wish!   
++ In version 2.0 you can **make all links open in new window!**   
++ After many requests, I finally made an option to **disable masking** for concrete URLs and posts.  
++ Plugin works now without any magic with .htacess - you just install it and it works, and determines itself, if you need to rewrite permalinks, or use default link structure.  
 Have fun!
 
 ####Example
@@ -25,9 +25,12 @@ In short, your links like "http://gmail.com" will be masked into
 "http://YourBlog.com/goto/http://gmail.com" - or  
 "http://YourBlog.com?goto=http://gmail.com"
 
-Also you can add <b>rel=nofollow</b> attribute, <b>&lt;noindex&gt;</b> tag, and <b>target="_blank"</b> to your links!
+Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&lt;/a&gt;" to   
+"&lt;noindex&gt;&lt;a rel="nofollow" target="_blank" href="http://google.com"&gt;google&lt;/a&gt;&lt;/noindex&gt;"
 
-> Is it an evil hack and black SEO?!   
+Also you can add **rel=nofollow** attribute, **&lt;noindex&gt;** tag, and **target="_blank"** to your links!
+
+>  **- Is it an evil hack and black SEO?!**   
 Before you tell such awful things, read at lest [Google's topics on SEO](http://www.google.com/support/webmasters/bin/topic.py?topic=8522)   
 
 
