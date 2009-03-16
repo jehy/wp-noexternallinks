@@ -48,7 +48,7 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
    
 2.0 - Many significant changes, including urls and post exclusion from masking, another rewrite structure, and new options.   
 2.01 - Little bugfix, for fixing errors when empty exlusions  
-2.02 - Updated to execute ealier then other link filters, preventing possible problems with other plugins
+2.02 - Updated to execute later then other link filters, preventing possible problems with other plugins
 
 ####Localization
 
