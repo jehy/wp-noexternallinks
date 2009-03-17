@@ -18,7 +18,7 @@ DEFINE(WPNEL_THEN_APACHE_LEVEL_REDIRECT,'Then your server will make redirect on 
 DEFINE(WPNEL_MASK_LINKS_IN_POSTS,'Mask links in your posts');
 DEFINE(WPNEL_MASK_LINKS_IN_COMMENTS,'Mask links in comments');
 DEFINE(WPNEL_MASK_LINKS_IN_AUTHORS,'Mask comments authors`s links');
-DEFINE(WPNEL_HINT,'That plugins allows you to mask all external links and make them internal - using PHP file with location header, or mod rewrite. Yeah, by the way - it does not change anything in the base - only replaces links on output.<br>P.S. It doesn`t mask internal links.');
+DEFINE(WPNEL_HINT,'That plugins allows you to mask all external links and make them internal or hidden - using PHP redirect or special link tags and attributes. Yeah, by the way - it does not change anything in the base - only replaces links on output.<br>P.S. It doesn`t mask internal and excluded links.');
 DEFINE(WPNEL_SAVE_CHANGES,'Save changes');
 DEFINE(WPNEL_CONFIGURATION,'Configuration');
 DEFINE(WPNEL_LANGUAGE,'Language');
@@ -26,7 +26,7 @@ DEFINE(WPNEL_NO_REDIRECT,'Sorry, no url redirect specified. Can`t complete reque
 DEFINE(WPNEL_EXCLUDE_URLS,'Exclude URLs that you don`t want to mask (all urls, beginning with those, won`t be masked). Put one adress on each line, including prefix (for example, "http://jehy.ru")');
 DEFINE(WPNEL_ADD_NOFOLLOW,'Add <b>rel=nofollow</b> for masked links (for google)');
 DEFINE(WPNEL_ADD_BLANK,'Add <b>target="blank"</b> for all links (links will open in new window)');
-DEFINE(WPNEL_PUT_NOINDEX,'Surround masked links with <b>&lt;noindex&gt;link&lt;/noindex&gt;</b> tag (for yandex)');
+DEFINE(WPNEL_PUT_NOINDEX,'Surround masked links with <b>&lt;noindex&gt;link&lt;/noindex&gt;</b> tag (for yandex search engine)');
 DEFINE(WPNEL_DISABLE_MASK_LINKS,'Disable url rewrite of all links (you can be OK with just <b>noindex</b> tag and <b>rel=nofollow</b>)');
 DEFINE(WPNEL_DEFAULT_OPTIONS,'<h3>Global links masking settings</h3>(You can also disable plugin on per-post basis)');
 DEFINE(WPNEL_DEFAULT_POLICY,'Use default policy from plugin settings');

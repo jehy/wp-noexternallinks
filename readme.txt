@@ -3,8 +3,8 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 2.7.1
-Stable tag: 2.02
-Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - **no more PR\CY dropping!**
+Stable tag: 2.03
+Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
 
@@ -30,9 +30,10 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 
 ####Just one poplular question :)
 >  **- Is it an evil hack and black SEO?!**   
- - Before you say such awful things, read at lest [Google's topics on SEO](http://www.google.com/support/webmasters/bin/topic.py?topic=8522)   
+ - Before you say such awful things, read at least [Google's topics on SEO](http://www.google.com/support/webmasters/bin/topic.py?topic=8522)   
 
-
+####Note
+&lt;noindex&gt; tag is used mostly by russian search system "Yandex" (yandex.ru), and non-russian users don't usually need it.
 
 ####History
 
@@ -48,7 +49,8 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
    
 2.0 - Many significant changes, including urls and post exclusion from masking, another rewrite structure, and new options.   
 2.01 - Little bugfix, for fixing errors when empty exlusions  
-2.02 - Updated to execute later then other link filters, preventing possible problems with other plugins
+2.02 - Updated to execute later then other link filters, preventing possible problems with other plugins   
+2.03 - Fixed broken excludions list
 
 ####Localization
 

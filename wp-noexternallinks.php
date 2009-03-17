@@ -1,12 +1,12 @@
 <?php
 if(strpos(getcwd(),'wp-content/plugins/wp-noexternallinks'))
 	die('Error: Plugin "wp-noexternallinks" does not support standalone calls, damned hacker.');
-DEFINE(WPNEL_VERSION,'2.02');
+DEFINE(WPNEL_VERSION,'2.03');
 /*
 Plugin Name: WP No External Links
 Plugin URI: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
 Description: This plugin will allow you to mask all external links to internal, or to hide them. Your own posts, comments pages, authors pages... To set up, visit <a href="options-general.php?page=wp-noexternallinks/wp-noexternallinks.php">configuration panel</a>. 
-Version: 2.02
+Version: 2.03
 Author: Jehy
 Author URI: http://jehy.ru/index.en.html
 Update Server: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
@@ -105,7 +105,7 @@ if($add_nofollow===FALSE)
 if($add_blank===FALSE)
 	add_option('noexternallinks_add_blank', '1', 'if i must mask add target="_blank"');
 if($put_noindex===FALSE)
-	add_option('noexternallinks_put_noindex', '1', 'if i must add noindex tag to links');
+	add_option('noexternallinks_put_noindex', '0', 'if i must add noindex tag to links');
 if($disable_mask_links===FALSE)
 	add_option('noexternallinks_disable_mask_links', '1', 'if i shouldn`t mask urls');
 
@@ -115,11 +115,15 @@ if($disable_mask_links===FALSE)
 
 function wp_noextrenallinks_DeActivate()
 {
-#delete_option('noexternallinks_gotopath');
 delete_option('noexternallinks_mask_mine');
 delete_option('noexternallinks_mask_comment');
 delete_option('noexternallinks_mask_author');
-#delete_option('noexternallinks_lang');
+
+
+delete_option('noexternallinks_add_blank');
+delete_option('noexternallinks_add_nofollow');
+delete_option('noexternallinks_put_noindex');
+delete_option('noexternallinks_disable_mask_links');
 }
 
 
@@ -178,11 +182,16 @@ function parse_noexternallinks($matches)
   	  $ifnofollow=' rel="nofollow"';
   
   #no masking for those urls:
+  
   for($i=0;$i<sizeof($wp_noexternallinks_exclude_links);$i++)
   	  if($wp_noexternallinks_exclude_links[$i])
-        if(strpos($matches[2] . '//' .$matches[3],$wp_noexternallinks_exclude_links[$i])===0)#if begins with		
+        if(stripos($matches[2] . '//' .$matches[3],$wp_noexternallinks_exclude_links[$i])===0)#if begins with		
           return '<a'.$ifblank.' href="' . $matches[2] . '//' . $matches[3] . '" ' . $matches[1] . $matches[4] . '>' . $matches[5] . '</a>';
-  
+
+  /*echo 'NOT MATCHED!!!';
+  echo $matches[2] . '//' .$matches[3].' VS ';
+  print_R($wp_noexternallinks_exclude_links);
+  echo "\n\n\n\n\n\n";*/
   #mask all others!
   	$url=($matches[2] . '//' . $matches[3]);
   if($wp_noexternallinks_disable_masking)
@@ -216,6 +225,8 @@ function wp_noextrenallinks($content)
 	
 	$exclude=get_option('noexternallinks_exclude_links');
 	$wp_noexternallinks_exclude_links=@explode("\n",$exclude);
+	for($i=0;$i<sizeof($wp_noexternallinks_exclude_links);$i++)
+		$wp_noexternallinks_exclude_links[$i]=trim($wp_noexternallinks_exclude_links[$i]);
 	$wp_noexternallinks_exclude_links[]=$site;
   }
   $wp_noexternallinks_if_blank=get_option('noexternallinks_add_blank');
@@ -311,7 +322,7 @@ else echo '<font color="red">Crytical error: can not find language files directo
 			<input type="checkbox" name="noexternallinks_disable_mask_links" value="1"<?php if($disable_mask_links==1) echo ' checked';?>><?php echo WPNEL_DISABLE_MASK_LINKS;?><br><br><hr>	
 <?php echo WPNEL_EXCLUDE_URLS;?><br>
 	<textarea cols="70" rows="5" name="noexternallinks_exclude_links"><?php echo get_option('noexternallinks_exclude_links');?></textarea>
-		<div align="right"><input type="submit" name="submit" value="<?php _e('Save Changes') ?>" />
+		<div align="right"><input type="submit" name="submit" value="<?php _e('Save Changes') ?>" class="button-primary"/>
 </div></div>
 	</form><p style="font-size:smaller;"><?php echo WPNEL_HINT;?></p>
 <?php
