@@ -64,6 +64,9 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 If you don't rate my plugin as 5/5 - please write why - and I will add or change options and fix bugs. It's very unpleasant to see silient low rates.  
 If you don't understand what this plugin does - also don't rate it. SEO specialists only.
 
+####Donate? Just a link!
+If you liked this plugin - please write a review or just put somewhere a link to plugin homepage (http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/comment-page-2/) - it will be quite enough for a "thanks" ^_^
+
 == Installation ==
 
 1. Upload the complete folder `wp-noexternallinks` to the `/wp-content/plugins/` directory
