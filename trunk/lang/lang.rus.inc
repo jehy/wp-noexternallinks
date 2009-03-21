@@ -1,4 +1,4 @@
-<?
+<?php
 DEFINE(WPNEL_REDIRECTING,'Перенаправляю...');
 DEFINE(WPNEL_REDIRECT1,'Вы должны были перейти по ссылке автоматически, но что-то не получилось...<br>Пожалуйста, нажмите ');
 DEFINE(WPNEL_REDIRECT2,'СЮДА ');
