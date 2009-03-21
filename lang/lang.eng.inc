@@ -1,4 +1,4 @@
-<?
+<?php
 DEFINE(WPNEL_REDIRECTING,'Redirecting...');
 DEFINE(WPNEL_REDIRECT1,'You were going to the redirect link, but something did not work properly.<br>Please, click ');
 DEFINE(WPNEL_REDIRECT2,'HERE ');
