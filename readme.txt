@@ -57,6 +57,7 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 
 * English
 * Russian
+* Belorussian [by Marcis Gasuns] (www.comfi.com)
 * Your language also can be here - just send me language file :)
 
 
