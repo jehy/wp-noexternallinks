@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 2.7.1
-Stable tag: 2.04
+Stable tag: 2.05
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -51,13 +51,14 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 2.01 - Little bugfix, for fixing errors when empty exlusions  
 2.02 - Updated to execute later then other link filters, preventing possible problems with other plugins   
 2.03 - Fixed broken excludions list   
-2.04 - Changed default settings, removed "disable links masking"
+2.04 - Changed default settings, removed "disable links masking"    
+2.05 - Fixed internationalization, added Belarusian language    
 
 ####Localization
 
 * English
 * Russian
-* Belorussian [by Marcis Gasuns] (www.comfi.com)
+* Belarusian [by Marcis Gasuns] (www.comfi.com)
 * Your language also can be here - just send me language file :)
 
 
