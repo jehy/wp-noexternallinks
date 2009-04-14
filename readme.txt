@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 2.7.1
-Stable tag: 2.05
+Stable tag: 2.10
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -14,7 +14,7 @@ Now you don't need to worry about your page rank or index, dropping because of s
 
 ####NEW!!!!!
 + Now you can also disable link rewriting, and use **"rel=nofollow"** and **&lt;noindex&gt;** tag instead of it - everything as you wish!   
-+ In version 2.0 you can **make all links open in new window!**   
++ From version 2.0 you can **make all links open in new window!**   
 + After many requests, I finally made an option to **disable masking** for concrete URLs and posts.  
 + Plugin works now without any magic with .htacess - you just install it and it works, and determines itself, if you need to rewrite permalinks, or use default link structure.  
 Have fun!
@@ -53,6 +53,7 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 2.03 - Fixed broken excludions list   
 2.04 - Changed default settings, removed "disable links masking"    
 2.05 - Fixed internationalization, added Belarusian language    
+2.10 - Plugin was rewrited for faster performance, fixed adding targer="_blank" for internal links    
 
 ####Localization
 
@@ -67,7 +68,7 @@ If you don't rate my plugin as 5/5 - please write why - and I will add or change
 If you don't understand what this plugin does - also don't rate it. SEO specialists only.
 
 ####Donate? Just a link!
-If you liked this plugin - please write a review or just put somewhere a [link to plugin homepage](http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/comment-page-2/) - it will be quite enough for a "thanks" ^_^
+If you liked this plugin - please write a review or just put somewhere a [link to plugin homepage](http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/) - it will be quite enough for a "thanks" ^_^
 
 == Installation ==
 
