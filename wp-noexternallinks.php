@@ -35,10 +35,8 @@ class wp_noexternallinks
 
 public function init_lang()
 {
-  if(file_exists('lang/lang.'.WPLANG.'.inc'))
-      $lang=WPLANG.'.';
-
-  include_once('lang/lang.'.$lang.'inc');
+  if(!@include_once('lang/lang.'.WPLANG.'.inc'))
+    include_once('lang/lang.inc');
 }
 }
 if(is_admin())
