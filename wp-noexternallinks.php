@@ -254,22 +254,13 @@ global $_REQUEST;
     update_option('noexternallinks_disable_mask_links',$_REQUEST['noexternallinks_disable_mask_links']);
 }
 
-
+	
 function wp_noexternallinks_init_lang()
 {
-  if(in_array(WPLANG,array('ru','RU','ru_RU')))
-    $lang='ru_RU';
-  elseif(in_array(WPLANG,array('be','BY','be_BY')))
-    $lang='be_BY';
-
-  if($lang)
-  	  $lang=$lang.'.';
-  elseif(file_exists('lang/lang.'.WPLANG.'.inc'))
-  	  $lang=WPLANG.'.';
-  	  
-  include_once('lang/lang.'.$lang.'inc');
+  if(file_exists(ABSPATH . 'wp-content/plugins/wp-noexternallinks/lang/lang.'.WPLANG.'.inc'))
+    $lang='.'.WPLANG;
+    include_once(ABSPATH . 'wp-content/plugins/wp-noexternallinks/lang/lang'.$lang.'.inc');
 }
-	
 function wp_noextrenallinks_option_page()
 {
 	wp_noexternallinks_init_lang();
