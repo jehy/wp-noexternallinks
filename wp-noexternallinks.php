@@ -1,12 +1,12 @@
 <?php
 if(strpos(getcwd(),'wp-content/plugins/wp-noexternallinks'))
 	die('Error: Plugin "wp-noexternallinks" does not support standalone calls, damned hacker.');
-DEFINE(WPNEL_VERSION,'2.13');
+DEFINE(WPNEL_VERSION,'2.14');
 /*
 Plugin Name: WP No External Links
 Plugin URI: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
 Description: This plugin will allow you to mask all external links to internal, or to hide them. Your own posts, comments pages, authors pages... To set up, visit <a href="options-general.php?page=wp-noexternallinks/wp-noexternallinks-options.php">configuration panel</a>.
-Version: 2.13
+Version: 2.14
 Author: Jehy
 Author URI: http://jehy.ru/index.en.html
 Update Server: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
@@ -40,8 +40,8 @@ function init_lang()
 }
 }
 if(is_admin())
-  include_once('wp-noexternallinks-options.php');
+  include_once(ABSPATH . 'wp-content/plugins/wp-noexternallinks/wp-noexternallinks-options.php');
 else
-	include_once('wp-noexternallinks-parser.php');
+	include_once(ABSPATH . 'wp-content/plugins/wp-noexternallinks/wp-noexternallinks-parser.php');
 
 ?>
