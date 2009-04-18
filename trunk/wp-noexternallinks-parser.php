@@ -40,7 +40,7 @@ function wp_noextrenallinks_parser($matches)
 $wp_noexternallinks_parser=new wp_noexternallinks_parser();
 class wp_noexternallinks_parser extends wp_noexternallinks
 {
-$exclude_links,$if_blank,$if_nofollow,$disable_masking,$put_noindex,$site,$LINK_SEP;
+var $exclude_links,$if_blank,$if_nofollow,$disable_masking,$put_noindex,$site,$LINK_SEP;
 
 function wp_noexternallinks_parser()#constructor
 {
