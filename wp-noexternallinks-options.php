@@ -2,7 +2,6 @@
 if(strpos(getcwd(),'wp-content/plugins/wp-noexternallinks'))
   die('Error: Plugin "wp-noexternallinks" does not support standalone calls, damned hacker.');
 
-new wp_noexternallinks_admin();
 class wp_noexternallinks_admin extends wp_noexternallinks
 {
 function wp_noexternallinks_admin()
@@ -169,4 +168,5 @@ global $_REQUEST;
 }
 
 
+new wp_noexternallinks_admin();
 ?>
