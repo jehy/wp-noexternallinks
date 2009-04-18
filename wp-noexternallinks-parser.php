@@ -40,9 +40,9 @@ function wp_noextrenallinks_parser($matches)
 $wp_noexternallinks_parser=new wp_noexternallinks_parser();
 class wp_noexternallinks_parser extends wp_noexternallinks
 {
-public $exclude_links,$if_blank,$if_nofollow,$disable_masking,$put_noindex,$site,$LINK_SEP;
+$exclude_links,$if_blank,$if_nofollow,$disable_masking,$put_noindex,$site,$LINK_SEP;
 
-public function wp_noexternallinks_parser()#constructor
+function wp_noexternallinks_parser()#constructor
 {
   add_filter('template_redirect',array($this,'Redirect'),1);#modify template
   $this->set_filters();
@@ -68,7 +68,7 @@ public function wp_noexternallinks_parser()#constructor
   $this->LINK_SEP=get_option('noexternallinks_link_separator');
   if(!$this->LINK_SEP)
     $this->LINK_SEP='goto';}
-public function Redirect()
+function Redirect()
 {
   global $_REQUEST;
   $goto='';
@@ -88,7 +88,7 @@ public function Redirect()
     $this->redirect2($goto);
 }
 
-public function redirect2($url)
+function redirect2($url)
 {  global $wp_rewrite;
   $this->init_lang();
   if(!$wp_rewrite->using_permalinks())
@@ -109,7 +109,7 @@ else
 }
 
 
-public function filter($content)
+function filter($content)
 {
   global $post,$wp_rewrite;
   $mask = get_post_meta($post->ID, 'wp_noextrenallinks_mask_links', true);
@@ -122,7 +122,7 @@ public function filter($content)
 }
 
 
-public function set_filters()
+function set_filters()
 {
   if(FALSE===$this->mask_mine=get_option('noexternallinks_mask_mine'))
     $this->mask_mine=1;

@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 class wp_noexternallinks
 {
-public function init_lang()
+function init_lang()
 {
   if(file_exists(ABSPATH . 'wp-content/plugins/wp-noexternallinks/lang/lang.'.WPLANG.'.inc'))
     $lang='.'.WPLANG;

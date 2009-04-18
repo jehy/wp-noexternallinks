@@ -7,6 +7,8 @@ Stable tag: 2.10
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
+>WARNING
+If you upgraded to version 2.10 and higher and have problems - please [download version 2.05](http://downloads.wordpress.org/plugin/wp-noexternallinks.2.05.zip) or help me to debug - currently It seems like I'm having problems with blogs on PHP4.
 
 Mask all external links to internal! In your own posts, comments pages, authors page... It does not change anything or write to base - just processes output.
 
@@ -54,6 +56,7 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 2.04 - Changed default settings, removed "disable links masking"    
 2.05 - Fixed internationalization, added Belarusian language    
 2.10 - Plugin was rewrited for faster performance, fixed adding targer="_blank" for internal links    
+2.11 - Removed "public" keyword in class functions definitions. Probably will be more compatible with PHP4.
 
 ####Localization
 

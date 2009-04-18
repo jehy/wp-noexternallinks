@@ -5,7 +5,7 @@ if(strpos(getcwd(),'wp-content/plugins/wp-noexternallinks'))
 new wp_noexternallinks_admin();
 class wp_noexternallinks_admin extends wp_noexternallinks
 {
-public function wp_noexternallinks_admin()
+function wp_noexternallinks_admin()
 {
   $this->init_lang();
   add_action('save_post', array($this,'save_postdata'));
@@ -15,7 +15,7 @@ public function wp_noexternallinks_admin()
   register_deactivation_hook(__FILE__,array($this,'wp_noextrenallinks_DeActivate'));
 }
 
-public function save_postdata( $post_id )
+function save_postdata( $post_id )
 {
   if ( !wp_verify_nonce( $_REQUEST['wp_noextrenallinks_noncename'], plugin_basename(__FILE__) ))
     return $post_id;
@@ -30,13 +30,13 @@ public function save_postdata( $post_id )
   update_post_meta($post_id, 'wp_noextrenallinks_mask_links', $_REQUEST['wp_noextrenallinks_mask_links']);
   # return $mydata;
 }
-public function add_custom_box($page,$context)
+function add_custom_box($page,$context)
 {
   add_meta_box( 'wp_noextrenallinks_sectionid1', WPNEL_PERPOST_SETTINGS,array($this,'inner_custom_box1'), 'post', 'advanced' );
   add_meta_box( 'wp_noextrenallinks_sectionid1', WPNEL_PERPOST_SETTINGS,array($this,'inner_custom_box1'), 'page', 'advanced' );
 }
 
-public function inner_custom_box1() {
+function inner_custom_box1() {
 	global $post;
   echo '<input type="hidden" name="wp_noextrenallinks_noncename" id="wp_noextrenallinks_noncename" value="' .
     wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
@@ -50,7 +50,7 @@ public function inner_custom_box1() {
   echo '>'.WPNEL_DONT_MASK;
 }
 
-public function Activate()
+function Activate()
 {
   $mask_mine=get_option('noexternallinks_mask_mine');
   $mask_comment=get_option('noexternallinks_mask_comment');
@@ -82,7 +82,7 @@ public function Activate()
   	add_option('noexternallinks_disable_mask_links', '0', 'if i shouldn`t mask urls');
 }
 
-public function DeActivate()
+function DeActivate()
 {
   delete_option('noexternallinks_mask_mine');
   delete_option('noexternallinks_mask_comment');
@@ -98,7 +98,7 @@ public function DeActivate()
 }
 
 
-public function update()
+function update()
 {
 global $_REQUEST;
     update_option('noexternallinks_mask_mine',$_REQUEST['noexternallinks_mask_mine']);
@@ -112,7 +112,7 @@ global $_REQUEST;
 }
 
 
-public function modify_menu(){
+function modify_menu(){
 	add_options_page(
 		'WP-NoExternalLinks',
 		'WP-NoExternalLinks',
@@ -122,7 +122,7 @@ public function modify_menu(){
 		);
 }
 
-public function option_page()
+function option_page()
 {
 	$mask_mine=get_option('noexternallinks_mask_mine');
 	$mask_comment=get_option('noexternallinks_mask_comment');
@@ -157,7 +157,7 @@ public function option_page()
 }
 
 
-public function admin_options()
+function admin_options()
 {
 global $_REQUEST;
 	echo '<div class="wrap"><h2>WP-NoExternalLinks '.WPNEL_VERSION.'</h2>';
