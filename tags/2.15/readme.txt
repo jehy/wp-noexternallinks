@@ -8,7 +8,13 @@ Mask all external links - make them internal or hide. On your own posts, comment
 
 == Description ==
 >WARNING
-If you upgraded to version 2.10 and higher and have problems - please [download version 2.05](http://downloads.wordpress.org/plugin/wp-noexternallinks.2.05.zip) or help me to debug - currently It seems like I'm having problems with blogs on PHP4.
+>If you upgraded to version 2.10 and higher and have problems - please [download version 2.05](http://downloads.wordpress.org/plugin/wp-noexternallinks.2.05.zip) or help me to debug - currently It seems like I'm having problems with blogs on PHP4.
+
+>If you are having problems even with 2.05
+>Then please [download version 0.071](http://downloads.wordpress.org/plugin/wp-noexternallinks.0.071.zip) - it's slower, doesn't have functionality, but works fine on servers with the worst settings. 
+
+>Still not good?
+>Tell me about your problems in [my blog](http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/).
 
 Mask all external links to internal! In your own posts, comments pages, authors page... It does not change anything or write to base - just processes output.
 
