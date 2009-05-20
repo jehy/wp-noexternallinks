@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 2.7.1
-Stable tag: 2.14
+Stable tag: 2.15
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -61,7 +61,8 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 2.11 - Removed "public" keyword in class functions definitions. Probably will be more compatible with PHP4.    
 2.12 - Fully compatible with PHP4.    
 2.13 - Fixed language inclusion problem which apperared in some cases.    
-2.14 - Absolute  file paths used now instead of relative.
+2.14 - Absolute  file paths used now instead of relative.    
+2.15 - Fixed for some servers with setup which replaces "//" with"/".
 
 ####Localization
 
