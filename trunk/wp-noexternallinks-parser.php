@@ -83,6 +83,8 @@ function Redirect()
     if($url[sizeof($url)-2]==$this->LINK_SEP)
       $goto=$url[sizeof($url)-1];
   }
+  if(!strpos($goto,'://'))
+  	  $goto=str_replace(':/','://',$goto);
   if($goto)
     $this->redirect2($goto);
 }
