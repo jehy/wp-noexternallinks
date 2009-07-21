@@ -54,7 +54,7 @@ function wp_noexternallinks_parser()#constructor
   $p=strpos($this->site,'/',7);
   if($p)
     $this->exclude_links[]=substr($this->site,0,$p);#site root is excluded
-
+  $this->exclude_links[]='javascript';
   $exclude=get_option('noexternallinks_exclude_links');
   $exclude=@explode("\n",$exclude);
   for($i=0;$i<sizeof($exclude);$i++)
