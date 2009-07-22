@@ -54,6 +54,8 @@ function wp_noexternallinks_parser()#constructor
   $p=strpos($this->site,'/',7);
   if($p)
     $this->exclude_links[]=substr($this->site,0,$p);#site root is excluded
+  else
+    $this->exclude_links[]=$this->site;
   $this->exclude_links[]='javascript';
   $exclude=get_option('noexternallinks_exclude_links');
   $exclude=@explode("\n",$exclude);
@@ -133,7 +135,10 @@ function set_filters()
     $this->mask_author=1;
 
   if($this->mask_mine)
+  {
     add_filter('the_content',array($this,'filter'),99);
+    add_filter('the_excerpt',array($this,'filter'),99);
+  }
   if($this->mask_comment)
   {
     add_filter('comment_text',array($this,'filter'),99);

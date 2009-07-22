@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 2.8.2
-Stable tag: 2.16
+Stable tag: 2.17
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -69,7 +69,8 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 2.13 - Fixed language inclusion problem which apperared in some cases.    
 2.14 - Absolute  file paths used now instead of relative.    
 2.15 - Fixed for some servers with setup which replaces "//" with"/".    
-2.16 - Javascript links aren't broken by plugin now, thanks to [Andu](http://anduriell.es)
+2.16 - Javascript links aren't broken by plugin now, thanks to [Andu](http://anduriell.es)    
+2.17 - Several bugfixes for low possible case scenarios...
 
 ####Localization
 
