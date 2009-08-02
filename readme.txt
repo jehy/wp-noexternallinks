@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 2.8.2
-Stable tag: 2.17
+Stable tag: 2.171
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -45,32 +45,33 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 
 ####History
 
-0.01 - First release  
-0.02 - Multilanguagal release  
-0.03 - Bugfix  
-0.04 - Activation \ Deactivation improved, optimization, localization settings now stored as options  
-0.05 - Bugfix for wrong html parsing  
-0.06 - Bugfix for email links  
-0.07 - Better work for sites wihout mod_rewrite  
-0.071 - Russian translation corrected  
+0.01 - First release.  
+0.02 - Multilanguagal release.  
+0.03 - Bugfix.  
+0.04 - Activation \ Deactivation improved, optimization, localization settings now stored as options.  
+0.05 - Bugfix for wrong html parsing.  
+0.06 - Bugfix for email links.  
+0.07 - Better work for sites wihout mod_rewrite.  
+0.071 - Russian translation corrected.  
    
    
 2.0 - Many significant changes, including urls and post exclusion from masking, another rewrite structure, and new options.   
-2.01 - Little bugfix, for fixing errors when empty exlusions  
-2.02 - Updated to execute later then other link filters, preventing possible problems with other plugins   
-2.03 - Fixed broken excludions list   
-2.04 - Changed default settings, removed "disable links masking"    
-2.05 - Fixed internationalization, added Belarusian language    
+2.01 - Little bugfix, for fixing errors when empty exlusions.  
+2.02 - Updated to execute later then other link filters, preventing possible problems with other plugins.   
+2.03 - Fixed broken exclusions list.   
+2.04 - Changed default settings, removed "disable links masking".    
+2.05 - Fixed internationalization, added Belarusian language.    
     
     
-2.10 - Plugin was rewrited for faster performance, fixed adding targer="_blank" for internal links    
+2.10 - Plugin was rewrited for faster performance, fixed adding targer="_blank" for internal links.    
 2.11 - Removed "public" keyword in class functions definitions. Probably will be more compatible with PHP4.    
 2.12 - Fully compatible with PHP4.    
 2.13 - Fixed language inclusion problem which apperared in some cases.    
 2.14 - Absolute  file paths used now instead of relative.    
 2.15 - Fixed for some servers with setup which replaces "//" with"/".    
-2.16 - Javascript links aren't broken by plugin now, thanks to [Andu](http://anduriell.es)    
-2.17 - Several bugfixes for low possible case scenarios...
+2.16 - Javascript links aren't broken by plugin now, thanks to [Andu](http://anduriell.es).    
+2.17 - Several bugfixes for low possible case scenarios...    
+2.171 - Added automatic exclusion of internal links (#smth) from masking.
 
 ####Localization
 

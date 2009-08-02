@@ -56,7 +56,8 @@ function wp_noexternallinks_parser()#constructor
     $this->exclude_links[]=substr($this->site,0,$p);#site root is excluded
   else
     $this->exclude_links[]=$this->site;
-  $this->exclude_links[]='javascript';
+  $this->exclude_links[]='javascript';#for javascript links :)
+  $this->exclude_links[]='#';#for internal links
   $exclude=get_option('noexternallinks_exclude_links');
   $exclude=@explode("\n",$exclude);
   for($i=0;$i<sizeof($exclude);$i++)
