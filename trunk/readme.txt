@@ -100,13 +100,13 @@ If you want to ensure the future development and support of this plugin, you can
 - How can I exclude my page with links from masking?   
 Now you just put URLS you need to the exclusion list, or disable masking for concrete post - and everything's OK!!!
 
-== How can I mask links in custom field? ==
+####How can I mask links in custom field?
 You will have to add just a line in theme code where you output custom field data.    
 To add same preprocessing for data as for comment text, use 
-`$metadata=apply_filters('comment_text',$metadata);`    
+    \*$metadata=apply_filters('comment_text',$metadata);\*    
 For example, if you use some kind of metadata, it should look like this:
-`$metadata = get_post_meta($id, 'MetaTagName', true);// get data from wordpress database
-$metadata=apply_filters('comment_text',$metadata);// add this line of code for preprocessing field value
-echo $metadata;//output preprocessed field value`
+    \*$metadata = get_post_meta($id, 'MetaTagName', true);// get data from wordpress database\*
+    \*$metadata=apply_filters('comment_text',$metadata);// add this line of code for preprocessing field value\*
+    \*echo $metadata;//output preprocessed field value\*
 
-That's if you want to mask links in custom field like in comments text. Use "the_content" instead of "comment_text" if  you want to use the same masking policy as for post text.
+That's if you want to mask links in custom field like in comments text. Use \*"the_content"\* instead of \*"comment_text"\* if  you want to use the same masking policy as for post text.
