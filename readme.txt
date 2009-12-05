@@ -105,7 +105,7 @@ You will have to add just a line in theme code where you output custom field dat
 To add same preprocessing for data as for comment text, use    
     $metadata=apply\_filters('comment\_text',$metadata);    
 For example, if you use some kind of metadata, it should look like this:    
-    $metadata = get_post_meta($id, 'MetaTagName', true);// get data from wordpress database    
+    $metadata = get\_post\_meta($id, 'MetaTagName', true);// get data from wordpress database    
     $metadata=apply\_filters('comment\_text',$metadata);// add this line of code for preprocessing field value    
     echo $metadata;//output preprocessed field value    
 
