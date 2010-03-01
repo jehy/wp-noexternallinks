@@ -77,8 +77,9 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 
 * English
 * Russian
-* Belarusian [by Marcis Gasuns](http://www.comfi.com)
+* Belarusian (by Marcis Gasuns)
 * German by [Sven Knurr](http://tuxproject.de/blog/)
+* French (by Alex Limoges)
 * Your language also can be here - just send me language file :)
 
 
