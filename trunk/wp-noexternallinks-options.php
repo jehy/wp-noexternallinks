@@ -1,5 +1,5 @@
 <?php
-if(strpos(getcwd(),'wp-content/plugins/wp-noexternallinks'))
+if(!defined('DB_NAME'))
   die('Error: Plugin "wp-noexternallinks" does not support standalone calls, damned hacker.');
 
 class wp_noexternallinks_admin extends wp_noexternallinks
@@ -7,6 +7,7 @@ class wp_noexternallinks_admin extends wp_noexternallinks
 function wp_noexternallinks_admin()
 {
   $this->init_lang();
+  $this->load_options();
   add_action('save_post', array($this,'save_postdata'));
   add_action('do_meta_boxes', array($this,'add_custom_box'), 15, 2);
   add_action('admin_menu', array($this,'modify_menu'));
@@ -31,8 +32,8 @@ function save_postdata( $post_id )
 }
 function add_custom_box($page,$context)
 {
-  add_meta_box( 'wp_noextrenallinks_sectionid1', WPNEL_PERPOST_SETTINGS,array($this,'inner_custom_box1'), 'post', 'advanced' );
-  add_meta_box( 'wp_noextrenallinks_sectionid1', WPNEL_PERPOST_SETTINGS,array($this,'inner_custom_box1'), 'page', 'advanced' );
+  add_meta_box( 'wp_noextrenallinks_sectionid1', __('Link masking for this post','wpnoexternallinks'),array($this,'inner_custom_box1'), 'post', 'advanced' );
+  add_meta_box( 'wp_noextrenallinks_sectionid1', __('Link masking for this post','wpnoexternallinks'),array($this,'inner_custom_box1'), 'page', 'advanced' );
 }
 
 function inner_custom_box1() {
@@ -44,45 +45,20 @@ function inner_custom_box1() {
   	$mask=0;
   echo '<input type="radio" name="wp_noextrenallinks_mask_links" value="0"';
   if($mask==0)echo' checked';
-  echo'>'.WPNEL_DEFAULT_POLICY.'<br><input type="radio" name="wp_noextrenallinks_mask_links" value="2"';
+  echo'>'.__('Use default policy from plugin settings','wpnoexternallinks').'<br><input type="radio" name="wp_noextrenallinks_mask_links" value="2"';
   if($mask==2)echo' checked';
-  echo '>'.WPNEL_DONT_MASK;
+  echo '>'.__('Don`t mask links','wpnoexternallinks');
 }
 
 function Activate()
 {
-  $mask_mine=get_option('noexternallinks_mask_mine');
-  $mask_comment=get_option('noexternallinks_mask_comment');
-  $mask_author=get_option('noexternallinks_mask_author');
-
-  $add_nofollow=get_option('noexternallinks_add_nofollow');
-  $add_blank=get_option('noexternallinks_add_blank');
-  $put_noindex=get_option('noexternallinks_put_noindex');
-  $disable_mask_links=get_option('noexternallinks_disable_mask_links');
-
-  $this->LINK_SEP=get_option('noexternallinks_link_separator');
-  if($this->LINK_SEP===FALSE)
-  	add_option('noexternallinks_link_separator','goto', 'link separator');
-
-  if($mask_mine===FALSE)
-  	add_option('noexternallinks_mask_mine','1', 'if i must mask links in your content');
-  if($mask_comment===FALSE)
-  	add_option('noexternallinks_mask_comment','1', 'if i must mask links in coments');
-  if($mask_author===FALSE)
-  	add_option('noexternallinks_mask_author', '1', 'if i must mask links in authors');
-
-  if($add_nofollow===FALSE)
-  	add_option('noexternallinks_add_nofollow', '1', 'if i must add rel=nofollow');
-  if($add_blank===FALSE)
-  	add_option('noexternallinks_add_blank', '1', 'if i must mask add target="_blank"');
-  if($put_noindex===FALSE)
-  	add_option('noexternallinks_put_noindex', '0', 'if i must add noindex tag to links');
-  if($disable_mask_links===FALSE)
-  	add_option('noexternallinks_disable_mask_links', '0', 'if i shouldn`t mask urls');
+  #nothing now.
 }
 
 function DeActivate()
 {
+  //remove all options. Better not do it, you know...
+  /*
   delete_option('noexternallinks_mask_mine');
   delete_option('noexternallinks_mask_comment');
   delete_option('noexternallinks_mask_author');
@@ -94,12 +70,13 @@ function DeActivate()
 
   delete_option('noexternallinks_exclude_links');
   delete_option('noexternallinks_link_separator');
+  delete_option('noexternallinks_fullmask');*/
 }
 
 
 function update()
 {
-global $_REQUEST;
+/*global $_REQUEST;
     update_option('noexternallinks_mask_mine',$_REQUEST['noexternallinks_mask_mine']);
     update_option('noexternallinks_mask_comment',$_REQUEST['noexternallinks_mask_comment']);
     update_option('noexternallinks_mask_author',$_REQUEST['noexternallinks_mask_author']);
@@ -108,6 +85,9 @@ global $_REQUEST;
     update_option('noexternallinks_add_blank',$_REQUEST['noexternallinks_add_blank']);
     update_option('noexternallinks_put_noindex',$_REQUEST['noexternallinks_put_noindex']);
     update_option('noexternallinks_disable_mask_links',$_REQUEST['noexternallinks_disable_mask_links']);
+    update_option('noexternallinks_fullmask',$_REQUEST['noexternallinks_fullmask']);*/
+    $this->options=$_REQUEST['options'];
+    $this->update_options();
 }
 
 
@@ -121,37 +101,91 @@ function modify_menu(){
 		);
 }
 
+function view_stats()
+{global $wpdb;
+?>
+	<form method="post" action="">
+		<input type="hidden" name="page" value="<?php echo $_REQUEST['page'];?>">
+		<?php wp_nonce_field('update-options'); ?>
+		<div style="float:right;margin-right:2em;">
+			<b>WP NoExternalLinks Stats</b><br>
+			<a href="http://jehy.ru/wp-plugins.en.html" target="_blank"><?php _e('Plugin home page','wpnoexternallinks');?></a><br />
+			<a href="http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/" target="_blank"><?php _e('Feedback','wpnoexternallinks');?></a>
+		</div>
+<a href="?page=<?php echo $_REQUEST['page'];?>"><?php _e('View options','wpnoexternallinks');?></a><br>
+<?php
+if($_REQUEST['date1'])
+		$date1=$_REQUEST['date1'];
+else
+	$date1=date('Y-m-d');
+if($_REQUEST['date2'])
+		$date2=$_REQUEST['date2'];
+else
+	$date2=date('Y-m-d');
+_e('View stats from ','wpnoexternallinks');
+?>
+		<input type="text" name="date1" value="<?php echo $date1;?>"><?php _e(' to ','wpnoexternallinks');?><input type="text" name="date2" value="<?php echo $date2;?>"><input type="submit" value="<?php _e('View','wpnoexternallinks');?>" class="button-primary">
+		</form>
+<?php
+	$sql='select * from '.$wpdb->prefix.'links_stats where `date` between "'.$date1.' 00:00:00" and "'.$date2.' 23:59:59"';
+	$result=mysql_query($sql);
+	$out=array();
+	while($row=mysql_fetch_array($result))
+	{
+		$nfo=parse_url($row['url']);
+		$out[$nfo['host']][$row['url']]++;
+	}
+	foreach($out as $host=>$arr)
+	{
+		echo '<br>'.$host.'<ul>';
+		foreach($arr as $url=>$outs)
+			echo '<li><a href="'.$url.'">'.$url.'</a> ('.$outs.')</li>';
+		echo '</ul>';
+	}
+		
+}
+
 function option_page()
 {
-	$mask_mine=get_option('noexternallinks_mask_mine');
-	$mask_comment=get_option('noexternallinks_mask_comment');
-	$mask_author=get_option('noexternallinks_mask_author');
-	$add_nofollow=get_option('noexternallinks_add_nofollow');
-	$add_blank=get_option('noexternallinks_add_blank');
-	$put_noindex=get_option('noexternallinks_put_noindex');
-	$disable_mask_links=get_option('noexternallinks_disable_mask_links');
-?>
+?><p style="font-size:smaller;"><?php _e('That plugins allows you to mask all external links and make them internal or hidden - using PHP redirect or special link tags and attributes. Yeah, by the way - it does not change anything in the base - only replaces links on output.<br>P.S. It doesn`t mask internal and excluded links.','wpnoexternallinks');?></p>
 	<form method="post" action="">
 		<?php wp_nonce_field('update-options'); ?>
 		<div style="float:right;margin-right:2em;">
-			<b>WP NoExternalLinks <?php echo WPNEL_VERSION;?></b><br>
-			<a href="http://jehy.ru/wp-plugins.en.html" target="_blank"><?php echo WPNEL_PLUGIN_HOMEPAGE;?></a><br />
-			<a href="http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/" target="_blank"><?php echo WPNEL_FEEDBACK;?></a>
+			<b>WP NoExternalLinks</b><br>
+			<a href="http://jehy.ru/wp-plugins.en.html" target="_blank"><?php _e('Plugin home page','wpnoexternallinks');?></a><br />
+			<a href="http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/" target="_blank"><?php _e('Feedback','wpnoexternallinks');?></a>
 		</div>
-		<?php echo WPNEL_DEFAULT_OPTIONS;?><br><br>
-			<input type="checkbox" name="noexternallinks_mask_mine" value="1"<?php if($mask_mine==1) echo ' checked';?>><?php echo WPNEL_MASK_LINKS_IN_POSTS;?><br><br>
-	<input type="checkbox" name="noexternallinks_mask_comment" value="1"<?php if($mask_comment==1) echo ' checked';?>><?php echo WPNEL_MASK_LINKS_IN_COMMENTS;?><br><br>
-	<input type="checkbox" name="noexternallinks_mask_author" value="1"<?php if($mask_author==1) echo ' checked';?>><?php echo WPNEL_MASK_LINKS_IN_AUTHORS;?><br><br>
-				<font color="red">NEW!!!</font><br>
-	<input type="checkbox" name="noexternallinks_add_nofollow" value="1"<?php if($add_nofollow==1) echo ' checked';?>><?php echo WPNEL_ADD_NOFOLLOW;?><br><br>
-			<input type="checkbox" name="noexternallinks_add_blank" value="1"<?php if($add_blank==1) echo ' checked';?>><?php echo WPNEL_ADD_BLANK;?><br><br>
-			<input type="checkbox" name="noexternallinks_put_noindex" value="1"<?php if($put_noindex==1) echo ' checked';?>><?php echo WPNEL_PUT_NOINDEX;?><br><br>
-			<input type="checkbox" name="noexternallinks_disable_mask_links" value="1"<?php if($disable_mask_links==1) echo ' checked';?>><?php echo WPNEL_DISABLE_MASK_LINKS;?><br><br><hr>
-<?php echo WPNEL_EXCLUDE_URLS;?><br>
-	<textarea cols="70" rows="5" name="noexternallinks_exclude_links"><?php echo get_option('noexternallinks_exclude_links');?></textarea>
+<a href="?page=<?php echo $_REQUEST['page'];?>&action=stats"><?php _e('View Stats','wpnoexternallinks');?></a><br>
+<?php _e('<h3>Global links masking settings</h3>(You can also disable plugin on per-post basis)','wpnoexternallinks');?><br><br>
+<?php
+#print_R($this->options);
+$opt=$this->GetOptionInfo();
+foreach($opt as $i=>$arr)
+{
+	if($arr['type']=='chk')
+	{
+		echo'<br><input type="checkbox" name="options['.$arr['new_name'].']" value="1"';
+		if($this->options[$arr['new_name']])
+			echo' checked';
+		echo'>'.$arr['name'];
+	}
+	elseif($arr['type']=='txt')
+	{
+		echo'<br>'.$arr['name'].':<br><input type="text" name="options['.$arr['new_name'].']" value="'.$this->options[$arr['new_name']].'">';
+	}
+	elseif($arr['type']=='text')
+	{
+		echo '<br>'.$arr['name'].':<br>';
+		echo'<textarea name="options['.$arr['new_name'].']" style="width: 400px;height:100px;">'.$this->options[$arr['new_name']].'</textarea>';
+	}
+	echo '<br>';
+}
+
+?>			
+			
 		<div align="right"><input type="submit" name="submit" value="<?php _e('Save Changes') ?>" class="button-primary"/>
 </div></div>
-	</form><p style="font-size:smaller;"><?php echo WPNEL_HINT;?></p>
+	</form>
 <?php
 }
 
@@ -159,10 +193,13 @@ function option_page()
 function admin_options()
 {
 global $_REQUEST;
-	echo '<div class="wrap"><h2>WP-NoExternalLinks '.WPNEL_VERSION.'</h2>';
+	echo '<div class="wrap"><h2>WP-NoExternalLinks</h2>';
 	if($_REQUEST['submit'])
 		$this->update();
-	$this->option_page();
+	if($_REQUEST['action']=='stats')
+		$this->view_stats();
+	else
+		$this->option_page();
 	echo '</div>';
 }
 }
