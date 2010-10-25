@@ -8,7 +8,7 @@ Mask all external links - make them internal or hide. On your own posts, comment
 
 == Description ==
 >**WARNING**
->Version 3.0.0 is beta-release, and it it has many cool features - outgoing clicks stats, fulllink masking, custom redirects and so on - but it may have several bugs, I made plugin almost from scratch again. Any feedback is much appreciated. If you want stable version - download 2.172.
+>Version 3.0.0 is beta-release, and it it has many cool features - outgoing clicks stats, fulllink masking, custom redirects and so on - but it may have several bugs, I made plugin almost from scratch again. Any feedback is much appreciated. If you want stable version - [download 2.172](http://downloads.wordpress.org/plugin/wp-noexternallinks.2.172.zip).
 
 >If you upgraded to version 2.10 and higher and have problems - please [download version 2.05](http://downloads.wordpress.org/plugin/wp-noexternallinks.2.05.zip) or help me to debug - currently It seems like I'm having problems with blogs on PHP4.
 
