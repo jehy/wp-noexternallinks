@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 3.0.1
-Stable tag: 3.0.1
+Stable tag: 3.0.2
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -84,7 +84,8 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 2.171 - Added automatic exclusion of internal links (#smth) from masking.    
 2.172 - fixed javascript error when redirects ended with ";"    
 3.0.0 - Code improvements, added .po translation,clicks stats and option to mask Everything.  
-3.0.1 - Fixed option update issue.  
+3.0.1 - Fixed option update issue.   
+3.0.2 - Removed test message "failed to update options" when nothing changed in options. Also, fixed issue when, if link masking was disabled for post, it was also disabled for comments.
 
 ####Localization
 

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wp-noexternallinks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-10-25 16:04+0300\n"
-"PO-Revision-Date: 2010-10-25 16:05+0300\n"
+"PO-Revision-Date: 2010-10-25 17:28+0300\n"
 "Last-Translator: Jehy <fate@jehy.ru>\n"
 "Language-Team: jehy <fate@jehy.ru>\n"
 "MIME-Version: 1.0\n"
@@ -145,7 +145,7 @@ msgstr "Не маскировать ссылки при помощи редир�
 
 #: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks.php:61
 msgid "Link separator (default=\"goto\")"
-msgstr "Разделитель ссылокr (по умолчанию \"goto\")"
+msgstr "Разделитель ссылок (по умолчанию \"goto\")"
 
 #: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks.php:62
 msgid "Exclude URLs that you don`t want to mask (all urls, beginning with those, won`t be masked). Put one adress on each line, including prefix (for example, \"http://jehy.ru\")"
@@ -177,5 +177,5 @@ msgstr "Свой текст редиректа, если 302 отключены.
 
 #: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks.php:69
 msgid "Do not mask links when registered users visit site"
-msgstr "Не маскировать ссылки для регистрированных пользователей"
+msgstr "Не маскировать ссылки при выдаче сайта зарегистрированным пользователям"
 

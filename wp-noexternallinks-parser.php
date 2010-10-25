@@ -117,15 +117,21 @@ else
 
 function filter($content)
 {
-  global $post,$wp_rewrite;
   if($this->options['noforauth']&&is_user_logged_in())
-  	  return $content;
-  $mask = get_post_meta($post->ID, 'wp_noextrenallinks_mask_links', true);
-  if($mask==2)
-      return $content;
+    return $content;
   $pattern = '/<a (.*?)href=[\"\'](.*?)\/\/(.*?)[\"\'](.*?)>(.*?)<\/a>/i';
   $content = preg_replace_callback($pattern,'wp_noextrenallinks_parser',$content);
   return $content;
+}
+
+function chk_post($content)
+{
+  global $post;
+  $mask = get_post_meta($post->ID, 'wp_noextrenallinks_mask_links', true);
+  if($mask==2)//nomask
+  	return $content;
+  else
+  	return $this->filter($content);
 }
 
 function fullmask_begin()
@@ -156,8 +162,8 @@ function set_filters()
   {
     if($this->options['mask_mine'])
     {
-      add_filter('the_content',array($this,'filter'),99);
-      add_filter('the_excerpt',array($this,'filter'),99);
+      add_filter('the_content',array($this,'chk_post'),99);
+      add_filter('the_excerpt',array($this,'chk_post'),99);
     }
     if($this->options['mask_comment'])
     {
