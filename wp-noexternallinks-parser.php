@@ -69,13 +69,11 @@ function redirect2($url)
   {
   	$sql='INSERT INTO '.$wpdb->prefix.'links_stats VALUES("","'.addslashes($url).'",NOW())';
   	@mysql_query($sql);
-  	echo mysql_error();
   	if(mysql_errno())
   	{
   		echo'<font color="red">'.__('Failed to save statistic data. Trying to create table.').'</font>';
   		$sql2='CREATE TABLE '.$wpdb->prefix.'links_stats(`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,`url` VARCHAR(255), `date` DATETIME, PRIMARY KEY (`id`))';
    		@mysql_query($sql2);
-  	echo mysql_error().'<br>'.$sql2;
    		if(mysql_errno())
    			echo '<br>'.__('Failed to create table. Please, check mysql permissions.','wpnoexternallinks');
    		else

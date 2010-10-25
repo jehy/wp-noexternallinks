@@ -98,13 +98,21 @@ function view_stats()
 	<form method="post" action="">
 		<input type="hidden" name="page" value="<?php echo $_REQUEST['page'];?>">
 		<?php wp_nonce_field('update-options'); ?>
-		<div style="float:right;margin-right:2em;">
+		<div style="float:right;margin-right:2em;background-color:#CCCCCC;padding:5px;">
 			<b>WP NoExternalLinks Stats</b><br>
 			<a href="http://jehy.ru/wp-plugins.en.html" target="_blank"><?php _e('Plugin home page','wpnoexternallinks');?></a><br />
 			<a href="http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/" target="_blank"><?php _e('Feedback','wpnoexternallinks');?></a>
 		</div>
 <a href="?page=<?php echo $_REQUEST['page'];?>"><?php _e('View options','wpnoexternallinks');?></a><br>
 <?php
+	
+if(!$this->options['stats'])
+{
+_e('Statistic for plugin is disabled! Please, go to options page and enable it via checkbox "Log all outgoing clicks".','wpnoexternallinks');
+echo'</form>';
+}
+else
+{
 if($_REQUEST['date1'])
 		$date1=$_REQUEST['date1'];
 else
@@ -119,9 +127,9 @@ _e('View stats from ','wpnoexternallinks');
 		</form>
 <?php
 	$sql='select * from '.$wpdb->prefix.'links_stats where `date` between "'.$date1.' 00:00:00" and "'.$date2.' 23:59:59"';
-	$result=mysql_query($sql);
+	$result=@mysql_query($sql);
 	$out=array();
-	while($row=mysql_fetch_array($result))
+	while($row=@mysql_fetch_array($result))
 	{
 		$nfo=parse_url($row['url']);
 		$out[$nfo['host']][$row['url']]++;
@@ -133,6 +141,9 @@ _e('View stats from ','wpnoexternallinks');
 			echo '<li><a href="'.$url.'">'.$url.'</a> ('.$outs.')</li>';
 		echo '</ul>';
 	}
+	if(!sizeof($out))
+		_e('No statistic for given period.','wpnoexternallinks');
+}
 		
 }
 
@@ -141,7 +152,7 @@ function option_page()
 ?><p style="font-size:smaller;"><?php _e('That plugins allows you to mask all external links and make them internal or hidden - using PHP redirect or special link tags and attributes. Yeah, by the way - it does not change anything in the base - only replaces links on output.<br>P.S. It doesn`t mask internal and excluded links.','wpnoexternallinks');?></p>
 	<form method="post" action="">
 		<?php wp_nonce_field('update-options'); ?>
-		<div style="float:right;margin-right:2em;">
+		<div style="float:right;margin-right:2em;background-color:#CCCCCC;padding:5px;">
 			<b>WP NoExternalLinks</b><br>
 			<a href="http://jehy.ru/wp-plugins.en.html" target="_blank"><?php _e('Plugin home page','wpnoexternallinks');?></a><br />
 			<a href="http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/" target="_blank"><?php _e('Feedback','wpnoexternallinks');?></a>
