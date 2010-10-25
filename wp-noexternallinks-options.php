@@ -76,18 +76,9 @@ function DeActivate()
 
 function update()
 {
-/*global $_REQUEST;
-    update_option('noexternallinks_mask_mine',$_REQUEST['noexternallinks_mask_mine']);
-    update_option('noexternallinks_mask_comment',$_REQUEST['noexternallinks_mask_comment']);
-    update_option('noexternallinks_mask_author',$_REQUEST['noexternallinks_mask_author']);
-    update_option('noexternallinks_exclude_links',$_REQUEST['noexternallinks_exclude_links']);
-    update_option('noexternallinks_add_nofollow',$_REQUEST['noexternallinks_add_nofollow']);
-    update_option('noexternallinks_add_blank',$_REQUEST['noexternallinks_add_blank']);
-    update_option('noexternallinks_put_noindex',$_REQUEST['noexternallinks_put_noindex']);
-    update_option('noexternallinks_disable_mask_links',$_REQUEST['noexternallinks_disable_mask_links']);
-    update_option('noexternallinks_fullmask',$_REQUEST['noexternallinks_fullmask']);*/
     $this->options=$_REQUEST['options'];
     $this->update_options();
+    $this->load_options();
 }
 
 
@@ -158,7 +149,6 @@ function option_page()
 <a href="?page=<?php echo $_REQUEST['page'];?>&action=stats"><?php _e('View Stats','wpnoexternallinks');?></a><br>
 <?php _e('<h3>Global links masking settings</h3>(You can also disable plugin on per-post basis)','wpnoexternallinks');?><br><br>
 <?php
-#print_R($this->options);
 $opt=$this->GetOptionInfo();
 foreach($opt as $i=>$arr)
 {
