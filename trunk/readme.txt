@@ -85,7 +85,7 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 2.172 - fixed javascript error when redirects ended with ";"    
 3.0.0 - Code improvements, added .po translation,clicks stats and option to mask Everything.  
 3.0.1 - Fixed option update issue.   
-3.0.2 - Removed test message "failed to update options" when nothing changed in options. Also, fixed issue when, if link masking was disabled for post, it was also disabled for comments.
+3.0.2 - Removed test message "failed to update options" when nothing changed in options. Also, fixed issue when, if link masking was disabled for post, it was also disabled for comments.   
 3.0.3 - Removed some extra info, added some error handlers, repaired broken system for flushing click stats.
 
 ####Localization
