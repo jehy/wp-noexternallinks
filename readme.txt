@@ -7,7 +7,7 @@ Stable tag: 3.0.3
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
->WARNING
+>**WARNING**
 >Version 3.0.0 is beta-release, and it it has many cool features - outgoing clicks stats, fulllink masking, custom redirects and so on - but it may have several bugs, I made plugin almost from scratch again. Any feedback is much appreciated. If you want stable version - download 2.172.
 
 >If you upgraded to version 2.10 and higher and have problems - please [download version 2.05](http://downloads.wordpress.org/plugin/wp-noexternallinks.2.05.zip) or help me to debug - currently It seems like I'm having problems with blogs on PHP4.
@@ -86,7 +86,7 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 3.0.0 - Code improvements, added .po translation,clicks stats and option to mask Everything.  
 3.0.1 - Fixed option update issue.   
 3.0.2 - Removed test message "failed to update options" when nothing changed in options. Also, fixed issue when, if link masking was disabled for post, it was also disabled for comments.
-3.0.3 - Removed some extra info, added some error handlers, repaired broke system for flushing click stats.
+3.0.3 - Removed some extra info, added some error handlers, repaired broken system for flushing click stats.
 
 ####Localization
 
@@ -96,11 +96,10 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 
 
 ####Please!
-If you don't rate my plugin as 5/5 - please write why - and I will add or change options and fix bugs. It's very unpleasant to see silient low rates.  
-If you don't understand what this plugin does - also don't rate it. SEO specialists only.
+If you don't rate my plugin as 5/5 - please write why - and I will add or change options and fix bugs. It's very unpleasant to see silient low rates.
 
-####Donate?
-If you want to ensure the future development and support of this plugin, you can make donation [on this page](http://jehy.ru/donate.en.html).
+####Donate or help?
+If you want to ensure the future development and support of this plugin, you can make donation [on this page](http://jehy.ru/donate.en.html) or just write about this plugin in your blog.
 
 == Installation ==
 
