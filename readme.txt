@@ -3,11 +3,13 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 3.0.1
-Stable tag: 2.171
+Stable tag: 3.0.0
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
 >WARNING
+>Version 3.0.0 is beta-release, and it it has many cool features - outgoing clicks stats, fulllink masking, custom redirects and so on - but it may have several bugs, I made plugin almost from scratch again. Any feedback is much appreciated. If you want stable version - download 2.172.
+
 >If you upgraded to version 2.10 and higher and have problems - please [download version 2.05](http://downloads.wordpress.org/plugin/wp-noexternallinks.2.05.zip) or help me to debug - currently It seems like I'm having problems with blogs on PHP4.
 
 >If you are having problems even with 2.05
@@ -20,7 +22,15 @@ Mask all external links to internal! In your own posts, comments pages, authors 
 
 Now you don't need to worry about your page rank or index, dropping because of spam bots. You write any kind of http link - and it becomes internal or hidden! You can configure plugin to work with your own posts, pages comments and authors's profiles. Of cause, the link will still be usable :).
 
-####NEW!!!!!
+####Version 3.0 implemented:    
++ Outgoing clicks stats    
++ Javascript redirect with custom text and timeout    
++ .po file translation (sorry, now only english and versions are available)    
++ FULL link masking    
++ No masking for registered users
+
+####Version 2.0 implemented:
++ You can configure plugin to mask ALL LINKS on your blog - including widget, theme footer, etc.    
 + Now you can also disable link rewriting, and use **"rel=nofollow"** and **&lt;noindex&gt;** tag instead of it - everything as you wish!   
 + From version 2.0 you can **make all links open in new window!**   
 + After many requests, I finally made an option to **disable masking** for concrete URLs and posts.  
@@ -71,15 +81,14 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 2.15 - Fixed for some servers with setup which replaces "//" with"/".    
 2.16 - Javascript links aren't broken by plugin now, thanks to [Andu](http://anduriell.es).    
 2.17 - Several bugfixes for low possible case scenarios...    
-2.171 - Added automatic exclusion of internal links (#smth) from masking.
+2.171 - Added automatic exclusion of internal links (#smth) from masking.    
+2.172 - fixed javascript error when redirects ended with ";"    
+3.0.0 - Code improvements, added .po translation,clicks stats and option to mask Everything.    
 
 ####Localization
 
 * English
 * Russian
-* Belarusian (by Marcis Gasuns)
-* German by [Sven Knurr](http://tuxproject.de/blog/)
-* French (by Alex Limoges)
 * Your language also can be here - just send me language file :)
 
 
