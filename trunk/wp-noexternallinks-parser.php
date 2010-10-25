@@ -108,7 +108,7 @@ echo'; url='.$url.'" />'; ?>
 if($this->options['redtxt']&&$url)
 	echo str_replace('LINKURL',$url,$this->options['redtxt']);
 elseif($url)
-  echo __('You were going to the redirect link, but something did not work properly.<br>Please, click ','wpnoexternallinks').'<a href="'.$url.'">'.__('HERE ').'</a>'.__(' to go to ').$url.__(' manually. ');
+  echo __('You were going to the redirect link, but something did not work properly.<br>Please, click ','wpnoexternallinks').'<a href="'.$url.'">'.__('HERE ','wpnoexternallinks').'</a>'.__(' to go to ','wpnoexternallinks').$url.__(' manually. ','wpnoexternallinks');
 else
   _e('Sorry, no url redirect specified. Can`t complete request.','wpnoexternallinks');?>
 </div></body></html><?php die();
