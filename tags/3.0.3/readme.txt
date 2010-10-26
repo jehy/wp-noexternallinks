@@ -25,7 +25,7 @@ Now you don't need to worry about your page rank or index, dropping because of s
 ####Version 3.0 implemented:    
 + Outgoing clicks stats    
 + Javascript redirect with custom text and timeout    
-+ .po file translation (sorry, now only english and versions are available)    
++ .po file translation (sorry, now only english and russian versions are available)    
 + FULL link masking    
 + No masking for registered users    
 
