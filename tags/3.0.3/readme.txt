@@ -18,16 +18,16 @@ Mask all external links - make them internal or hide. On your own posts, comment
 >Still not good?
 >Tell me about your problems in [my blog](http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/).
 
-Mask all external links to internal! In your own posts, comments pages, authors page... It does not change anything or write to base - just processes output.
+This plugin is designed for specialists who sell different kind of advertisment on their web site (for example, with [sape](http://www.sape.ru/r.f6054dfcc2.php) system) and care about the number of outgoing links that can be found by search engines. Now you can make all external links - internal! In your own posts, comments pages, authors page... Plugin does not change anything or write to base - just processes output.
 
-Now you don't need to worry about your page rank or index, dropping because of spam bots. You write any kind of http link - and it becomes internal or hidden! You can configure plugin to work with your own posts, pages comments and authors's profiles. Of cause, the link will still be usable :).
+Now you don't need to worry about your page rank or index, dropping because of spam bots. You write any kind of http link - and it becomes internal or hidden! Of cause, all the links will still be usable :).
 
 ####Version 3.0 implemented:    
 + Outgoing clicks stats    
 + Javascript redirect with custom text and timeout    
 + .po file translation (sorry, now only english and versions are available)    
 + FULL link masking    
-+ No masking for registered users
++ No masking for registered users    
 
 ####Version 2.0 implemented:
 + You can configure plugin to mask ALL LINKS on your blog - including widget, theme footer, etc.    
