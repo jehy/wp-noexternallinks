@@ -28,7 +28,6 @@ function save_postdata( $post_id )
       return $post_id;
   }
   update_post_meta($post_id, 'wp_noextrenallinks_mask_links', $_REQUEST['wp_noextrenallinks_mask_links']);
-  # return $mydata;
 }
 function add_custom_box($page,$context)
 {
@@ -52,13 +51,13 @@ function inner_custom_box1() {
 
 function Activate()
 {
-  #nothing now.
+  /*nothing now.*/
 }
 
 function DeActivate()
 {
-  //remove all options. Better not do it, you know...
   /*
+  remove all options. Better not do it, you know...
   delete_option('noexternallinks_mask_mine');
   delete_option('noexternallinks_mask_comment');
   delete_option('noexternallinks_mask_author');
