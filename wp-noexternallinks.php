@@ -31,7 +31,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 class wp_noexternallinks
 {
-var $options;//all plugin options
+var $options;/*all plugin options*/
 function init_lang()
 {
 $plugin_dir = basename(dirname(__FILE__));
@@ -50,7 +50,7 @@ function update_options()
 			init_lang();
 			_e('Failed to update options!');
 		}
-		#else echo 'nothing changed ;_;';
+		/*else echo 'nothing changed ;_;';*/
 	}
 }
 function GetOptionInfo()
@@ -81,21 +81,20 @@ function load_options()
 	$opt=$this->GetOptionInfo();
 	$update=false;
 	$this->options=get_option('wp_noexternallinks');
-	#$this->options=@unserialize($this->options);
 	if(!$this->options)
 		$this->options=array();
 	
-	//check if options are fine
+	/*check if options are fine*/
 	foreach($opt as $key=>$arr)
 	{
 		$name=$arr['new_name'];
-		if(!$this->options[$name] && $arr['def_value'])// no option value, but it should be
+		if(!$this->options[$name] && $arr['def_value'])/* no option value, but it should be*/
 		{
-			//try to get old version
+			/*try to get old version*/
 			if($arr['old_name'])
 			{
 				$val=get_option($arr['old_name'],'omg');
-				//set default value
+				/*set default value*/
 				if($val=='omg')
 					$val=$arr['def_value'];
 			}
@@ -107,9 +106,9 @@ function load_options()
 	}
 	
 
-  if($update)#upgrade or just some kind of shit
+  if($update)/*upgrade or just some kind of shit*/
   {
-  	  //if we're going back from old version - let's check for excludes...
+  	  /*if we're going back from old version - let's check for excludes...*/
     if(!$this->options['exclude_links'])
     {
     	$val=get_option('noexternallinks_exclude_links');
@@ -118,7 +117,7 @@ function load_options()
     }
   	  $this->update_options();
   }
-  #add values to exclude
+  /*add values to exclude*/
   $exclude_links=array();
   $site=get_option('home');
   if(!$site)
@@ -126,24 +125,23 @@ function load_options()
   $this->options['site']=$site;
   $p=strpos($site,'/',7);
   if($p)
-    $site=substr($site,0,$p);#site root is excluded
-  //else
+    $site=substr($site,0,$p);/*site root is excluded*/
   $exclude_links[]=$site;
   $exclude_links[]='javascript';
   $exclude_links[]='mailto';
   $exclude_links[]='skype';
-  $exclude_links[]='#';#for internal links
+  $exclude_links[]='#';/*for internal links*/
   
   $a=@explode("\n",$this->options['exclude_links']);
   for($i=0;$i<sizeof($a);$i++)
   	  $a[$i]=trim($a[$i]);
   $this->options['exclude_links_']=@array_merge($exclude_links,$a);
   
-  ##statistic
+  /*statistic*/
   if($this->options['stats'])
   {
   	$flush=get_option('wp_noexternallinks_flush');
-  	if(!$flush || $flush<time()-3600*24)//flush every 24 hours
+  	if(!$flush || $flush<time()-3600*24)/*flush every 24 hours*/
   	{
   		$sql='delete from '.$wpdb->prefix.'links_stats where `date`<DATE_SUB(curdate(), INTERVAL '.$this->options['keep_stats'].' DAY)';
   		@mysql_query($sql);

@@ -9,17 +9,17 @@ function wp_noextrenallinks_parser($matches)
   else
       $sep='/'.$wp_noexternallinks_parser->options['LINK_SEP'].'/';
   if($wp_noexternallinks_parser->options['add_blank']&&
-  (stripos($matches[2] . '//' .$matches[3],$wp_noexternallinks_parser->options['exclude_links_'][0])===FALSE))#do not add blank to internal links
+  (stripos($matches[2] . '//' .$matches[3],$wp_noexternallinks_parser->options['exclude_links_'][0])===FALSE))/*do not add blank to internal links*/
       $ifblank=' target="_blank"';
   if($wp_noexternallinks_parser->options['add_nofollow']&&
-  (stripos($matches[2] . '//' .$matches[3],$wp_noexternallinks_parser->options['exclude_links_'][0])===FALSE))#do not add nofollow to internal links
+  (stripos($matches[2] . '//' .$matches[3],$wp_noexternallinks_parser->options['exclude_links_'][0])===FALSE))/*do not add nofollow to internal links*/
       $ifnofollow=' rel="nofollow"';
 
-  #no masking for those urls (0 is the own blog/site url):
+  /*no masking for those urls (0 is the own blog/site url):*/
 
   for($i=0;$i<sizeof($wp_noexternallinks_parser->options['exclude_links_']);$i++)
       if($wp_noexternallinks_parser->options['exclude_links_'][$i])
-        if(stripos($matches[2] . '//' .$matches[3],$wp_noexternallinks_parser->options['exclude_links_'][$i])===0)#if begins with
+        if(stripos($matches[2] . '//' .$matches[3],$wp_noexternallinks_parser->options['exclude_links_'][$i])===0)/*if begins with*/
           return '<a'.$ifblank.' href="' . $matches[2] . '//' . $matches[3] . '" ' . $matches[1] . $matches[4] . '>' . $matches[5] . '</a>';
 
     $url=($matches[2] . '//' . $matches[3]);
@@ -39,8 +39,8 @@ function wp_noextrenallinks_parser($matches)
 class wp_noexternallinks_parser extends wp_noexternallinks
 {
 
-function wp_noexternallinks_parser()#constructor
-{  $this->load_options();  $this->set_filters();  add_filter('template_redirect',array($this,'Redirect'),1);#modify template}
+function wp_noexternallinks_parser()
+{  $this->load_options();  $this->set_filters();  add_filter('template_redirect',array($this,'Redirect'),1);}
 function Redirect()
 {
   $goto='';
@@ -126,7 +126,7 @@ function chk_post($content)
 {
   global $post;
   $mask = get_post_meta($post->ID, 'wp_noextrenallinks_mask_links', true);
-  if($mask==2)//nomask
+  if($mask==2)/*nomask*/
   	return $content;
   else
   	return $this->filter($content);
