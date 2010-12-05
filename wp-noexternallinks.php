@@ -5,7 +5,7 @@ if(!defined('DB_NAME'))
 Plugin Name: WP No External Links
 Plugin URI: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
 Description: This plugin will allow you to mask all external links to internal, or to hide them. Your own posts, comments pages, authors pages... To set up, visit <a href="options-general.php?page=wp-noexternallinks/wp-noexternallinks-options.php">configuration panel</a>.
-Version: 3.0.3
+Version: 3.0.4
 Author: Jehy
 Author URI: http://jehy.ru/index.en.html
 Update Server: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
@@ -40,6 +40,14 @@ load_plugin_textdomain( 'wpnoexternallinks', false, $plugin_dir.'/lang');
 
 function update_options()
 {
+	$opt=$this->GetOptionInfo();
+	foreach($opt as $key=>$arr)
+	{
+		$name=$arr['new_name'];
+		if(!isset($this->options[$name]))
+			$this->options[$name]='0';//for damn checkboxes
+	}
+	
 	foreach($this->options as $i=>$val)
 		$this->options[$i]=stripslashes($val);
 	$r=update_option('wp_noexternallinks',$this->options);
@@ -83,12 +91,11 @@ function load_options()
 	$this->options=get_option('wp_noexternallinks');
 	if(!$this->options)
 		$this->options=array();
-	
 	/*check if options are fine*/
 	foreach($opt as $key=>$arr)
 	{
 		$name=$arr['new_name'];
-		if(!$this->options[$name] && $arr['def_value'])/* no option value, but it should be*/
+		if(!isset($this->options[$name]) && $arr['def_value'])/* no option value, but it should be*/
 		{
 			/*try to get old version*/
 			if($arr['old_name'])
