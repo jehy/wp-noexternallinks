@@ -3,7 +3,7 @@ if(!defined('DB_NAME'))
   die('Error: Plugin "wp-noexternallinks" does not support standalone calls, damned hacker.');
 function wp_noextrenallinks_parser($matches)
 {
-  global $wp_rewrite,$wp_noexternallinks_parser;
+  global $wp_rewrite,$wp_noexternallinks_parser,$wpdb;
   if(!$wp_rewrite->using_permalinks())
     $sep='?'.$wp_noexternallinks_parser->options['LINK_SEP'].'=';
   else
@@ -23,8 +23,42 @@ function wp_noextrenallinks_parser($matches)
           return '<a'.$ifblank.' href="' . $matches[2] . '//' . $matches[3] . '" ' . $matches[1] . $matches[4] . '>' . $matches[5] . '</a>';
 
     $url=($matches[2] . '//' . $matches[3]);
+  
+  /*masking url with numbers*/
   if(!$wp_noexternallinks_parser->options['disable_mask_links'])
   {
+    if($wp_noexternallinks_parser->options['maskurl'])
+    {
+  	  $sql='select id from '.$wpdb->prefix.'masklinks where url="'.addslashes($url).'" limit 1';
+  	  $result=@mysql_query($sql);
+    	if(!$result && @mysql_errno()==1146)
+    	{
+    	  /*create masklink table*/
+    	  echo'<font color="red">'.__('Failed to make masked link. Trying to create table.').'</font>';
+    	  $sql2='CREATE TABLE '.$wpdb->prefix.'masklinks(`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,`url` VARCHAR(255),  PRIMARY KEY (`id`))';
+     		@mysql_query($sql2);
+     		if(@mysql_errno())
+     			echo '<br>'.__('Failed to create table. Please, check mysql permissions.','wpnoexternallinks');
+     		else
+     		{
+     		  echo '<br>'.__('Table created.','wpnoexternallinks');
+     		  $result=@mysql_query($sql);
+     		}
+    	}
+    	if(!@mysql_num_rows($result))
+    	{
+    		$sql='INSERT INTO '.$wpdb->prefix.'masklinks VALUES("","'.addslashes($url).'")';
+        @mysql_query($sql);
+    		$row=array();
+    		$row[0]=@mysql_insert_id();
+    	}
+    	else
+    		$row=@mysql_fetch_row($result);
+      if($row[0])
+    	  $url=$row[0];
+      
+    }
+    
     if(!$wp_rewrite->using_permalinks())
       $url=urlencode($url);
     $url=$wp_noexternallinks_parser->options['site'].$sep.$url;
@@ -58,12 +92,25 @@ function Redirect()
   }
   if(!strpos($goto,'://'))
   	  $goto=str_replace(':/','://',$goto);
+  
   if($goto)
     $this->redirect2($goto);
 }
 
 function redirect2($url)
-{  global $wp_rewrite,$wpdb;
+{  global $wp_rewrite,$wpdb,$wp_noexternallinks_parser;
+  
+  if($wp_noexternallinks_parser->options['maskurl'])
+  {
+    $sql='select url from '.$wpdb->prefix.'masklinks where id="'.addslashes($url).'" limit 1';
+    $result=@mysql_query($sql);
+    if(@mysql_num_rows($result))
+    {
+      $row=@mysql_fetch_row($result);
+      if($row[0])
+        $url=$row[0];
+    }
+  }
   
   if($this->options['stats'])
   {

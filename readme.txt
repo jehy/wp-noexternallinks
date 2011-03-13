@@ -2,13 +2,13 @@
 Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
-Tested up to: 3.0.2
-Stable tag: 3.0.4
+Tested up to: 3.1
+Stable tag: 3.1.0
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
->**WARNING**
->Version 3.0.0 is beta-release, and it it has many cool features - outgoing clicks stats, fulllink masking, custom redirects and so on - but it may have several bugs, I made plugin almost from scratch again. Any feedback is much appreciated. If you want stable version - [download 2.172](http://downloads.wordpress.org/plugin/wp-noexternallinks.2.172.zip).
+>**Check out new feature - masking links to digital short code!**
+>Versions 3+ have many cool features - outgoing clicks stats, fulllink masking, custom redirects and so on - but it may be not compatible with strange server configurations. Any feedback is much appreciated. If plugin is not working for you - [try 2.172](http://downloads.wordpress.org/plugin/wp-noexternallinks.2.172.zip).
 
 >If you upgraded to version 2.10 and higher and have problems - please [download version 2.05](http://downloads.wordpress.org/plugin/wp-noexternallinks.2.05.zip) or help me to debug - currently It seems like I'm having problems with blogs on PHP4.
 
@@ -21,6 +21,9 @@ Mask all external links - make them internal or hide. On your own posts, comment
 This plugin is designed for specialists who sell different kind of advertisment on their web site (for example, with [sape](http://www.sape.ru/r.f6054dfcc2.php) system) and care about the number of outgoing links that can be found by search engines. Now you can make all external links - internal! In your own posts, comments pages, authors page... Plugin does not change anything or write to base - just processes output.
 
 Now you don't need to worry about your page rank or index, dropping because of spam bots. You write any kind of http link - and it becomes internal or hidden! Of cause, all the links will still be usable :).
+
+####Version 3.1 implemented:  
++ Masking links with digital short codes    
 
 ####Version 3.0 implemented:    
 + Outgoing clicks stats    
@@ -87,7 +90,8 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 3.0.1 - Fixed option update issue.   
 3.0.2 - Removed test message "failed to update options" when nothing changed in options. Also, fixed issue when, if link masking was disabled for post, it was also disabled for comments.   
 3.0.3 - Removed some extra info, added some error handlers, repaired broken system for flushing click stats.    
-3.0.4 - Fixed when some options in checkboxes couldn't be changed.
+3.0.4 - Fixed when some options in checkboxes couldn't be changed.    
+3.1.0 - Added masking links with digital short codes.
 
 ####Localization
 
