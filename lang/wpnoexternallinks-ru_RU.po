@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp-noexternallinks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-14 02:04+0300\n"
-"PO-Revision-Date: 2011-03-14 02:04+0300\n"
+"POT-Creation-Date: 2011-03-14 02:43+0300\n"
+"PO-Revision-Date: 2011-03-14 02:43+0300\n"
 "Last-Translator: Jehy <fate@jehy.ru>\n"
 "Language-Team: jehy <fate@jehy.ru>\n"
 "MIME-Version: 1.0\n"
@@ -167,7 +167,7 @@ msgstr "Укажите адреса, которые вы не хотите ма�
 
 #: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks.php:76
 msgid "Mask ALL links in document (can slow down your blog and conflict with some cache and other plugins. Please use it on your own risk."
-msgstr "Маскировать ВСЕ ссылки на страницах (учтите, это может замедлить работу вашего блога и вызвать конфлик с некоторыми ругими плагинами. Используйте на свой страх и риск.)"
+msgstr "Маскировать ВСЕ ссылки на страницах (учтите, это может замедлить работу вашего блога и вызвать конфликт с некоторыми другими плагинами. Используйте на свой страх и риск.)"
 
 #: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks.php:77
 msgid "Log all outgoing clicks"
