@@ -31,7 +31,7 @@ function wp_noextrenallinks_parser($matches)
     {
   	  $sql='select id from '.$wpdb->prefix.'masklinks where url="'.addslashes($url).'" limit 1';
   	  $result=@mysql_query($sql);
-    	if(!$result && @mysql_errno()==1146)
+    	if(!$result && @mysql_errno()==1146)//no table found
     	{
     	  /*create masklink table*/
     	  echo'<font color="red">'.__('Failed to make masked link. Trying to create table.').'</font>';
@@ -61,6 +61,10 @@ function wp_noextrenallinks_parser($matches)
     
     if(!$wp_rewrite->using_permalinks())
       $url=urlencode($url);
+    //add "/" to site url- some servers dont't work with urls like xxx.ru?goto, but with xxx.ru/?goto
+    if($wp_noexternallinks_parser->options['site'][strlen($wp_noexternallinks_parser->options['site'])-1]!='/')
+      $wp_noexternallinks_parser->options['site'].='/';
+    
     $url=$wp_noexternallinks_parser->options['site'].$sep.$url;
   }
   $link='<a'.$ifblank.$ifnofollow.' href="'.$url.'" '.$matches[1].$matches[4].'>'.$matches[5].'</a>';
