@@ -64,9 +64,14 @@ function wp_noextrenallinks_parser($matches)
     //add "/" to site url- some servers dont't work with urls like xxx.ru?goto, but with xxx.ru/?goto
     if($wp_noexternallinks_parser->options['site'][strlen($wp_noexternallinks_parser->options['site'])-1]!='/')
       $wp_noexternallinks_parser->options['site'].='/';
-    
+    if($sep[0]=='/')#to not create double backslashes
+      $sep=substr($sep,1);
     $url=$wp_noexternallinks_parser->options['site'].$sep.$url;
   }
+  if($wp_noexternallinks_parser->options['remove_links'])
+    return $matches[5];
+  if($wp_noexternallinks_parser->options['link2text'])
+    return $matches[5].' ^('.$url.')';
   $link='<a'.$ifblank.$ifnofollow.' href="'.$url.'" '.$matches[1].$matches[4].'>'.$matches[5].'</a>';
   if($wp_noexternallinks_parser->options['put_noindex'])
     $link='<noindex>'.$link.'</noindex>';
@@ -83,7 +88,7 @@ function Redirect()
 {
   $goto='';
   $p=strpos($_SERVER['REQUEST_URI'],'/'.$this->options['LINK_SEP'].'/');
-  if($_REQUEST[$this->options['LINK_SEP']])
+  if(@$_REQUEST[$this->options['LINK_SEP']])
     $goto=$_REQUEST[$this->options['LINK_SEP']];
   elseif($p!==FALSE)
     $goto=substr($_SERVER['REQUEST_URI'],$p+strlen($this->options['LINK_SEP'])+2);

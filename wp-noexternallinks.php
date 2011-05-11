@@ -1,11 +1,13 @@
 <?php
 if(!defined('DB_NAME'))
 	die('Error: Plugin "wp-noexternallinks" does not support standalone calls, damned hacker.');
+@error_reporting(E_ALL ^ E_NOTICE);#disable extra error reporting for shitty servers
+
 /*
 Plugin Name: WP No External Links
 Plugin URI: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
 Description: This plugin will allow you to mask all external links to internal, or to hide them. Your own posts, comments pages, authors pages... To set up, visit <a href="options-general.php?page=wp-noexternallinks/wp-noexternallinks-options.php">configuration panel</a>.
-Version: 3.1.1
+Version: 3.2
 Author: Jehy
 Author URI: http://jehy.ru/index.en.html
 Update Server: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
@@ -80,7 +82,9 @@ function GetOptionInfo()
 	array('old_name'=>'','new_name'=>'redtime','def_value'=>3,'type'=>'txt','name'=>__('Redirect time (seconds) when using javascript redirect instead of 302','wpnoexternallinks')),
 	array('old_name'=>'','new_name'=>'redtxt','def_value'=>'This page demonstrates link redirect with "WP-NoExternalLinks" plugin. You will be redirected in 3 seconds. Otherwise, please click on <a href="LINKURL">this link</a>.','type'=>'text','name'=>__('Custom redirect text (if 302 redirects disabled). Use word "LINKURL" where you want to use redirect url. For example, <b>CLICK &lt;a href="LINK"&gt;HERE NOW&lt;/a&gt;</b>','wpnoexternallinks')),
 	array('old_name'=>'','new_name'=>'noforauth','def_value'=>0,'type'=>'chk','name'=>__('Do not mask links when registered users visit site','wpnoexternallinks')),
-	array('old_name'=>'','new_name'=>'maskurl','def_value'=>0,'type'=>'chk','name'=>__('Mask url with special numeric code. Be careful, this option may slow down your blog. Option is design for easy and quick personal use, it is not secure enough for commercial plans.','wpnoexternallinks'))
+	array('old_name'=>'','new_name'=>'maskurl','def_value'=>0,'type'=>'chk','name'=>__('Mask url with special numeric code. Be careful, this option may slow down your blog. Option is design for easy and quick personal use, it is not secure enough for commercial plans.','wpnoexternallinks')),
+	array('old_name'=>'','new_name'=>'remove_links','def_value'=>0,'type'=>'chk','name'=>__('Completely remove links from your posts. Someone needed it...','wpnoexternallinks')),
+	array('old_name'=>'','new_name'=>'link2text','def_value'=>0,'type'=>'chk','name'=>__('Turn all links into text. For perverts.','wpnoexternallinks'))
 	);
 }
 

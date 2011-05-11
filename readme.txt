@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 3.1
-Stable tag: 3.1.1
+Stable tag: 3.2
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -21,6 +21,10 @@ Mask all external links - make them internal or hide. On your own posts, comment
 This plugin is designed for specialists who sell different kind of advertisment on their web site (for example, with [sape](http://www.sape.ru/r.f6054dfcc2.php) system) and care about the number of outgoing links that can be found by search engines. Now you can make all external links - internal! In your own posts, comments pages, authors page... Plugin does not change anything or write to base - just processes output.
 
 Now you don't need to worry about your page rank or index, dropping because of spam bots. You write any kind of http link - and it becomes internal or hidden! Of cause, all the links will still be usable :).
+
+####Version 3.2 implemented:  
++ Completely removing links from your posts (someone requested this option)   
++ Masking links to text. Option for perverts.   
 
 ####Version 3.1 implemented:  
 + Masking links with digital short codes    
@@ -92,7 +96,8 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 3.0.3 - Removed some extra info, added some error handlers, repaired broken system for flushing click stats.    
 3.0.4 - Fixed when some options in checkboxes couldn't be changed.    
 3.1.0 - Added masking links with digital short codes.    
-3.1.1 - Improved compatibility with some shitty servers.
+3.1.1 - Improved compatibility with some shitty servers.    
+3.2 - Two new options, little backslashes fix, error reporting fix.
 
 ####Localization
 
