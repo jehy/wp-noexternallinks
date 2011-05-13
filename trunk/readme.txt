@@ -22,7 +22,7 @@ This plugin is designed for specialists who sell different kind of advertisment 
 
 Now you don't need to worry about your page rank or index, dropping because of spam bots. You write any kind of http link - and it becomes internal or hidden! Of cause, all the links will still be usable :).
 
-####Version 3.2 implemented:  
+####Version 3.2 implemented:   
 + Completely removing links from your posts (someone requested this option)   
 + Masking links to text. Option for perverts.   
 
