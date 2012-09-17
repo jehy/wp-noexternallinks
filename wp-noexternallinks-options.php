@@ -184,7 +184,7 @@ foreach($opt as $i=>$arr)
 ?>			
 			
 		<div align="right"><input type="submit" name="submit" value="<?php _e('Save Changes') ?>" class="button-primary"/>
-</div></div>
+</div>
 	</form>
 <?php
 }

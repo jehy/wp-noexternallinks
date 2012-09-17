@@ -27,7 +27,11 @@ function wp_noextrenallinks_parser($matches)
   /*masking url with numbers*/
   if(!$wp_noexternallinks_parser->options['disable_mask_links'])
   {
-    if($wp_noexternallinks_parser->options['maskurl'])
+    if($wp_noexternallinks_parser->options['base64'])
+    {
+      $url=base64_encode($url);
+    }
+    elseif($wp_noexternallinks_parser->options['maskurl'])
     {
   	  $sql='select id from '.$wpdb->prefix.'masklinks where url="'.addslashes($url).'" limit 1';
   	  $result=@mysql_query($sql);
@@ -108,8 +112,11 @@ function Redirect()
 
 function redirect2($url)
 {  global $wp_rewrite,$wpdb,$wp_noexternallinks_parser;
-  
-  if($wp_noexternallinks_parser->options['maskurl'])
+  if($wp_noexternallinks_parser->options['base64'])
+  {
+    $url=base64_decode($url);
+  }
+  elseif($wp_noexternallinks_parser->options['maskurl'])
   {
     $sql='select url from '.$wpdb->prefix.'masklinks where id="'.addslashes($url).'" limit 1';
     $result=@mysql_query($sql);
@@ -171,8 +178,6 @@ else
 
 function filter($content)
 {
-  if($this->options['noforauth']&&is_user_logged_in())
-    return $content;
   $pattern = '/<a (.*?)href=[\"\'](.*?)\/\/(.*?)[\"\'](.*?)>(.*?)<\/a>/i';
   $content = preg_replace_callback($pattern,'wp_noextrenallinks_parser',$content);
   return $content;
@@ -197,7 +202,7 @@ function fullmask_end()
   $text=ob_get_contents();
   ob_end_clean();
   if(!$text)
-  	  echo '<font color="red">'.__('Can not use output buffer. Please, disable full masking in WP_NoExternalLinks and use other filters.','wpnoexternallinks').'</font>';
+  	  echo '<font color="red">'.__('WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and use other filters.','wpnoexternallinks').'</font>';
   else
   {
     echo $this->filter($text);
@@ -207,6 +212,8 @@ function fullmask_end()
 
 function set_filters()
 {
+  if(is_feed() || ($this->options['noforauth']&&is_user_logged_in()))
+    return;
   if($this->options['fullmask'])
   {
   	  add_action('init',array($this,'fullmask_begin'),1);
