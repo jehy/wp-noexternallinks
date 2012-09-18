@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 3.4.2
-Stable tag: 3.3
+Stable tag: 3.3.1
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -22,11 +22,10 @@ This plugin is designed for specialists who sell different kind of advertisment 
 
 Now you don't need to worry about your page rank or index, dropping because of spam bots. You write any kind of http link - and it becomes internal or hidden! Of cause, all the links will still be usable :).
 
+###New Features:    
+
 ####Version 3.3 implemented:   
-+ Perfomance fixes   
 + Masking links with base64 (quick and no need for mysql table)   
-+ Additional protect from masking links in RSS   
-+ Little fix for admin panel in wordpress 3.4.2   
 
 ####Version 3.2 implemented:   
 + Completely removing links from your posts (someone requested this option)   
@@ -103,7 +102,9 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 3.0.4 - Fixed when some options in checkboxes couldn't be changed.    
 3.1.0 - Added masking links with digital short codes.    
 3.1.1 - Improved compatibility with some shitty servers.    
-3.2 - Two new options, little backslashes fix, error reporting fix.
+3.2 - Two new options, little backslashes fix, error reporting fix.    
+3.3 - Additional protect from masking links in RSS, little fix for admin panel in wordpress 3.4.2, Perfomance fixes   
+3.3.1 - Hotfix for some blogs which crashed on checking if page is RSS feed, improvements for option "Mask ALL links in document" - now it doesn'n mask RSS and posts with option "don't mask links"    
 
 ####Localization
 

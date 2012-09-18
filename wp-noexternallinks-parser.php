@@ -178,6 +178,8 @@ else
 
 function filter($content)
 {
+  if(function_exists('is_feed') && is_feed())
+    return $content;
   $pattern = '/<a (.*?)href=[\"\'](.*?)\/\/(.*?)[\"\'](.*?)>(.*?)<\/a>/i';
   $content = preg_replace_callback($pattern,'wp_noextrenallinks_parser',$content);
   return $content;
@@ -187,7 +189,7 @@ function chk_post($content)
 {
   global $post;
   $mask = get_post_meta($post->ID, 'wp_noextrenallinks_mask_links', true);
-  if($mask==2)/*nomask*/
+  if($mask==2 )/*nomask*/
   	return $content;
   else
   	return $this->filter($content);
@@ -199,20 +201,26 @@ function fullmask_begin()
 }
 function fullmask_end()
 {
+  global $post;
   $text=ob_get_contents();
   ob_end_clean();
   if(!$text)
   	  echo '<font color="red">'.__('WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and use other filters.','wpnoexternallinks').'</font>';
   else
   {
-    echo $this->filter($text);
+    if(is_object($post) && (get_post_meta($post->ID, 'wp_noextrenallinks_mask_links', true)==2))
+      echo $text;
+    elseif(function_exists('is_feed') && is_feed())
+      echo $text;
+    else
+      echo $this->filter($text);
   }
-  echo'<!--WP_NoExternalLinks finished-->';
+  #echo'<!--WP_NoExternalLinks finished-->';
 }
 
 function set_filters()
 {
-  if(is_feed() || ($this->options['noforauth']&&is_user_logged_in()))
+  if($this->options['noforauth']&&is_user_logged_in())
     return;
   if($this->options['fullmask'])
   {

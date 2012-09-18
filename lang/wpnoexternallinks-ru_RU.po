@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp-noexternallinks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-17 11:41+0400\n"
-"PO-Revision-Date: 2012-09-17 11:43+0400\n"
+"POT-Creation-Date: 2012-09-18 09:10+0400\n"
+"PO-Revision-Date: 2012-09-18 09:10+0400\n"
 "Last-Translator: Jehy <fate@jehy.ru>\n"
 "Language-Team: jehy <fate@jehy.ru>\n"
 "Language: ru_RU\n"
@@ -142,7 +142,7 @@ msgstr "вручную."
 msgid "Sorry, no url redirect specified. Can`t complete request."
 msgstr "Не был определён адрес, невозможно перенаправить."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:205
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:208
 #, fuzzy
 msgid ""
 "WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and "
