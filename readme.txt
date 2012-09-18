@@ -103,7 +103,7 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 3.1.0 - Added masking links with digital short codes.    
 3.1.1 - Improved compatibility with some shitty servers.    
 3.2 - Two new options, little backslashes fix, error reporting fix.    
-3.3 - Additional protect from masking links in RSS, little fix for admin panel in wordpress 3.4.2, Perfomance fixes   
+3.3 - Additional protect from masking links in RSS, fix for admin panel in wordpress 3.4.2, Perfomance fixes   
 3.3.1 - Hotfix for some blogs which crashed on checking if page is RSS feed, improvements for option "Mask ALL links in document" - now it doesn'n mask RSS and posts with option "don't mask links"    
 
 ####Localization
