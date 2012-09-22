@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 3.4.2
-Stable tag: 3.3.1
+Stable tag: 3.3.2
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -23,6 +23,9 @@ This plugin is designed for specialists who sell different kind of advertisment 
 Now you don't need to worry about your page rank or index, dropping because of spam bots. You write any kind of http link - and it becomes internal or hidden! Of cause, all the links will still be usable :).
 
 ###New Features:    
+
+####Version 3.3.2 implemented:   
++ Debug mode   
 
 ####Version 3.3 implemented:   
 + Masking links with base64 (quick and no need for mysql table)   
@@ -95,6 +98,8 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 2.17 - Several bugfixes for low possible case scenarios...    
 2.171 - Added automatic exclusion of internal links (#smth) from masking.    
 2.172 - fixed javascript error when redirects ended with ";"    
+    
+    
 3.0.0 - Code improvements, added .po translation,clicks stats and option to mask Everything.  
 3.0.1 - Fixed option update issue.   
 3.0.2 - Removed test message "failed to update options" when nothing changed in options. Also, fixed issue when, if link masking was disabled for post, it was also disabled for comments.   
@@ -103,8 +108,9 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 3.1.0 - Added masking links with digital short codes.    
 3.1.1 - Improved compatibility with some shitty servers.    
 3.2 - Two new options, little backslashes fix, error reporting fix.    
-3.3 - Additional protect from masking links in RSS, fix for admin panel in wordpress 3.4.2, Perfomance fixes   
-3.3.1 - Hotfix for some blogs which crashed on checking if page is RSS feed, improvements for option "Mask ALL links in document" - now it doesn'n mask RSS and posts with option "don't mask links"    
+3.3 - Additional protect from masking links in RSS, fix for admin panel in wordpress 3.4.2, Perfomance fixes.   
+3.3.1 - Hotfix for some blogs which crashed on checking if page is RSS feed, improvements for option "Mask ALL links in document" - now it doesn'n mask RSS and posts with option "don't mask links".    
+3.3.2 - Imporovements for option "Mask ALL links in document", debug mode.    
 
 ####Localization
 
@@ -129,6 +135,12 @@ If you want to ensure the future development and support of this plugin, you can
 == Frequently Asked Questions ==
 ####How can I exclude my page with links from masking?   
 Now you just put URLS you need to the exclusion list, or disable masking for concrete post - and everything's OK!!!
+
+####I removed your plugin but all links are masked!!!   
+This plugin can't do it after uninstall. It doesn't change base or code of wordpress. Please,
+* Remove another links plugin.
+* Update your cache.
+* Deactivate your caching plugin.
 
 ####How can I mask links in custom field?
 You will have to add just a line in theme code where you output custom field data.    

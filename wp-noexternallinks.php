@@ -7,7 +7,7 @@ if(!defined('DB_NAME'))
 Plugin Name: WP No External Links
 Plugin URI: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
 Description: This plugin will allow you to mask all external links to internal, or to hide them. Your own posts, comments pages, authors pages... To set up, visit <a href="options-general.php?page=wp-noexternallinks/wp-noexternallinks-options.php">configuration panel</a>.
-Version: 3.3.1
+Version: 3.3.2
 Author: Jehy
 Author URI: http://jehy.ru/index.en.html
 Update Server: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
@@ -15,7 +15,7 @@ Min WP Version: 2.6
 Max WP Version: 3.4.2
 */
 
-/*  Copyright 2008  Jehy  (email : fate@jehy.ru)
+/*  Copyright 2012  Jehy  (email : fate@jehy.ru)
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
@@ -86,6 +86,7 @@ function GetOptionInfo()
 	array('old_name'=>'','new_name'=>'remove_links','def_value'=>0,'type'=>'chk','name'=>__('Completely remove links from your posts. Someone needed it...','wpnoexternallinks')),
 	array('old_name'=>'','new_name'=>'link2text','def_value'=>0,'type'=>'chk','name'=>__('Turn all links into text. For perverts.','wpnoexternallinks')),
 	array('old_name'=>'','new_name'=>'base64','def_value'=>0,'type'=>'chk','name'=>__('Use base64 encoding for links (no need for special mysql table but no stats).','wpnoexternallinks')),
+	array('old_name'=>'','new_name'=>'debug','def_value'=>0,'type'=>'chk','name'=>__('Debug mode (Adds comments lines like "&lt;!--wpnoexternallinks debug: some info--&gt;" to output. For testing only!)','wpnoexternallinks')),
 	);
 }
 

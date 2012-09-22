@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp-noexternallinks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-18 09:10+0400\n"
-"PO-Revision-Date: 2012-09-18 09:10+0400\n"
+"POT-Creation-Date: 2012-09-22 17:09+0400\n"
+"PO-Revision-Date: 2012-09-22 17:10+0400\n"
 "Last-Translator: Jehy <fate@jehy.ru>\n"
 "Language-Team: jehy <fate@jehy.ru>\n"
 "Language: ru_RU\n"
@@ -101,24 +101,24 @@ msgid "Failed to make masked link. Trying to create table."
 msgstr "Не удалось сохранить маску ссылки. Пытаемся создать таблицу ссылок."
 
 #: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:45
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:141
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:149
 msgid "Failed to create table. Please, check mysql permissions."
 msgstr "Не удалось создать таблицу. Пожалуйста, проверьте полномочия MySQL."
 
 #: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:48
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:144
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:152
 msgid "Table created."
 msgstr "Таблица создана."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:137
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:145
 msgid "Failed to save statistic data. Trying to create table."
 msgstr "Не удалось сохранить статистику. Пытаюсь создать таблицу."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:159
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:167
 msgid "Redirecting..."
 msgstr "Перенаправляю..."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:172
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:180
 msgid ""
 "You were going to the redirect link, but something did not work properly."
 "<br>Please, click "
@@ -126,23 +126,28 @@ msgstr ""
 "Вы должны были быть перенаправлены по ссылке, но что-то не получилось.<br> "
 "Пожалуйста, нажмите "
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:172
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:180
 msgid "HERE "
 msgstr "СЮДА "
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:172
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:180
 msgid " to go to "
 msgstr "чтобы перейти по ссылке "
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:172
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:180
 msgid " manually. "
 msgstr "вручную."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:174
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:182
 msgid "Sorry, no url redirect specified. Can`t complete request."
 msgstr "Не был определён адрес, невозможно перенаправить."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:208
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:228
+msgid "Can not get output buffer!"
+msgstr "Не получилось установить контроль над буфером вывода!"
+
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:228
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:239
 #, fuzzy
 msgid ""
 "WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and "
@@ -151,6 +156,10 @@ msgstr ""
 "WP NoExternalLinks не удалось использовать буфер вывода wordpress. "
 "Пожалуйста, выключите опцию полной маскировки ссылок в настройках плагина и "
 "используйте другие опции."
+
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:239
+msgid "Output buffer empty!"
+msgstr "Буфер вывода пуст!"
 
 #: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks.php:61
 msgid "Failed to update options!"
@@ -274,3 +283,11 @@ msgid ""
 msgstr ""
 "Кодировать ссылки в base64 (не требует отдельной mysql таблицы, но и не "
 "будет собирать статистику переходов)"
+
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks.php:89
+msgid ""
+"Debug mode (Adds comments lines like \"&lt;!--wpnoexternallinks debug: some "
+"info--&gt;\" to output. For testing only!)"
+msgstr ""
+"Режим отладки (Добавляет в код клмментарии типа \"&lt;!--wpnoexternallinks "
+"debug: some info--&gt;\" . Только для тестирования!)"

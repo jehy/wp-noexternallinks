@@ -85,9 +85,17 @@ function wp_noextrenallinks_parser($matches)
 
 class wp_noexternallinks_parser extends wp_noexternallinks
 {
+function debug_info($info,$return=0)
+{
+	$t="\n<!--wpnoexternallinks debug:\n".$info."\n-->";
+  if($return)
+    return $t;
+  else
+    echo $t;
+}
 
 function wp_noexternallinks_parser()
-{  $this->load_options();  $this->set_filters();  add_filter('template_redirect',array($this,'Redirect'),1);}
+{  $this->load_options();  $this->set_filters();  add_filter('template_redirect',array($this,'Redirect'),1);  if($this->options['debug'])  	$this->debug_info("Options: \n".var_export($this->options, true));}
 function Redirect()
 {
   $goto='';
@@ -178,57 +186,91 @@ else
 
 function filter($content)
 {
+  if($this->options['debug'])
+  	$this->debug_info("Processing text (htmlspecialchars on it to stay like comment): \n".htmlspecialchars($content));
   if(function_exists('is_feed') && is_feed())
+  {
+	if($this->options['debug'])
+	  $this->debug_info('It is feed, no processing');
     return $content;
+  }
   $pattern = '/<a (.*?)href=[\"\'](.*?)\/\/(.*?)[\"\'](.*?)>(.*?)<\/a>/i';
   $content = preg_replace_callback($pattern,'wp_noextrenallinks_parser',$content);
+  if($this->options['debug'])
+    $this->debug_info("Filter returned(htmlspecialchars on it to stay like comment): \n".htmlspecialchars($content));
   return $content;
 }
 
 function chk_post($content)
 {
   global $post;
+  if($this->options['debug'])
+  	$this->debug_info("Checking post for meta.");
   $mask = get_post_meta($post->ID, 'wp_noextrenallinks_mask_links', true);
   if($mask==2 )/*nomask*/
+  {
+  	if($this->options['debug'])
+    	$this->debug_info("Meta nomask. No masking will be applied");
   	return $content;
+  }
   else
+  {
+  	if($this->options['debug'])
+  		$this->debug_info("Filter will be applied");
   	return $this->filter($content);
+  }
 }
 
 function fullmask_begin()
 {
-	ob_start();
+	$a=ob_start(array($this,'fullmask_end'));
+  if(!$a)
+  	  echo '<font color="red">'.__('Can not get output buffer!').__('WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and use other filters.','wpnoexternallinks').'</font>';
+	if($this->options['debug'])
+  	  $this->debug_info("Starting full mask.");
 }
-function fullmask_end()
+function fullmask_end($text)
 {
   global $post;
-  $text=ob_get_contents();
-  ob_end_clean();
+  $r='';
+  if($this->options['debug'])
+    $r.=$this->debug_info("Full mask finished. Applying filter",1);
   if(!$text)
-  	  echo '<font color="red">'.__('WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and use other filters.','wpnoexternallinks').'</font>';
+  	  $r.= '<font color="red">'.__('Output buffer empty!').__('WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and use other filters.','wpnoexternallinks',1).'</font>';
   else
   {
+    if($this->options['debug'])
+  	  $r.=$this->debug_info("Processing text (htmlspecialchars on it to stay like comment): \n".htmlspecialchars($text),1);
     if(is_object($post) && (get_post_meta($post->ID, 'wp_noextrenallinks_mask_links', true)==2))
-      echo $text;
+      $r.= $text;
     elseif(function_exists('is_feed') && is_feed())
-      echo $text;
+      $r.= $text;
     else
-      echo $this->filter($text);
+      $r.= $this->filter($text);
   }
-  #echo'<!--WP_NoExternalLinks finished-->';
+  if($this->options['debug'])
+    $r.=$this->debug_info("Full mask output finished",1);
+  return $r;
 }
 
 function set_filters()
 {
   if($this->options['noforauth']&&is_user_logged_in())
+  {
+  	if($this->options['debug'])
+      $this->debug_info("User is authorised, we're not doing anything");
     return;
+  }
   if($this->options['fullmask'])
   {
-  	  add_action('init',array($this,'fullmask_begin'),1);
-  	  add_action('wp_print_footer_scripts',array($this,'fullmask_end'),99);
+  	  if($this->options['debug'])
+        $this->debug_info("Setting fullmask filters");
+      $this->fullmask_begin();
   }
   else
   {
+  	if($this->options['debug'])
+      $this->debug_info("Setting per element filters");
     if($this->options['mask_mine'])
     {
       add_filter('the_content',array($this,'chk_post'),99);
