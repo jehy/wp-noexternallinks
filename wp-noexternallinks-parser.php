@@ -1,37 +1,44 @@
 <?php
 if(!defined('DB_NAME'))
   die('Error: Plugin "wp-noexternallinks" does not support standalone calls, damned hacker.');
+
+
+class wp_noexternallinks_parser extends wp_noexternallinks
+{
+  
 function wp_noextrenallinks_parser($matches)
 {
-  global $wp_rewrite,$wp_noexternallinks_parser,$wpdb;
+  global $wp_rewrite,$wpdb;
+  $check_allowed=$matches[2] . '//' .$matches[3];
+  if($p=strpos($check_allowed,'/',8))
+    $check_allowed=substr($check_allowed,0,$p);
+  if($this->options['debug'])
+  	$this->debug_info('Parser called. Parsing argument '.var_export($matches,1)."\nMade url ".$check_allowed);
+  foreach($this->options['exclude_links_'] as $val)
+    if(stripos($val,$check_allowed)===0)
+      return $matches[0];
+  if($this->options['debug'])
+  	$this->debug_info('Not in exclusion list, masking...');
+  
   if(!$wp_rewrite->using_permalinks())
-    $sep='?'.$wp_noexternallinks_parser->options['LINK_SEP'].'=';
+    $sep='?'.$this->options['LINK_SEP'].'=';
   else
-      $sep='/'.$wp_noexternallinks_parser->options['LINK_SEP'].'/';
-  if($wp_noexternallinks_parser->options['add_blank']&&
-  (stripos($matches[2] . '//' .$matches[3],$wp_noexternallinks_parser->options['exclude_links_'][0])===FALSE))/*do not add blank to internal links*/
+    $sep='/'.$this->options['LINK_SEP'].'/';
+  if($this->options['add_blank'])
       $ifblank=' target="_blank"';
-  if($wp_noexternallinks_parser->options['add_nofollow']&&
-  (stripos($matches[2] . '//' .$matches[3],$wp_noexternallinks_parser->options['exclude_links_'][0])===FALSE))/*do not add nofollow to internal links*/
+  if($this->options['add_nofollow'])
       $ifnofollow=' rel="nofollow"';
-
-  /*no masking for those urls (0 is the own blog/site url):*/
-
-  for($i=0;$i<sizeof($wp_noexternallinks_parser->options['exclude_links_']);$i++)
-      if($wp_noexternallinks_parser->options['exclude_links_'][$i])
-        if(stripos($matches[2] . '//' .$matches[3],$wp_noexternallinks_parser->options['exclude_links_'][$i])===0)/*if begins with*/
-          return '<a'.$ifblank.' href="' . $matches[2] . '//' . $matches[3] . '" ' . $matches[1] . $matches[4] . '>' . $matches[5] . '</a>';
 
     $url=($matches[2] . '//' . $matches[3]);
   
   /*masking url with numbers*/
-  if(!$wp_noexternallinks_parser->options['disable_mask_links'])
+  if(!$this->options['disable_mask_links'])
   {
-    if($wp_noexternallinks_parser->options['base64'])
+    if($this->options['base64'])
     {
       $url=base64_encode($url);
     }
-    elseif($wp_noexternallinks_parser->options['maskurl'])
+    elseif($this->options['maskurl'])
     {
   	  $sql='select id from '.$wpdb->prefix.'masklinks where url="'.addslashes($url).'" limit 1';
   	  $result=@mysql_query($sql);
@@ -66,25 +73,22 @@ function wp_noextrenallinks_parser($matches)
     if(!$wp_rewrite->using_permalinks())
       $url=urlencode($url);
     //add "/" to site url- some servers dont't work with urls like xxx.ru?goto, but with xxx.ru/?goto
-    if($wp_noexternallinks_parser->options['site'][strlen($wp_noexternallinks_parser->options['site'])-1]!='/')
-      $wp_noexternallinks_parser->options['site'].='/';
+    if($this->options['site'][strlen($this->options['site'])-1]!='/')
+      $this->options['site'].='/';
     if($sep[0]=='/')#to not create double backslashes
       $sep=substr($sep,1);
-    $url=$wp_noexternallinks_parser->options['site'].$sep.$url;
+    $url=$this->options['site'].$sep.$url;
   }
-  if($wp_noexternallinks_parser->options['remove_links'])
+  if($this->options['remove_links'])
     return $matches[5];
-  if($wp_noexternallinks_parser->options['link2text'])
+  if($this->options['link2text'])
     return $matches[5].' ^('.$url.')';
   $link='<a'.$ifblank.$ifnofollow.' href="'.$url.'" '.$matches[1].$matches[4].'>'.$matches[5].'</a>';
-  if($wp_noexternallinks_parser->options['put_noindex'])
+  if($this->options['put_noindex'])
     $link='<noindex>'.$link.'</noindex>';
   return $link;
 }
 
-
-class wp_noexternallinks_parser extends wp_noexternallinks
-{
 function debug_info($info,$return=0)
 {
 	$t="\n<!--wpnoexternallinks debug:\n".$info."\n-->";
@@ -119,12 +123,12 @@ function Redirect()
 }
 
 function redirect2($url)
-{  global $wp_rewrite,$wpdb,$wp_noexternallinks_parser;
-  if($wp_noexternallinks_parser->options['base64'])
+{  global $wp_rewrite,$wpdb;
+  if($this->options['base64'])
   {
     $url=base64_decode($url);
   }
-  elseif($wp_noexternallinks_parser->options['maskurl'])
+  elseif($this->options['maskurl'])
   {
     $sql='select url from '.$wpdb->prefix.'masklinks where id="'.addslashes($url).'" limit 1';
     $result=@mysql_query($sql);
@@ -195,7 +199,7 @@ function filter($content)
     return $content;
   }
   $pattern = '/<a (.*?)href=[\"\'](.*?)\/\/(.*?)[\"\'](.*?)>(.*?)<\/a>/i';
-  $content = preg_replace_callback($pattern,'wp_noextrenallinks_parser',$content);
+  $content = preg_replace_callback($pattern,array($this,'wp_noextrenallinks_parser'),$content);
   if($this->options['debug'])
     $this->debug_info("Filter returned(htmlspecialchars on it to stay like comment): \n".htmlspecialchars($content));
   return $content;
@@ -255,11 +259,26 @@ function fullmask_end($text)
 
 function set_filters()
 {
-  if($this->options['noforauth']&&is_user_logged_in())
+  if($this->options['noforauth'])
   {
-  	if($this->options['debug'])
-      $this->debug_info("User is authorised, we're not doing anything");
-    return;
+    if($this->options['debug'])
+      $this->debug_info("Masking is enabled only for non logged in users");
+    if(!function_exists('is_user_logged_in'))
+    {
+      if($this->options['debug'])
+        $this->debug_info("'is_user_logged_in' function not found! Trying to include its file");
+      $path=constant('ABSPATH').'wp-includes/pluggable.php';
+      if(file_exists($path))  
+        require_once($path);
+      elseif($this->options['debug'])
+        $this->debug_info("pluggable file not found! Not gonna include.");
+    }
+    if(is_user_logged_in())
+    {
+    	if($this->options['debug'])
+        $this->debug_info("User is authorised, we're not doing anything");
+      return;
+    }
   }
   if($this->options['fullmask'])
   {

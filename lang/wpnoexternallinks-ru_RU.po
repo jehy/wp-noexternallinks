@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp-noexternallinks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-22 17:09+0400\n"
-"PO-Revision-Date: 2012-09-22 17:10+0400\n"
+"POT-Creation-Date: 2012-09-24 22:56+0400\n"
+"PO-Revision-Date: 2012-09-24 22:56+0400\n"
 "Last-Translator: Jehy <fate@jehy.ru>\n"
 "Language-Team: jehy <fate@jehy.ru>\n"
 "Language: ru_RU\n"
@@ -29,21 +29,21 @@ msgstr "Использовать настройки маскировки по у
 msgid "Don`t mask links"
 msgstr "Не маскировать ссылки"
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:102
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:156
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:89
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:143
 msgid "Plugin home page"
 msgstr "Страница плагина"
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:103
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:157
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:90
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:144
 msgid "Feedback"
 msgstr "Проблемы?"
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:105
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:92
 msgid "View options"
 msgstr "Настройки"
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:110
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:97
 msgid ""
 "Statistic for plugin is disabled! Please, go to options page and enable it "
 "via checkbox \"Log all outgoing clicks\"."
@@ -51,23 +51,23 @@ msgstr ""
 "Статистика для плагина отключена. Пожалуйста, зайдите в настройки и "
 "установите галочку \"Вести статистику по кликам на внешние ссылки\"."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:123
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:110
 msgid "View stats from "
 msgstr "Просмотреть статистику с "
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:125
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:112
 msgid " to "
 msgstr "до "
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:125
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:112
 msgid "View"
 msgstr "Смотреть"
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:144
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:131
 msgid "No statistic for given period."
 msgstr "За указанный период времени статистики не найдено."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:151
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:138
 msgid ""
 "That plugins allows you to mask all external links and make them internal or "
 "hidden - using PHP redirect or special link tags and attributes. Yeah, by "
@@ -80,11 +80,11 @@ msgstr ""
 "документа пользователю. Плагин не маскирует внутренние а так же исключённые "
 "из маскировки ссылки."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:159
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:146
 msgid "View Stats"
 msgstr "Статистика"
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:160
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:147
 msgid ""
 "<h3>Global links masking settings</h3>(You can also disable plugin on per-"
 "post basis)"
@@ -92,33 +92,33 @@ msgstr ""
 "<h3>Общие настройки плагина</h3>(Так же можно указать индивидуальные для "
 "каждого поста)"
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:186
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-options.php:173
 msgid "Save Changes"
 msgstr "Сохранить измения"
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:41
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:48
 msgid "Failed to make masked link. Trying to create table."
 msgstr "Не удалось сохранить маску ссылки. Пытаемся создать таблицу ссылок."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:45
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:149
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:52
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:153
 msgid "Failed to create table. Please, check mysql permissions."
 msgstr "Не удалось создать таблицу. Пожалуйста, проверьте полномочия MySQL."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:48
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:152
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:55
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:156
 msgid "Table created."
 msgstr "Таблица создана."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:145
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:149
 msgid "Failed to save statistic data. Trying to create table."
 msgstr "Не удалось сохранить статистику. Пытаюсь создать таблицу."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:167
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:171
 msgid "Redirecting..."
 msgstr "Перенаправляю..."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:180
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:184
 msgid ""
 "You were going to the redirect link, but something did not work properly."
 "<br>Please, click "
@@ -126,28 +126,28 @@ msgstr ""
 "Вы должны были быть перенаправлены по ссылке, но что-то не получилось.<br> "
 "Пожалуйста, нажмите "
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:180
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:184
 msgid "HERE "
 msgstr "СЮДА "
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:180
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:184
 msgid " to go to "
 msgstr "чтобы перейти по ссылке "
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:180
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:184
 msgid " manually. "
 msgstr "вручную."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:182
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:186
 msgid "Sorry, no url redirect specified. Can`t complete request."
 msgstr "Не был определён адрес, невозможно перенаправить."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:228
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:232
 msgid "Can not get output buffer!"
 msgstr "Не получилось установить контроль над буфером вывода!"
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:228
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:239
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:232
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:243
 #, fuzzy
 msgid ""
 "WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and "
@@ -157,7 +157,7 @@ msgstr ""
 "Пожалуйста, выключите опцию полной маскировки ссылок в настройках плагина и "
 "используйте другие опции."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:239
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:243
 msgid "Output buffer empty!"
 msgstr "Буфер вывода пуст!"
 

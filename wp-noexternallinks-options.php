@@ -56,20 +56,7 @@ function Activate()
 
 function DeActivate()
 {
-  /*
-  remove all options. Better not do it, you know...
-  delete_option('noexternallinks_mask_mine');
-  delete_option('noexternallinks_mask_comment');
-  delete_option('noexternallinks_mask_author');
-
-  delete_option('noexternallinks_add_blank');
-  delete_option('noexternallinks_add_nofollow');
-  delete_option('noexternallinks_put_noindex');
-  delete_option('noexternallinks_disable_mask_links');
-
-  delete_option('noexternallinks_exclude_links');
-  delete_option('noexternallinks_link_separator');
-  delete_option('noexternallinks_fullmask');*/
+  #here could be option uninstall. But better not.
 }
 
 
