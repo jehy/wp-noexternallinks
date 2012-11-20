@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 3.4.2
-Stable tag: 3.3.3b
+Stable tag: 3.3.4
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -112,6 +112,7 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 3.3.1 - Hotfix for some blogs which crashed on checking if page is RSS feed, improvements for option "Mask ALL links in document" - now it doesn'n mask RSS and posts with option "don't mask links".    
 3.3.2 - Imporovements for option "Mask ALL links in document", debug mode.    
 3.3.3b - Exclusions list fix, possible fix for not found 'is_user_logged_in' function.    
+3.3.4 - Now you can customize link view if you chose "remove links" or "turn links into text". Use CSS classes "waslinkname" and "waslinkurl" for it.
 
 ####Localization
 

@@ -80,9 +80,9 @@ function wp_noextrenallinks_parser($matches)
     $url=$this->options['site'].$sep.$url;
   }
   if($this->options['remove_links'])
-    return $matches[5];
+    return '<span class="waslinkname">'.$matches[5].'</span>';
   if($this->options['link2text'])
-    return $matches[5].' ^('.$url.')';
+    return '<span class="waslinkname">'.$matches[5].'</span> ^(<span class="waslinkurl">'.$url.')</span>';
   $link='<a'.$ifblank.$ifnofollow.' href="'.$url.'" '.$matches[1].$matches[4].'>'.$matches[5].'</a>';
   if($this->options['put_noindex'])
     $link='<noindex>'.$link.'</noindex>';
