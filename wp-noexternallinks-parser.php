@@ -9,9 +9,11 @@ class wp_noexternallinks_parser extends wp_noexternallinks
 function wp_noextrenallinks_parser($matches)
 {
   global $wp_rewrite,$wpdb;
-  $check_allowed=$matches[2] . '//' .$matches[3];
-  if($p=strpos($check_allowed,'/',8))
-    $check_allowed=substr($check_allowed,0,$p);
+  #checking for entry in exclusion list
+  $path=$matches[3];
+  if($p=strpos($path,'/'))
+    $path=substr($path,0,$p);
+  $check_allowed=$matches[2] . '//' .$path;
   if($this->options['debug'])
   	$this->debug_info('Parser called. Parsing argument '.var_export($matches,1)."\nMade url ".$check_allowed);
   foreach($this->options['exclude_links_'] as $val)
@@ -20,6 +22,7 @@ function wp_noextrenallinks_parser($matches)
   if($this->options['debug'])
   	$this->debug_info('Not in exclusion list, masking...');
   
+  #checking for different options, setting other
   if(!$wp_rewrite->using_permalinks())
     $sep='?'.$this->options['LINK_SEP'].'=';
   else
