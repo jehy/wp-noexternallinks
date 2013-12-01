@@ -14,13 +14,11 @@ function wp_noextrenallinks_parser($matches)
   if($p=strpos($path,'/'))
     $path=substr($path,0,$p);
   $check_allowed=$matches[2] . '//' .$path;
-  if($this->options['debug'])
-  	$this->debug_info('Parser called. Parsing argument '.var_export($matches,1)."\nMade url ".$check_allowed);
+  $this->debug_info('Parser called. Parsing argument '.var_export($matches,1)."\nMade url ".$check_allowed);
   foreach($this->options['exclude_links_'] as $val)
     if(stripos($val,$check_allowed)===0)
       return $matches[0];
-  if($this->options['debug'])
-  	$this->debug_info('Not in exclusion list, masking...');
+  $this->debug_info('Not in exclusion list, masking...');
   
   #checking for different options, setting other
   if(!$wp_rewrite->using_permalinks())
@@ -52,7 +50,10 @@ function wp_noextrenallinks_parser($matches)
     	  $sql2='CREATE TABLE '.$wpdb->prefix.'masklinks(`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,`url` VARCHAR(255),  PRIMARY KEY (`id`))';
      		@mysql_query($sql2);
      		if(@mysql_errno())
+         {
      			echo '<br>'.__('Failed to create table. Please, check mysql permissions.','wpnoexternallinks');
+            debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.mysql_error());
+         }
      		else
      		{
      		  echo '<br>'.__('Table created.','wpnoexternallinks');
@@ -94,15 +95,18 @@ function wp_noextrenallinks_parser($matches)
 
 function debug_info($info,$return=0)
 {
-	$t="\n<!--wpnoexternallinks debug:\n".$info."\n-->";
-  if($return)
-    return $t;
-  else
-    echo $t;
+  if($this->options['debug'])
+  {
+   	$t="\n<!--wpnoexternallinks debug:\n".$info."\n-->";
+     if($return)
+       return $t;
+     else
+       echo $t;
+  }
 }
 
 function wp_noexternallinks_parser()
-{  $this->load_options();  $this->set_filters();  add_filter('template_redirect',array($this,'Redirect'),1);  if($this->options['debug'])  	$this->debug_info("Options: \n".var_export($this->options, true));}
+{  $this->load_options();  $this->set_filters();  add_filter('template_redirect',array($this,'Redirect'),1);  $this->debug_info("Options: \n".var_export($this->options, true));}
 function Redirect()
 {
   $goto='';
@@ -149,11 +153,15 @@ function redirect2($url)
   	@mysql_query($sql);
   	if(mysql_errno())
   	{
+      debug_info(__('Failed SQL: ').'<br>'.$sql.'<br>'.__('Error was:').'<br>'.mysql_error());
   		echo'<font color="red">'.__('Failed to save statistic data. Trying to create table.').'</font>';
   		$sql2='CREATE TABLE '.$wpdb->prefix.'links_stats(`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,`url` VARCHAR(255), `date` DATETIME, PRIMARY KEY (`id`))';
    		@mysql_query($sql2);
    		if(mysql_errno())
+         {
    			echo '<br>'.__('Failed to create table. Please, check mysql permissions.','wpnoexternallinks');
+            debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.mysql_error());
+         }
    		else
    		{
    			echo '<br>'.__('Table created.','wpnoexternallinks');
@@ -193,37 +201,31 @@ else
 
 function filter($content)
 {
-  if($this->options['debug'])
-  	$this->debug_info("Processing text (htmlspecialchars on it to stay like comment): \n".htmlspecialchars($content));
+  $this->debug_info("Processing text (htmlspecialchars on it to stay like comment): \n".htmlspecialchars($content));
   if(function_exists('is_feed') && is_feed())
   {
-	if($this->options['debug'])
-	  $this->debug_info('It is feed, no processing');
+	 $this->debug_info('It is feed, no processing');
     return $content;
   }
   $pattern = '/<a (.*?)href=[\"\'](.*?)\/\/(.*?)[\"\'](.*?)>(.*?)<\/a>/i';
   $content = preg_replace_callback($pattern,array($this,'wp_noextrenallinks_parser'),$content);
-  if($this->options['debug'])
-    $this->debug_info("Filter returned(htmlspecialchars on it to stay like comment): \n".htmlspecialchars($content));
+  $this->debug_info("Filter returned(htmlspecialchars on it to stay like comment): \n".htmlspecialchars($content));
   return $content;
 }
 
 function chk_post($content)
 {
   global $post;
-  if($this->options['debug'])
-  	$this->debug_info("Checking post for meta.");
+  $this->debug_info("Checking post for meta.");
   $mask = get_post_meta($post->ID, 'wp_noextrenallinks_mask_links', true);
   if($mask==2 )/*nomask*/
   {
-  	if($this->options['debug'])
-    	$this->debug_info("Meta nomask. No masking will be applied");
+   $this->debug_info("Meta nomask. No masking will be applied");
   	return $content;
   }
   else
   {
-  	if($this->options['debug'])
-  		$this->debug_info("Filter will be applied");
+  	$this->debug_info("Filter will be applied");
   	return $this->filter($content);
   }
 }
@@ -240,14 +242,12 @@ function fullmask_end($text)
 {
   global $post;
   $r='';
-  if($this->options['debug'])
-    $r.=$this->debug_info("Full mask finished. Applying filter",1);
+  $r.=$this->debug_info("Full mask finished. Applying filter",1);
   if(!$text)
   	  $r.= '<font color="red">'.__('Output buffer empty!').__('WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and use other filters.','wpnoexternallinks',1).'</font>';
   else
   {
-    if($this->options['debug'])
-  	  $r.=$this->debug_info("Processing text (htmlspecialchars on it to stay like comment): \n".htmlspecialchars($text),1);
+  	 $r.=$this->debug_info("Processing text (htmlspecialchars on it to stay like comment): \n".htmlspecialchars($text),1);
     if(is_object($post) && (get_post_meta($post->ID, 'wp_noextrenallinks_mask_links', true)==2))
       $r.= $text;
     elseif(function_exists('is_feed') && is_feed())
@@ -255,8 +255,7 @@ function fullmask_end($text)
     else
       $r.= $this->filter($text);
   }
-  if($this->options['debug'])
-    $r.=$this->debug_info("Full mask output finished",1);
+  $r.=$this->debug_info("Full mask output finished",1);
   return $r;
 }
 
@@ -264,35 +263,30 @@ function set_filters()
 {
   if($this->options['noforauth'])
   {
-    if($this->options['debug'])
-      $this->debug_info("Masking is enabled only for non logged in users");
+    $this->debug_info("Masking is enabled only for non logged in users");
     if(!function_exists('is_user_logged_in'))
     {
-      if($this->options['debug'])
-        $this->debug_info("'is_user_logged_in' function not found! Trying to include its file");
+      $this->debug_info("'is_user_logged_in' function not found! Trying to include its file");
       $path=constant('ABSPATH').'wp-includes/pluggable.php';
       if(file_exists($path))  
         require_once($path);
-      elseif($this->options['debug'])
+      else
         $this->debug_info("pluggable file not found! Not gonna include.");
     }
     if(is_user_logged_in())
     {
-    	if($this->options['debug'])
-        $this->debug_info("User is authorised, we're not doing anything");
+      $this->debug_info("User is authorised, we're not doing anything");
       return;
     }
   }
   if($this->options['fullmask'])
   {
-  	  if($this->options['debug'])
-        $this->debug_info("Setting fullmask filters");
+      $this->debug_info("Setting fullmask filters");
       $this->fullmask_begin();
   }
   else
   {
-  	if($this->options['debug'])
-      $this->debug_info("Setting per element filters");
+    $this->debug_info("Setting per element filters");
     if($this->options['mask_mine'])
     {
       add_filter('the_content',array($this,'chk_post'),99);

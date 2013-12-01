@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp-noexternallinks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-24 22:56+0400\n"
-"PO-Revision-Date: 2013-11-10 19:11+0400\n"
+"POT-Creation-Date: 2013-12-01 15:05+0400\n"
+"PO-Revision-Date: 2013-12-01 15:06+0400\n"
 "Last-Translator: Jehy <fate@jehy.ru>\n"
 "Language-Team: jehy <fate@jehy.ru>\n"
 "Language: ru_RU\n"
@@ -96,29 +96,41 @@ msgstr ""
 msgid "Save Changes"
 msgstr "Сохранить измения"
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:48
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:49
 msgid "Failed to make masked link. Trying to create table."
 msgstr "Не удалось сохранить маску ссылки. Пытаемся создать таблицу ссылок."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:52
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:153
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:54
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:162
 msgid "Failed to create table. Please, check mysql permissions."
 msgstr "Не удалось создать таблицу. Пожалуйста, проверьте полномочия MySQL."
 
 #: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:55
 #: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:156
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:163
+msgid "Failed SQL: "
+msgstr "SQL запрос, вызвавший ошибку:"
+
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:55
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:156
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:163
+msgid "Error was:"
+msgstr "Ошибка была:"
+
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:59
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:167
 msgid "Table created."
 msgstr "Таблица создана."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:149
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:157
 msgid "Failed to save statistic data. Trying to create table."
 msgstr "Не удалось сохранить статистику. Пытаюсь создать таблицу."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:171
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:182
 msgid "Redirecting..."
 msgstr "Перенаправляю..."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:184
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:195
 msgid ""
 "You were going to the redirect link, but something did not work properly."
 "<br>Please, click "
@@ -126,28 +138,28 @@ msgstr ""
 "Вы должны были быть перенаправлены по ссылке, но что-то не получилось.<br> "
 "Пожалуйста, нажмите "
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:184
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:195
 msgid "HERE "
 msgstr "СЮДА "
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:184
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:195
 msgid " to go to "
 msgstr "чтобы перейти по ссылке "
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:184
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:195
 msgid " manually. "
 msgstr "вручную."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:186
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:197
 msgid "Sorry, no url redirect specified. Can`t complete request."
 msgstr "Не был определён адрес, невозможно перенаправить."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:232
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:237
 msgid "Can not get output buffer!"
 msgstr "Не получилось установить контроль над буфером вывода!"
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:232
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:243
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:237
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:247
 #, fuzzy
 msgid ""
 "WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and "
@@ -157,7 +169,7 @@ msgstr ""
 "Пожалуйста, выключите опцию полной маскировки ссылок в настройках плагина и "
 "используйте другие опции."
 
-#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:243
+#: C:\WEB\svn\noexternalinks\trunk/wp-noexternallinks-parser.php:247
 msgid "Output buffer empty!"
 msgstr "Буфер вывода пуст!"
 
