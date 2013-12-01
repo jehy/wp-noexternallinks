@@ -5,7 +5,19 @@ if(!defined('DB_NAME'))
 
 class wp_noexternallinks_parser extends wp_noexternallinks
 {
-  
+
+function debug_info($info,$return=0)
+{
+  if($this->options['debug'])
+  {
+   	$t="\n<!--wpnoexternallinks debug:\n".$info."\n-->";
+     if($return)
+       return $t;
+     else
+       echo $t;
+  }
+}
+
 function wp_noextrenallinks_parser($matches)
 {
   global $wp_rewrite,$wpdb;
@@ -52,7 +64,7 @@ function wp_noextrenallinks_parser($matches)
      		if(@mysql_errno())
          {
      			echo '<br>'.__('Failed to create table. Please, check mysql permissions.','wpnoexternallinks');
-            debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.mysql_error());
+            $this->debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.mysql_error());
          }
      		else
      		{
@@ -93,17 +105,6 @@ function wp_noextrenallinks_parser($matches)
   return $link;
 }
 
-function debug_info($info,$return=0)
-{
-  if($this->options['debug'])
-  {
-   	$t="\n<!--wpnoexternallinks debug:\n".$info."\n-->";
-     if($return)
-       return $t;
-     else
-       echo $t;
-  }
-}
 
 function wp_noexternallinks_parser()
 {  $this->load_options();  $this->set_filters();  add_filter('template_redirect',array($this,'Redirect'),1);  $this->debug_info("Options: \n".var_export($this->options, true));}
@@ -153,14 +154,14 @@ function redirect2($url)
   	@mysql_query($sql);
   	if(mysql_errno())
   	{
-      debug_info(__('Failed SQL: ').'<br>'.$sql.'<br>'.__('Error was:').'<br>'.mysql_error());
+      $this->debug_info(__('Failed SQL: ').'<br>'.$sql.'<br>'.__('Error was:').'<br>'.mysql_error());
   		echo'<font color="red">'.__('Failed to save statistic data. Trying to create table.').'</font>';
   		$sql2='CREATE TABLE '.$wpdb->prefix.'links_stats(`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,`url` VARCHAR(255), `date` DATETIME, PRIMARY KEY (`id`))';
    		@mysql_query($sql2);
    		if(mysql_errno())
          {
    			echo '<br>'.__('Failed to create table. Please, check mysql permissions.','wpnoexternallinks');
-            debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.mysql_error());
+            $this->debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.mysql_error());
          }
    		else
    		{

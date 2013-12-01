@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 3.7.1
-Stable tag: 3.3.6
+Stable tag: 3.3.7
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -115,6 +115,7 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 3.3.4 - Now you can customize link view if you chose "remove links" or "turn links into text". Use CSS classes "waslinkname" and "waslinkurl" for it.
 3.3.5 - Little update so that plugin won't cause harmless warning.    
 3.3.6 - More output for debug mode.    
+3.3.7 - Crytical update for 3.3.6.    
 
 
 ####Localization
