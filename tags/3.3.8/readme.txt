@@ -122,6 +122,7 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 
 * English
 * Russian
+* Spanish
 * Your language also can be here - just send me language file :)
 
 
