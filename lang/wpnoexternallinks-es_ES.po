@@ -2,21 +2,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP No External Links v3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-03-11 14:37+0400\n"
+"POT-Creation-Date: 2014-03-12 16:05+0400\n"
+"PO-Revision-Date: 2014-03-12 16:05+0400\n"
 "Last-Translator: Jehy <fate@jehy.ru>\n"
 "Language-Team: \n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Poedit 1.6.4\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
 "X-Poedit-Basepath: ../\n"
 "X-Textdomain-Support: yes\n"
-"Language: es_ES\n"
 "X-Poedit-SearchPath-0: .\n"
 
 # @ wpnoexternallinks
@@ -112,32 +112,42 @@ msgid "Save Changes"
 msgstr "Guarda cambios"
 
 # @ default
-#: wp-noexternallinks-parser.php:48
+#: wp-noexternallinks-parser.php:61
 msgid "Failed to make masked link. Trying to create table."
 msgstr "Fallo al enmascarar enlace. Tratando de crear tabla."
 
 # @ wpnoexternallinks
-#: wp-noexternallinks-parser.php:52 wp-noexternallinks-parser.php:153
+#: wp-noexternallinks-parser.php:66 wp-noexternallinks-parser.php:163
 msgid "Failed to create table. Please, check mysql permissions."
 msgstr "Fallo al crear tabla. Por favor comprueba los permisos de mysql."
 
+#: wp-noexternallinks-parser.php:67 wp-noexternallinks-parser.php:157
+#: wp-noexternallinks-parser.php:164
+msgid "Failed SQL: "
+msgstr ""
+
+#: wp-noexternallinks-parser.php:67 wp-noexternallinks-parser.php:157
+#: wp-noexternallinks-parser.php:164
+msgid "Error was:"
+msgstr ""
+
 # @ wpnoexternallinks
-#: wp-noexternallinks-parser.php:55 wp-noexternallinks-parser.php:156
+#: wp-noexternallinks-parser.php:71 wp-noexternallinks-parser.php:168
 msgid "Table created."
 msgstr "Tabla creada."
 
 # @ default
-#: wp-noexternallinks-parser.php:149
+#: wp-noexternallinks-parser.php:158
 msgid "Failed to save statistic data. Trying to create table."
 msgstr "Fallo al guardar estadísticas. Tratando de crear tabla. "
 
 # @ wpnoexternallinks
-#: wp-noexternallinks-parser.php:171
+#: wp-noexternallinks-parser.php:184
 msgid "Redirecting..."
 msgstr "Redireccionando..."
 
 # @ wpnoexternallinks
-#: wp-noexternallinks-parser.php:184
+#: wp-noexternallinks-parser.php:197
 msgid ""
 "You were going to the redirect link, but something did not work properly."
 "<br>Please, click "
@@ -146,34 +156,34 @@ msgstr ""
 "<br>Por favor, haz click "
 
 # @ wpnoexternallinks
-#: wp-noexternallinks-parser.php:184
+#: wp-noexternallinks-parser.php:197
 msgid "HERE "
 msgstr "AQUÍ"
 
 # @ wpnoexternallinks
-#: wp-noexternallinks-parser.php:184
+#: wp-noexternallinks-parser.php:197
 msgid " to go to "
 msgstr "para ir a"
 
 # @ wpnoexternallinks
-#: wp-noexternallinks-parser.php:184
+#: wp-noexternallinks-parser.php:197
 msgid " manually. "
 msgstr "manualmente."
 
 # @ wpnoexternallinks
-#: wp-noexternallinks-parser.php:186
+#: wp-noexternallinks-parser.php:199
 msgid "Sorry, no url redirect specified. Can`t complete request."
 msgstr ""
 "Lo siento, url de redirección no especificada. No se puede cumplir la "
 "petición."
 
 # @ default
-#: wp-noexternallinks-parser.php:232
+#: wp-noexternallinks-parser.php:239
 msgid "Can not get output buffer!"
 msgstr "¡No se pudo otener buffer saliente!"
 
 # @ wpnoexternallinks
-#: wp-noexternallinks-parser.php:232 wp-noexternallinks-parser.php:243
+#: wp-noexternallinks-parser.php:239 wp-noexternallinks-parser.php:249
 msgid ""
 "WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and "
 "use other filters."
@@ -182,7 +192,7 @@ msgstr ""
 "desactiva el enmascarado completo y usa otros filtros."
 
 # @ default
-#: wp-noexternallinks-parser.php:243
+#: wp-noexternallinks-parser.php:249
 msgid "Output buffer empty!"
 msgstr "¡Buffer saliente vacío!"
 

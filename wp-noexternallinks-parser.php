@@ -176,6 +176,7 @@ function redirect2($url)
   $this->init_lang();
   if(!$wp_rewrite->using_permalinks())
     $url=urldecode($url);
+  $url=str_ireplace('&#038;','&',$url);
   header('Content-type: text/html; charset="utf-8"',true);
   if(!$this->options['no302']&&$url)
     @header('Location: '.$url);

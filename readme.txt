@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 3.7.1
-Stable tag: 3.3.7
+Stable tag: 3.3.8
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -116,7 +116,7 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 3.3.5 - Little update so that plugin won't cause harmless warning.    
 3.3.6 - More output for debug mode.    
 3.3.7 - Crytical update for 3.3.6.    
-
+3.3.8 - Correct redirection links with GET parameters, sometimes damaged by wordpress output.    
 
 ####Localization
 
