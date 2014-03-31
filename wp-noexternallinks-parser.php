@@ -131,7 +131,7 @@ function Redirect()
 }
 
 function redirect2($url)
-{  global $wp_rewrite,$wpdb;
+{  global $wp_rewrite,$wpdb,$hyper_cache_stop;
   if($this->options['base64'])
   {
     $url=base64_decode($url);
@@ -150,6 +150,10 @@ function redirect2($url)
   
   if($this->options['stats'])
   {
+    
+    //disable Hyper Cache plugin (http://www.satollo.net/plugins/hyper-cache) from caching this page (otherwise, statistics won't work):
+    $hyper_cache_stop = true;
+    
   	$sql='INSERT INTO '.$wpdb->prefix.'links_stats VALUES("","'.addslashes($url).'",NOW())';
   	@mysql_query($sql);
   	if(mysql_errno())
