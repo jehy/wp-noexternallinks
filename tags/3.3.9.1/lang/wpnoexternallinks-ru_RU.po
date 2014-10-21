@@ -1,0 +1,296 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: wp-noexternallinks\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-12 16:06+0400\n"
+"PO-Revision-Date: 2014-03-12 16:06+0400\n"
+"Last-Translator: Jehy <fate@jehy.ru>\n"
+"Language-Team: jehy <fate@jehy.ru>\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.6.4\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: wp-noexternallinks-options.php:34 wp-noexternallinks-options.php:35
+msgid "Link masking for this post"
+msgstr "Настройка маскировки ссылок для этого поста"
+
+#: wp-noexternallinks-options.php:47
+msgid "Use default policy from plugin settings"
+msgstr "Использовать настройки маскировки по умолчанию"
+
+#: wp-noexternallinks-options.php:49
+msgid "Don`t mask links"
+msgstr "Не маскировать ссылки"
+
+#: wp-noexternallinks-options.php:89 wp-noexternallinks-options.php:143
+msgid "Plugin home page"
+msgstr "Страница плагина"
+
+#: wp-noexternallinks-options.php:90 wp-noexternallinks-options.php:144
+msgid "Feedback"
+msgstr "Проблемы?"
+
+#: wp-noexternallinks-options.php:92
+msgid "View options"
+msgstr "Настройки"
+
+#: wp-noexternallinks-options.php:97
+msgid ""
+"Statistic for plugin is disabled! Please, go to options page and enable it "
+"via checkbox \"Log all outgoing clicks\"."
+msgstr ""
+"Статистика для плагина отключена. Пожалуйста, зайдите в настройки и "
+"установите галочку \"Вести статистику по кликам на внешние ссылки\"."
+
+#: wp-noexternallinks-options.php:110
+msgid "View stats from "
+msgstr "Просмотреть статистику с "
+
+#: wp-noexternallinks-options.php:112
+msgid " to "
+msgstr "до "
+
+#: wp-noexternallinks-options.php:112
+msgid "View"
+msgstr "Смотреть"
+
+#: wp-noexternallinks-options.php:131
+msgid "No statistic for given period."
+msgstr "За указанный период времени статистики не найдено."
+
+#: wp-noexternallinks-options.php:138
+msgid ""
+"That plugins allows you to mask all external links and make them internal or "
+"hidden - using PHP redirect or special link tags and attributes. Yeah, by "
+"the way - it does not change anything in the base - only replaces links on "
+"output.<br>P.S. It doesn`t mask internal and excluded links."
+msgstr ""
+"Этот плагин позволяет маскировать все внешние ссылки и делать их внутренними "
+"или прятать, используя специальные редиректы и атрибуты. Между прочим, в "
+"базе он ничего не правит - вся замена производится только при выдаче "
+"документа пользователю. Плагин не маскирует внутренние а так же исключённые "
+"из маскировки ссылки."
+
+#: wp-noexternallinks-options.php:146
+msgid "View Stats"
+msgstr "Статистика"
+
+#: wp-noexternallinks-options.php:147
+msgid ""
+"<h3>Global links masking settings</h3>(You can also disable plugin on per-"
+"post basis)"
+msgstr ""
+"<h3>Общие настройки плагина</h3>(Так же можно указать индивидуальные для "
+"каждого поста)"
+
+#: wp-noexternallinks-options.php:173
+msgid "Save Changes"
+msgstr "Сохранить измения"
+
+#: wp-noexternallinks-parser.php:61
+msgid "Failed to make masked link. Trying to create table."
+msgstr "Не удалось сохранить маску ссылки. Пытаемся создать таблицу ссылок."
+
+#: wp-noexternallinks-parser.php:66 wp-noexternallinks-parser.php:163
+msgid "Failed to create table. Please, check mysql permissions."
+msgstr "Не удалось создать таблицу. Пожалуйста, проверьте полномочия MySQL."
+
+#: wp-noexternallinks-parser.php:67 wp-noexternallinks-parser.php:157
+#: wp-noexternallinks-parser.php:164
+msgid "Failed SQL: "
+msgstr "SQL запрос, вызвавший ошибку:"
+
+#: wp-noexternallinks-parser.php:67 wp-noexternallinks-parser.php:157
+#: wp-noexternallinks-parser.php:164
+msgid "Error was:"
+msgstr "Ошибка была:"
+
+#: wp-noexternallinks-parser.php:71 wp-noexternallinks-parser.php:168
+msgid "Table created."
+msgstr "Таблица создана."
+
+#: wp-noexternallinks-parser.php:158
+msgid "Failed to save statistic data. Trying to create table."
+msgstr "Не удалось сохранить статистику. Пытаюсь создать таблицу."
+
+#: wp-noexternallinks-parser.php:184
+msgid "Redirecting..."
+msgstr "Перенаправляю..."
+
+#: wp-noexternallinks-parser.php:197
+msgid ""
+"You were going to the redirect link, but something did not work properly."
+"<br>Please, click "
+msgstr ""
+"Вы должны были быть перенаправлены по ссылке, но что-то не получилось.<br> "
+"Пожалуйста, нажмите "
+
+#: wp-noexternallinks-parser.php:197
+msgid "HERE "
+msgstr "СЮДА "
+
+#: wp-noexternallinks-parser.php:197
+msgid " to go to "
+msgstr "чтобы перейти по ссылке "
+
+#: wp-noexternallinks-parser.php:197
+msgid " manually. "
+msgstr "вручную."
+
+#: wp-noexternallinks-parser.php:199
+msgid "Sorry, no url redirect specified. Can`t complete request."
+msgstr "Не был определён адрес, невозможно перенаправить."
+
+#: wp-noexternallinks-parser.php:239
+msgid "Can not get output buffer!"
+msgstr "Не получилось установить контроль над буфером вывода!"
+
+#: wp-noexternallinks-parser.php:239 wp-noexternallinks-parser.php:249
+msgid ""
+"WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and "
+"use other filters."
+msgstr ""
+"WP NoExternalLinks не удалось использовать буфер вывода wordpress. "
+"Пожалуйста, выключите опцию полной маскировки ссылок в настройках плагина и "
+"используйте другие опции."
+
+#: wp-noexternallinks-parser.php:249
+msgid "Output buffer empty!"
+msgstr "Буфер вывода пуст!"
+
+#: wp-noexternallinks.php:61
+msgid "Failed to update options!"
+msgstr "Не удалось обновить настройки!"
+
+#: wp-noexternallinks.php:69
+msgid "Mask links in your posts"
+msgstr "Маскировать ссылки в постах"
+
+#: wp-noexternallinks.php:70
+msgid "Mask links in comments"
+msgstr "Маскировать ссылки в комментариях"
+
+#: wp-noexternallinks.php:71
+msgid "Mask comments authors`s links"
+msgstr "Маскировать ссылки комментаторов"
+
+#: wp-noexternallinks.php:72
+msgid "Add <b>rel=nofollow</b> for masked links (for google)"
+msgstr "Добавлять <b>rel=nofollow</b> в маскируемые ссылки (для google)"
+
+#: wp-noexternallinks.php:73
+msgid ""
+"Add <b>target=\"blank\"</b> for all links to other sites (links will open in "
+"new window)"
+msgstr ""
+"Добавлять <b>target=\"blank\"</b> для всех ссылок на другие сайты (ссылки "
+"будут открываться в новом окне)"
+
+#: wp-noexternallinks.php:74
+msgid ""
+"Surround masked links with <b>&lt;noindex&gt;link&lt;/noindex&gt;</b> tag "
+"(for yandex search engine)"
+msgstr ""
+"Окружать маскируемые ссылки тегом <b>&lt;noindex&gt;link&lt;/noindex&gt;</b> "
+"(для яндекса)"
+
+#: wp-noexternallinks.php:75
+msgid ""
+"Disable url rewrite of all links (you can be OK with just <b>noindex</b> tag "
+"and <b>rel=nofollow</b>)"
+msgstr "Не маскировать ссылки при помощи редиректов"
+
+#: wp-noexternallinks.php:76
+msgid "Link separator (default=\"goto\")"
+msgstr "Разделитель ссылок (по умолчанию \"goto\")"
+
+#: wp-noexternallinks.php:77
+msgid ""
+"Exclude URLs that you don`t want to mask (all urls, beginning with those, "
+"won`t be masked). Put one adress on each line, including prefix (for "
+"example, \"http://jehy.ru\")"
+msgstr ""
+"Укажите адреса, которые вы не хотите маскировать - все адреса, начинающиеся "
+"с указанных, не будут маскированы. По одному на каждой строчке (например, "
+"\"http://jehy.ru\")"
+
+#: wp-noexternallinks.php:78
+msgid ""
+"Mask ALL links in document (can slow down your blog and conflict with some "
+"cache and other plugins. Please use it on your own risk."
+msgstr ""
+"Маскировать ВСЕ ссылки на страницах (учтите, это может замедлить работу "
+"вашего блога и вызвать конфликт с некоторыми другими плагинами. Используйте "
+"на свой страх и риск.)"
+
+#: wp-noexternallinks.php:79
+msgid "Log all outgoing clicks"
+msgstr "Вести статистику по кликам на внешние ссылки"
+
+#: wp-noexternallinks.php:80
+msgid "Days to keep clicks stats"
+msgstr "Время (в днях) хранения статистики по кликам"
+
+#: wp-noexternallinks.php:81
+msgid "Do not use 302 redirect, only javascript redirect"
+msgstr "Не использовать редиректы с 302 заголовками, только яваскрипт"
+
+#: wp-noexternallinks.php:82
+msgid "Redirect time (seconds) when using javascript redirect instead of 302"
+msgstr ""
+"Время (в секундах), через которое произойдёт перенаправление пользователя "
+"при отключенных 302"
+
+#: wp-noexternallinks.php:83
+msgid ""
+"Custom redirect text (if 302 redirects disabled). Use word \"LINKURL\" where "
+"you want to use redirect url. For example, <b>CLICK &lt;a href=\"LINK\"&gt;"
+"HERE NOW&lt;/a&gt;</b>"
+msgstr ""
+"Свой текст редиректа, если 302 отключены. Используйте слово \"LINKURL\" там, "
+"где должен быть адрес для перехода. Например, так: <b>ЖМИ &lt;a href="
+"\"LINKURL\"&gt;СЮДА&lt;/a&gt;</b>"
+
+#: wp-noexternallinks.php:84
+msgid "Do not mask links when registered users visit site"
+msgstr ""
+"Не маскировать ссылки при выдаче сайта зарегистрированным пользователям"
+
+#: wp-noexternallinks.php:85
+msgid ""
+"Mask url with special numeric code. Be careful, this option may slow down "
+"your blog. Option is design for easy and quick personal use, it is not "
+"secure enough for commercial plans."
+msgstr ""
+"Маскировать ссылки цифровым кодом. Осторожно, данная опция может замедлить "
+"скорость вашего блога. Она оптимизирована для быстрого выполнения на личном "
+"веб сайте и не обладает достаточной защищённостью для коммерческих систем."
+
+#: wp-noexternallinks.php:86
+msgid "Completely remove links from your posts. Someone needed it..."
+msgstr "Полностью удалить ссылки из постов. Кому-то было нужно..."
+
+#: wp-noexternallinks.php:87
+msgid "Turn all links into text. For perverts."
+msgstr "Превратить все ссылки в текст. Опция для извращенцев."
+
+#: wp-noexternallinks.php:88
+msgid ""
+"Use base64 encoding for links (no need for special mysql table but no stats)."
+msgstr ""
+"Кодировать ссылки в base64 (не требует отдельной mysql таблицы, но и не "
+"будет собирать статистику переходов)"
+
+#: wp-noexternallinks.php:89
+msgid ""
+"Debug mode (Adds comments lines like \"&lt;!--wpnoexternallinks debug: some "
+"info--&gt;\" to output. For testing only!)"
+msgstr ""
+"Режим отладки (Добавляет в код клмментарии типа \"&lt;!--wpnoexternallinks "
+"debug: some info--&gt;\" . Только для тестирования!)"
