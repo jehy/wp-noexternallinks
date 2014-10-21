@@ -7,9 +7,9 @@ if(!defined('DB_NAME'))
 Plugin Name: WP No External Links
 Plugin URI: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
 Description: This plugin will allow you to mask all external links to internal, or to hide them. Your own posts, comments pages, authors pages... To set up, visit <a href="options-general.php?page=wp-noexternallinks/wp-noexternallinks-options.php">configuration panel</a>.
-Version: 3.3.9
+Version: 3.3.9.1
 Author: Jehy
-Author URI: http://jehy.ru/index.en.html
+Author URI: http://jehy.ru/articles/
 Update Server: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
 Min WP Version: 2.6
 Max WP Version: 4.0

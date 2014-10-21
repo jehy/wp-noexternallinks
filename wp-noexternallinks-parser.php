@@ -26,10 +26,13 @@ function wp_noextrenallinks_parser($matches)
   if($p=strpos($path,'/'))
     $path=substr($path,0,$p);
   $check_allowed=$matches[2] . '//' .$path;
-  $this->debug_info('Parser called. Parsing argument '.var_export($matches,1)."\nMade url ".$check_allowed);
+  $this->debug_info('Parser called. Parsing argument {'.var_export($matches,1)."}\nMade url {".$check_allowed."}\n Checking VS argument list {".var_export($this->options['exclude_links_'],1).'}');
   foreach($this->options['exclude_links_'] as $val)
     if(stripos($val,$check_allowed)===0)
+  {
+      $this->debug_info('In exclusion list, not masking...');
       return $matches[0];
+  }
   $this->debug_info('Not in exclusion list, masking...');
   
   #checking for different options, setting other
