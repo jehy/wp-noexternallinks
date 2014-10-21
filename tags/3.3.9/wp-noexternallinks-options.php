@@ -86,7 +86,6 @@ function view_stats()
 		<?php wp_nonce_field('update-options'); ?>
 		<div style="float:right;margin-right:2em;background-color:#CCCCCC;padding:5px;">
 			<b>WP NoExternalLinks Stats</b><br>
-			<a href="http://jehy.ru/wp-plugins.en.html" target="_blank"><?php _e('Plugin home page','wpnoexternallinks');?></a><br />
 			<a href="http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/" target="_blank"><?php _e('Feedback','wpnoexternallinks');?></a>
 		</div>
 <a href="?page=<?php echo $_REQUEST['page'];?>"><?php _e('View options','wpnoexternallinks');?></a><br>
