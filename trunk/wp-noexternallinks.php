@@ -7,7 +7,7 @@ if(!defined('DB_NAME'))
 Plugin Name: WP No External Links
 Plugin URI: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
 Description: This plugin will allow you to mask all external links to internal, or to hide them. Your own posts, comments pages, authors pages... To set up, visit <a href="options-general.php?page=wp-noexternallinks/wp-noexternallinks-options.php">configuration panel</a>.
-Version: 3.3.9.1
+Version: 3.3.9.2
 Author: Jehy
 Author URI: http://jehy.ru/articles/
 Update Server: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
@@ -74,7 +74,7 @@ function GetOptionInfo()
 	array('old_name'=>'noexternallinks_put_noindex','new_name'=>'put_noindex','def_value'=>0,'type'=>'chk','name'=>__('Surround masked links with <b>&lt;noindex&gt;link&lt;/noindex&gt;</b> tag (for yandex search engine)','wpnoexternallinks')),
 	array('old_name'=>'noexternallinks_disable_mask_links','new_name'=>'disable_mask_links','def_value'=>0,'type'=>'chk','name'=>__('Disable url rewrite of all links (you can be OK with just <b>noindex</b> tag and <b>rel=nofollow</b>)','wpnoexternallinks')),
 	array('old_name'=>'noexternallinks_link_separator','new_name'=>'LINK_SEP','def_value'=>'goto','type'=>'txt','name'=>__('Link separator (default="goto")','wpnoexternallinks')),
-	array('old_name'=>'noexternallinks_exclude_links','new_name'=>'exclude_links','def_value'=>'','type'=>'text','name'=>__('Exclude URLs that you don`t want to mask (all urls, beginning with those, won`t be masked). Put one adress on each line, including prefix (for example, "http://jehy.ru")','wpnoexternallinks')),
+	array('old_name'=>'noexternallinks_exclude_links','new_name'=>'exclude_links','def_value'=>'','type'=>'text','name'=>__('Exclude URLs that you don`t want to mask (all urls, beginning with those, won`t be masked). Put one adress on each line, including protocol prefix (for example,').' "<b>http://</b>jehy.ru" '.__('or','wpnoexternallinks').' <b>https://</b>google.com '.__('or','wpnoexternallinks').' <b>ftp://</b>microsoft.com). '.__('Skype, javascript and mail links are excluded by default. To exclude full protocol, just add line with it`s prefix - for example,','wpnoexternallinks').' "<b>ftp://</b>"'),
 	array('old_name'=>'','new_name'=>'fullmask','def_value'=>0,'type'=>'chk','name'=>__('Mask ALL links in document (can slow down your blog and conflict with some cache and other plugins. Please use it on your own risk.','wpnoexternallinks')),
 	array('old_name'=>'','new_name'=>'stats','def_value'=>0,'type'=>'chk','name'=>__('Log all outgoing clicks','wpnoexternallinks')),
 	array('old_name'=>'','new_name'=>'keep_stats','def_value'=>30,'type'=>'txt','name'=>__('Days to keep clicks stats','wpnoexternallinks')),

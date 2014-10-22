@@ -5,16 +5,23 @@ if(!defined('DB_NAME'))
 
 class wp_noexternallinks_parser extends wp_noexternallinks
 {
+var $debug_log=array();
+
+function output_debug()
+{
+  echo "\n<!--wpnoexternallinks debug:\n".implode("\n\n",$this->debug_log)."\n-->";
+}
 
 function debug_info($info,$return=0)
 {
   if($this->options['debug'])
   {
    	$t="\n<!--wpnoexternallinks debug:\n".$info."\n-->";
+    $this->debug_log[]=$info;
      if($return)
        return $t;
-     else
-       echo $t;
+     #else
+     #  echo $t;
   }
 }
 
@@ -270,6 +277,9 @@ function fullmask_end($text)
 
 function set_filters()
 {
+  if($this->options['debug'])
+    add_action('wp_footer',array($this,'output_debug'),99);
+  
   if($this->options['noforauth'])
   {
     $this->debug_info("Masking is enabled only for non logged in users");
