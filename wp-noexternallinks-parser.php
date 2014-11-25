@@ -63,37 +63,37 @@ function wp_noextrenallinks_parser($matches)
     }
     elseif($this->options['maskurl'])
     {
-  	  $sql='select id from '.$wpdb->prefix.'masklinks where url="'.addslashes($url).'" limit 1';
-  	  $result=@mysql_query($sql);
-    	if(!$result && @mysql_errno()==1146)//no table found
+  	  $sql='select id from '.$wpdb->prefix.'masklinks where url= %s limit 1';
+  	  $result=$wpdb->get_var($wpdb->prepare($sql,addslashes($url)));
+    	if(is_null($result)&&strpos($wpdb->last_error,"doesn't exist"))//no table found
     	{
     	  /*create masklink table*/
-    	  echo'<font color="red">'.__('Failed to make masked link. Trying to create table.').'</font>';
+    	  echo'<font color="red">'.__('Failed to make masked link. MySQL link table does not exist. Trying to create table.').'</font>';
     	  $sql2='CREATE TABLE '.$wpdb->prefix.'masklinks(`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,`url` VARCHAR(255),  PRIMARY KEY (`id`))';
-     		@mysql_query($sql2);
-     		if(@mysql_errno())
+     		$res=$wpdb->query($sql2);
+     		if(!$res)
          {
      			echo '<br>'.__('Failed to create table. Please, check mysql permissions.','wpnoexternallinks');
-            $this->debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.mysql_error());
+            $this->debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.$wpdb->last_error);
          }
      		else
      		{
      		  echo '<br>'.__('Table created.','wpnoexternallinks');
-     		  $result=@mysql_query($sql);
+           $wpdb->query($sql);
      		}
     	}
-    	if(!@mysql_num_rows($result))
+      elseif(is_null($result))
+      {
+            $this->debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.$wpdb->last_error);
+      }
+    	if(!$result)
     	{
-    		$sql='INSERT INTO '.$wpdb->prefix.'masklinks VALUES("","'.addslashes($url).'")';
-        @mysql_query($sql);
-    		$row=array();
-    		$row[0]=@mysql_insert_id();
+    		$sql='INSERT INTO '.$wpdb->prefix.'masklinks VALUES("",%s)';
+         $wpdb->query($wpdb->prepare($sql,addslashes($url)));
+    		$url=$wpdb->insert_id ;
     	}
     	else
-    		$row=@mysql_fetch_row($result);
-      if($row[0])
-    	  $url=$row[0];
-      
+    		$url=$result;
     }
     
     if(!$wp_rewrite->using_permalinks())
@@ -148,14 +148,8 @@ function redirect2($url)
   }
   elseif($this->options['maskurl'])
   {
-    $sql='select url from '.$wpdb->prefix.'masklinks where id="'.addslashes($url).'" limit 1';
-    $result=@mysql_query($sql);
-    if(@mysql_num_rows($result))
-    {
-      $row=@mysql_fetch_row($result);
-      if($row[0])
-        $url=$row[0];
-    }
+    $sql='select url from '.$wpdb->prefix.'masklinks where id= %s limit 1';
+    $url=$wpdb->get_var($wpdb->prepare($sql,addslashes($url)));
   }
   
   if($this->options['stats'])
@@ -164,23 +158,23 @@ function redirect2($url)
     //disable Hyper Cache plugin (http://www.satollo.net/plugins/hyper-cache) from caching this page (otherwise, statistics won't work):
     $hyper_cache_stop = true;
     
-  	$sql='INSERT INTO '.$wpdb->prefix.'links_stats VALUES("","'.addslashes($url).'",NOW())';
-  	@mysql_query($sql);
-  	if(mysql_errno())
+  	$sql='INSERT INTO '.$wpdb->prefix.'links_stats VALUES("", %s ,NOW())';
+   $res=$wpdb->query($wpdb->prepare($sql,addslashes($url)));
+  	if($res===FALSE)
   	{
-      $this->debug_info(__('Failed SQL: ').'<br>'.$sql.'<br>'.__('Error was:').'<br>'.mysql_error());
+      $this->debug_info(__('Failed SQL: ').'<br>'.$sql.'<br>'.__('Error was:').'<br>'.$wpdb->last_error);
   		echo'<font color="red">'.__('Failed to save statistic data. Trying to create table.').'</font>';
   		$sql2='CREATE TABLE '.$wpdb->prefix.'links_stats(`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,`url` VARCHAR(255), `date` DATETIME, PRIMARY KEY (`id`))';
-   		@mysql_query($sql2);
-   		if(mysql_errno())
+   		$res=$wpdb->query($sql2);
+   		if($res===FALSE)
          {
    			echo '<br>'.__('Failed to create table. Please, check mysql permissions.','wpnoexternallinks');
-            $this->debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.mysql_error());
+            $this->debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.$wpdb->last_error);
          }
    		else
    		{
    			echo '<br>'.__('Table created.','wpnoexternallinks');
-   			@mysql_query($sql);
+   			$wpdb->query($sql);
    		}
   	}
   

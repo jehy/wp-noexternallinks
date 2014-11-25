@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp-noexternallinks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-22 12:48+0400\n"
-"PO-Revision-Date: 2014-10-22 12:48+0400\n"
+"POT-Creation-Date: 2014-11-25 22:19+0300\n"
+"PO-Revision-Date: 2014-11-25 22:20+0300\n"
 "Last-Translator: Jehy <fate@jehy.ru>\n"
 "Language-Team: jehy <fate@jehy.ru>\n"
 "Language: ru_RU\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.5.3\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: wp-noexternallinks-options.php:34 wp-noexternallinks-options.php:35
@@ -93,37 +93,41 @@ msgstr ""
 msgid "Save Changes"
 msgstr "Сохранить измения"
 
-#: wp-noexternallinks-parser.php:64
-msgid "Failed to make masked link. Trying to create table."
-msgstr "Не удалось сохранить маску ссылки. Пытаемся создать таблицу ссылок."
+#: wp-noexternallinks-parser.php:71
+msgid ""
+"Failed to make masked link. MySQL link table does not exist. Trying to "
+"create table."
+msgstr ""
+"Не удалось сохранить маску ссылки. Таблица MySQL не существует. Попытаемся "
+"её создать."
 
-#: wp-noexternallinks-parser.php:69 wp-noexternallinks-parser.php:170
+#: wp-noexternallinks-parser.php:76 wp-noexternallinks-parser.php:167
 msgid "Failed to create table. Please, check mysql permissions."
 msgstr "Не удалось создать таблицу. Пожалуйста, проверьте полномочия MySQL."
 
-#: wp-noexternallinks-parser.php:70 wp-noexternallinks-parser.php:164
-#: wp-noexternallinks-parser.php:171
+#: wp-noexternallinks-parser.php:77 wp-noexternallinks-parser.php:161
+#: wp-noexternallinks-parser.php:168
 msgid "Failed SQL: "
 msgstr "SQL запрос, вызвавший ошибку:"
 
-#: wp-noexternallinks-parser.php:70 wp-noexternallinks-parser.php:164
-#: wp-noexternallinks-parser.php:171
+#: wp-noexternallinks-parser.php:77 wp-noexternallinks-parser.php:161
+#: wp-noexternallinks-parser.php:168
 msgid "Error was:"
 msgstr "Ошибка была:"
 
-#: wp-noexternallinks-parser.php:74 wp-noexternallinks-parser.php:175
+#: wp-noexternallinks-parser.php:81 wp-noexternallinks-parser.php:172
 msgid "Table created."
 msgstr "Таблица создана."
 
-#: wp-noexternallinks-parser.php:165
+#: wp-noexternallinks-parser.php:162
 msgid "Failed to save statistic data. Trying to create table."
 msgstr "Не удалось сохранить статистику. Пытаюсь создать таблицу."
 
-#: wp-noexternallinks-parser.php:191
+#: wp-noexternallinks-parser.php:188
 msgid "Redirecting..."
 msgstr "Перенаправляю..."
 
-#: wp-noexternallinks-parser.php:204
+#: wp-noexternallinks-parser.php:201
 msgid ""
 "You were going to the redirect link, but something did not work properly."
 "<br>Please, click "
@@ -131,27 +135,27 @@ msgstr ""
 "Вы должны были быть перенаправлены по ссылке, но что-то не получилось.<br> "
 "Пожалуйста, нажмите "
 
-#: wp-noexternallinks-parser.php:204
+#: wp-noexternallinks-parser.php:201
 msgid "HERE "
 msgstr "СЮДА "
 
-#: wp-noexternallinks-parser.php:204
+#: wp-noexternallinks-parser.php:201
 msgid " to go to "
 msgstr "чтобы перейти по ссылке "
 
-#: wp-noexternallinks-parser.php:204
+#: wp-noexternallinks-parser.php:201
 msgid " manually. "
 msgstr "вручную."
 
-#: wp-noexternallinks-parser.php:206
+#: wp-noexternallinks-parser.php:203
 msgid "Sorry, no url redirect specified. Can`t complete request."
 msgstr "Не был определён адрес, невозможно перенаправить."
 
-#: wp-noexternallinks-parser.php:246
+#: wp-noexternallinks-parser.php:243
 msgid "Can not get output buffer!"
 msgstr "Не получилось установить контроль над буфером вывода!"
 
-#: wp-noexternallinks-parser.php:246 wp-noexternallinks-parser.php:256
+#: wp-noexternallinks-parser.php:243 wp-noexternallinks-parser.php:253
 msgid ""
 "WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and "
 "use other filters."
@@ -160,7 +164,7 @@ msgstr ""
 "Пожалуйста, выключите опцию полной маскировки ссылок в настройках плагина и "
 "используйте другие опции."
 
-#: wp-noexternallinks-parser.php:256
+#: wp-noexternallinks-parser.php:253
 msgid "Output buffer empty!"
 msgstr "Буфер вывода пуст!"
 

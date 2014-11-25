@@ -111,10 +111,10 @@ _e('View stats from ','wpnoexternallinks');
 		<input type="text" name="date1" value="<?php echo $date1;?>"><?php _e(' to ','wpnoexternallinks');?><input type="text" name="date2" value="<?php echo $date2;?>"><input type="submit" value="<?php _e('View','wpnoexternallinks');?>" class="button-primary">
 		</form>
 <?php
-	$sql='select * from '.$wpdb->prefix.'links_stats where `date` between "'.$date1.' 00:00:00" and "'.$date2.' 23:59:59"';
-	$result=@mysql_query($sql);
+	$sql='select * from '.$wpdb->prefix.'links_stats where `date` between "'.addslashes($date1).' 00:00:00" and "'.addslashes($date2).' 23:59:59"';
+	$result=$wpdb->get_results($sql,OBJECT_A);
 	$out=array();
-	while($row=@mysql_fetch_array($result))
+	foreach($result as $row)
 	{
 		$nfo=parse_url($row['url']);
 		$out[$nfo['host']][$row['url']]++;
