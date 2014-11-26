@@ -113,20 +113,23 @@ _e('View stats from ','wpnoexternallinks');
 <?php
 	$sql='select * from '.$wpdb->prefix.'links_stats where `date` between "'.addslashes($date1).' 00:00:00" and "'.addslashes($date2).' 23:59:59"';
 	$result=$wpdb->get_results($sql,OBJECT_A);
-	$out=array();
-	foreach($result as $row)
-	{
-		$nfo=parse_url($row['url']);
-		$out[$nfo['host']][$row['url']]++;
+   if(is_array($result)&&sizeof($result))
+   {
+   	$out=array();
+   	foreach($result as $row)
+   	{
+   		$nfo=parse_url($row['url']);
+   		$out[$nfo['host']][$row['url']]++;
+   	}
+   	foreach($out as $host=>$arr)
+   	{
+   		echo '<br>'.$host.'<ul>';
+   		foreach($arr as $url=>$outs)
+   			echo '<li><a href="'.$url.'">'.$url.'</a> ('.$outs.')</li>';
+   		echo '</ul>';
+   	}
 	}
-	foreach($out as $host=>$arr)
-	{
-		echo '<br>'.$host.'<ul>';
-		foreach($arr as $url=>$outs)
-			echo '<li><a href="'.$url.'">'.$url.'</a> ('.$outs.')</li>';
-		echo '</ul>';
-	}
-	if(!sizeof($out))
+   else
 		_e('No statistic for given period.','wpnoexternallinks');
 }
 		
