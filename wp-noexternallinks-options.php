@@ -112,7 +112,7 @@ _e('View stats from ','wpnoexternallinks');
 		</form>
 <?php
 	$sql='select * from '.$wpdb->prefix.'links_stats where `date` between "'.addslashes($date1).' 00:00:00" and "'.addslashes($date2).' 23:59:59"';
-	$result=$wpdb->get_results($sql,OBJECT_A);
+	$result=$wpdb->get_results($sql,ARRAY_A);
    if(is_array($result)&&sizeof($result))
    {
    	$out=array();
