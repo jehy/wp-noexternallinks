@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp-noexternallinks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-25 22:19+0300\n"
-"PO-Revision-Date: 2014-11-25 22:20+0300\n"
+"POT-Creation-Date: 2014-11-26 14:42+0300\n"
+"PO-Revision-Date: 2014-11-26 14:44+0300\n"
 "Last-Translator: Jehy <fate@jehy.ru>\n"
 "Language-Team: jehy <fate@jehy.ru>\n"
 "Language: ru_RU\n"
@@ -28,7 +28,7 @@ msgstr "Использовать настройки маскировки по у
 msgid "Don`t mask links"
 msgstr "Не маскировать ссылки"
 
-#: wp-noexternallinks-options.php:89 wp-noexternallinks-options.php:143
+#: wp-noexternallinks-options.php:89 wp-noexternallinks-options.php:146
 msgid "Feedback"
 msgstr "Проблемы?"
 
@@ -56,11 +56,11 @@ msgstr "до "
 msgid "View"
 msgstr "Смотреть"
 
-#: wp-noexternallinks-options.php:130
+#: wp-noexternallinks-options.php:133
 msgid "No statistic for given period."
 msgstr "За указанный период времени статистики не найдено."
 
-#: wp-noexternallinks-options.php:137
+#: wp-noexternallinks-options.php:140
 msgid ""
 "That plugins allows you to mask all external links and make them internal or "
 "hidden - using PHP redirect or special link tags and attributes. Yeah, by "
@@ -73,15 +73,15 @@ msgstr ""
 "документа пользователю. Плагин не маскирует внутренние а так же исключённые "
 "из маскировки ссылки."
 
-#: wp-noexternallinks-options.php:142
+#: wp-noexternallinks-options.php:145
 msgid "Plugin home page"
 msgstr "Страница плагина"
 
-#: wp-noexternallinks-options.php:145
+#: wp-noexternallinks-options.php:148
 msgid "View Stats"
 msgstr "Статистика"
 
-#: wp-noexternallinks-options.php:146
+#: wp-noexternallinks-options.php:149
 msgid ""
 "<h3>Global links masking settings</h3>(You can also disable plugin on per-"
 "post basis)"
@@ -89,7 +89,7 @@ msgstr ""
 "<h3>Общие настройки плагина</h3>(Так же можно указать индивидуальные для "
 "каждого поста)"
 
-#: wp-noexternallinks-options.php:172
+#: wp-noexternallinks-options.php:175
 msgid "Save Changes"
 msgstr "Сохранить измения"
 
@@ -101,33 +101,45 @@ msgstr ""
 "Не удалось сохранить маску ссылки. Таблица MySQL не существует. Попытаемся "
 "её создать."
 
-#: wp-noexternallinks-parser.php:76 wp-noexternallinks-parser.php:167
+#: wp-noexternallinks-parser.php:76 wp-noexternallinks-parser.php:170
 msgid "Failed to create table. Please, check mysql permissions."
 msgstr "Не удалось создать таблицу. Пожалуйста, проверьте полномочия MySQL."
 
-#: wp-noexternallinks-parser.php:77 wp-noexternallinks-parser.php:161
-#: wp-noexternallinks-parser.php:168
+#: wp-noexternallinks-parser.php:77 wp-noexternallinks-parser.php:87
+#: wp-noexternallinks-parser.php:164 wp-noexternallinks-parser.php:171
 msgid "Failed SQL: "
 msgstr "SQL запрос, вызвавший ошибку:"
 
-#: wp-noexternallinks-parser.php:77 wp-noexternallinks-parser.php:161
-#: wp-noexternallinks-parser.php:168
+#: wp-noexternallinks-parser.php:77 wp-noexternallinks-parser.php:87
+#: wp-noexternallinks-parser.php:164 wp-noexternallinks-parser.php:171
 msgid "Error was:"
 msgstr "Ошибка была:"
 
-#: wp-noexternallinks-parser.php:81 wp-noexternallinks-parser.php:172
+#: wp-noexternallinks-parser.php:81 wp-noexternallinks-parser.php:175
 msgid "Table created."
 msgstr "Таблица создана."
 
-#: wp-noexternallinks-parser.php:162
+#: wp-noexternallinks-parser.php:165
 msgid "Failed to save statistic data. Trying to create table."
 msgstr "Не удалось сохранить статистику. Пытаюсь создать таблицу."
 
-#: wp-noexternallinks-parser.php:188
+#: wp-noexternallinks-parser.php:197 wp-noexternallinks-parser.php:211
 msgid "Redirecting..."
 msgstr "Перенаправляю..."
 
-#: wp-noexternallinks-parser.php:201
+#: wp-noexternallinks-parser.php:203
+msgid ""
+"You have been redirected through this website from a suspicious source. We "
+"prevented it and you are going to be redirected to our "
+msgstr ""
+"Вас перенеправили по этой сссылке из подозрительного источника. Мы "
+"предотвратили переход, и вы будете перенаправлены на наш "
+
+#: wp-noexternallinks-parser.php:203
+msgid "safe web site."
+msgstr "безопасный веб сайт."
+
+#: wp-noexternallinks-parser.php:224
 msgid ""
 "You were going to the redirect link, but something did not work properly."
 "<br>Please, click "
@@ -135,27 +147,27 @@ msgstr ""
 "Вы должны были быть перенаправлены по ссылке, но что-то не получилось.<br> "
 "Пожалуйста, нажмите "
 
-#: wp-noexternallinks-parser.php:201
+#: wp-noexternallinks-parser.php:224
 msgid "HERE "
 msgstr "СЮДА "
 
-#: wp-noexternallinks-parser.php:201
+#: wp-noexternallinks-parser.php:224
 msgid " to go to "
 msgstr "чтобы перейти по ссылке "
 
-#: wp-noexternallinks-parser.php:201
+#: wp-noexternallinks-parser.php:224
 msgid " manually. "
 msgstr "вручную."
 
-#: wp-noexternallinks-parser.php:203
+#: wp-noexternallinks-parser.php:226
 msgid "Sorry, no url redirect specified. Can`t complete request."
 msgstr "Не был определён адрес, невозможно перенаправить."
 
-#: wp-noexternallinks-parser.php:243
+#: wp-noexternallinks-parser.php:266
 msgid "Can not get output buffer!"
 msgstr "Не получилось установить контроль над буфером вывода!"
 
-#: wp-noexternallinks-parser.php:243 wp-noexternallinks-parser.php:253
+#: wp-noexternallinks-parser.php:266 wp-noexternallinks-parser.php:276
 msgid ""
 "WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and "
 "use other filters."
@@ -164,7 +176,7 @@ msgstr ""
 "Пожалуйста, выключите опцию полной маскировки ссылок в настройках плагина и "
 "используйте другие опции."
 
-#: wp-noexternallinks-parser.php:253
+#: wp-noexternallinks-parser.php:276
 msgid "Output buffer empty!"
 msgstr "Буфер вывода пуст!"
 
@@ -309,3 +321,13 @@ msgid ""
 msgstr ""
 "Режим отладки (Добавляет в код клмментарии типа \"&lt;!--wpnoexternallinks "
 "debug: some info--&gt;\" . Только для тестирования!)"
+
+#: wp-noexternallinks.php:90
+msgid ""
+"Check for document referer and restrict redirect if it is not your own web "
+"site. Useful against spoofing attacks. User will be redirected to main page "
+"of your web site."
+msgstr ""
+"Проверять адрес, с которого пришёл пользователь, и зарпещать переход в "
+"случае, если он пришёл не с вашего веб сайта. Это защита от атак с подменой "
+"адреса. Пользователи будут перенаправлены на главную страницу вашего сайта."
