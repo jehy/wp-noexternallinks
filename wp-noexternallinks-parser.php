@@ -142,6 +142,9 @@ function Redirect()
 
 function redirect2($url)
 {  global $wp_rewrite,$wpdb,$hyper_cache_stop;
+  //disable Hyper Cache plugin (http://www.satollo.net/plugins/hyper-cache) from caching this page
+  $hyper_cache_stop = true;
+  
   if($this->options['base64'])
   {
     $url=base64_decode($url);
@@ -154,10 +157,6 @@ function redirect2($url)
   
   if($this->options['stats'])
   {
-    
-    //disable Hyper Cache plugin (http://www.satollo.net/plugins/hyper-cache) from caching this page (otherwise, statistics won't work):
-    $hyper_cache_stop = true;
-    
   	$sql='INSERT INTO '.$wpdb->prefix.'links_stats VALUES("", %s ,NOW())';
    $res=$wpdb->query($wpdb->prepare($sql,addslashes($url)));
   	if($res===FALSE)
@@ -185,6 +184,26 @@ function redirect2($url)
   if(!$wp_rewrite->using_permalinks())
     $url=urldecode($url);
   $url=str_ireplace('&#038;','&',$url);
+  
+  if($this->options['restrict_referer'])
+  {
+    #checking for spamer attack, redirect should happen from your own website
+    $site=get_option('home');
+    if(!$site)
+      $site=get_option('siteurl');
+    if(stripos(wp_get_referer(),$site)!==0)#oh, god, ir happened!
+      {
+      ?>
+         <html><head><title><?php _e('Redirecting...','wpnoexternallinks');?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="robots" content="noindex,nofollow" />
+<meta http-equiv="refresh" content="5; url=<?php echo get_home_url();?>" />
+</head><body style="margin:0;"><div align="center" style="margin-top: 15em;">
+<?php
+  echo __('You have been redirected through this website from a suspicious source. We prevented it and you are going to be redirected to our ','wpnoexternallinks').'<a href="'.get_home_url().'">'.__('safe web site.','wpnoexternallinks').'</a>';?>
+</div></body></html><?php die();
+      }
+  }
   header('Content-type: text/html; charset="utf-8"',true);
   if(!$this->options['no302']&&$url)
     @header('Location: '.$url);

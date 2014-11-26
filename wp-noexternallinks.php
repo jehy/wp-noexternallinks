@@ -7,7 +7,7 @@ if(!defined('DB_NAME'))
 Plugin Name: WP No External Links
 Plugin URI: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
 Description: This plugin will allow you to mask all external links to internal, or to hide them. Your own posts, comments pages, authors pages... To set up, visit <a href="options-general.php?page=wp-noexternallinks/wp-noexternallinks-options.php">configuration panel</a>.
-Version: 3.4.2
+Version: 3.4.3
 Author: Jehy
 Author URI: http://jehy.ru/articles/
 Update Server: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
@@ -87,6 +87,7 @@ function GetOptionInfo()
 	array('old_name'=>'','new_name'=>'link2text','def_value'=>0,'type'=>'chk','name'=>__('Turn all links into text. For perverts.','wpnoexternallinks')),
 	array('old_name'=>'','new_name'=>'base64','def_value'=>0,'type'=>'chk','name'=>__('Use base64 encoding for links (no need for special mysql table but no stats).','wpnoexternallinks')),
 	array('old_name'=>'','new_name'=>'debug','def_value'=>0,'type'=>'chk','name'=>__('Debug mode (Adds comments lines like "&lt;!--wpnoexternallinks debug: some info--&gt;" to output. For testing only!)','wpnoexternallinks')),
+	array('old_name'=>'','new_name'=>'restrict_referer','def_value'=>1,'type'=>'chk','name'=>__('Check for document referer and restrict redirect if it is not your own web site. Useful against spoofing attacks. User will be redirected to main page of your web site.','wpnoexternallinks')),
 	);
 }
 

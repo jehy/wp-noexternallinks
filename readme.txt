@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 4.0
-Stable tag: 3.4.2
+Stable tag: 3.4.3
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -124,6 +124,7 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 3.3.9.2 - Now debug mode does not mess up web site. Also added some text to options page.    
 3.4 - Replaced direct SQL queries with WPDB interface.   
 3.4.1, 3.4.2 - Fixed displaying error where there are no stats for today.   
+3.4.3 - Added detection and prevention of possible spoofing attacks. See new option in plugin settings. It is enabled by default.   
 
 ####Localization
 
