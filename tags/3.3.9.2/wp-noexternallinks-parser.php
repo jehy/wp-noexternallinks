@@ -63,37 +63,37 @@ function wp_noextrenallinks_parser($matches)
     }
     elseif($this->options['maskurl'])
     {
-  	  $sql='select id from '.$wpdb->prefix.'masklinks where url= %s limit 1';
-  	  $result=$wpdb->get_var($wpdb->prepare($sql,addslashes($url)));
-    	if(is_null($result)&&strpos($wpdb->last_error,"doesn't exist"))//no table found
+  	  $sql='select id from '.$wpdb->prefix.'masklinks where url="'.addslashes($url).'" limit 1';
+  	  $result=@mysql_query($sql);
+    	if(!$result && @mysql_errno()==1146)//no table found
     	{
     	  /*create masklink table*/
-    	  echo'<font color="red">'.__('Failed to make masked link. MySQL link table does not exist. Trying to create table.').'</font>';
+    	  echo'<font color="red">'.__('Failed to make masked link. Trying to create table.').'</font>';
     	  $sql2='CREATE TABLE '.$wpdb->prefix.'masklinks(`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,`url` VARCHAR(255),  PRIMARY KEY (`id`))';
-     		$res=$wpdb->query($sql2);
-     		if(!$res)
+     		@mysql_query($sql2);
+     		if(@mysql_errno())
          {
      			echo '<br>'.__('Failed to create table. Please, check mysql permissions.','wpnoexternallinks');
-            $this->debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.$wpdb->last_error);
+            $this->debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.mysql_error());
          }
      		else
      		{
      		  echo '<br>'.__('Table created.','wpnoexternallinks');
-           $wpdb->query($sql);
+     		  $result=@mysql_query($sql);
      		}
     	}
-      elseif(is_null($result))
-      {
-            $this->debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.$wpdb->last_error);
-      }
-    	if(!$result)
+    	if(!@mysql_num_rows($result))
     	{
-    		$sql='INSERT INTO '.$wpdb->prefix.'masklinks VALUES("",%s)';
-         $wpdb->query($wpdb->prepare($sql,addslashes($url)));
-    		$url=$wpdb->insert_id ;
+    		$sql='INSERT INTO '.$wpdb->prefix.'masklinks VALUES("","'.addslashes($url).'")';
+        @mysql_query($sql);
+    		$row=array();
+    		$row[0]=@mysql_insert_id();
     	}
     	else
-    		$url=$result;
+    		$row=@mysql_fetch_row($result);
+      if($row[0])
+    	  $url=$row[0];
+      
     }
     
     if(!$wp_rewrite->using_permalinks())
@@ -142,40 +142,45 @@ function Redirect()
 
 function redirect2($url)
 {  global $wp_rewrite,$wpdb,$hyper_cache_stop;
-  //disable Hyper Cache plugin (http://www.satollo.net/plugins/hyper-cache) from caching this page
-  $hyper_cache_stop = true;
-  //disable WP Super Cache caching
-  define('DONOTCACHEPAGE',1);
-
   if($this->options['base64'])
   {
     $url=base64_decode($url);
   }
   elseif($this->options['maskurl'])
   {
-    $sql='select url from '.$wpdb->prefix.'masklinks where id= %s limit 1';
-    $url=$wpdb->get_var($wpdb->prepare($sql,addslashes($url)));
+    $sql='select url from '.$wpdb->prefix.'masklinks where id="'.addslashes($url).'" limit 1';
+    $result=@mysql_query($sql);
+    if(@mysql_num_rows($result))
+    {
+      $row=@mysql_fetch_row($result);
+      if($row[0])
+        $url=$row[0];
+    }
   }
   
   if($this->options['stats'])
   {
-  	$sql='INSERT INTO '.$wpdb->prefix.'links_stats VALUES("", %s ,NOW())';
-   $res=$wpdb->query($wpdb->prepare($sql,addslashes($url)));
-  	if($res===FALSE)
+    
+    //disable Hyper Cache plugin (http://www.satollo.net/plugins/hyper-cache) from caching this page (otherwise, statistics won't work):
+    $hyper_cache_stop = true;
+    
+  	$sql='INSERT INTO '.$wpdb->prefix.'links_stats VALUES("","'.addslashes($url).'",NOW())';
+  	@mysql_query($sql);
+  	if(mysql_errno())
   	{
-      $this->debug_info(__('Failed SQL: ').'<br>'.$sql.'<br>'.__('Error was:').'<br>'.$wpdb->last_error);
+      $this->debug_info(__('Failed SQL: ').'<br>'.$sql.'<br>'.__('Error was:').'<br>'.mysql_error());
   		echo'<font color="red">'.__('Failed to save statistic data. Trying to create table.').'</font>';
   		$sql2='CREATE TABLE '.$wpdb->prefix.'links_stats(`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,`url` VARCHAR(255), `date` DATETIME, PRIMARY KEY (`id`))';
-   		$res=$wpdb->query($sql2);
-   		if($res===FALSE)
+   		@mysql_query($sql2);
+   		if(mysql_errno())
          {
    			echo '<br>'.__('Failed to create table. Please, check mysql permissions.','wpnoexternallinks');
-            $this->debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.$wpdb->last_error);
+            $this->debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.mysql_error());
          }
    		else
    		{
    			echo '<br>'.__('Table created.','wpnoexternallinks');
-   			$wpdb->query($sql);
+   			@mysql_query($sql);
    		}
   	}
   
@@ -186,26 +191,6 @@ function redirect2($url)
   if(!$wp_rewrite->using_permalinks())
     $url=urldecode($url);
   $url=str_ireplace('&#038;','&',$url);
-  
-  if($this->options['restrict_referer'])
-  {
-    #checking for spamer attack, redirect should happen from your own website
-    $site=get_option('home');
-    if(!$site)
-      $site=get_option('siteurl');
-    if(stripos(wp_get_referer(),$site)!==0)#oh, god, ir happened!
-      {
-      ?>
-         <html><head><title><?php _e('Redirecting...','wpnoexternallinks');?></title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="robots" content="noindex,nofollow" />
-<meta http-equiv="refresh" content="5; url=<?php echo get_home_url();?>" />
-</head><body style="margin:0;"><div align="center" style="margin-top: 15em;">
-<?php
-  echo __('You have been redirected through this website from a suspicious source. We prevented it and you are going to be redirected to our ','wpnoexternallinks').'<a href="'.get_home_url().'">'.__('safe web site.','wpnoexternallinks').'</a>';?>
-</div></body></html><?php die();
-      }
-  }
   header('Content-type: text/html; charset="utf-8"',true);
   if(!$this->options['no302']&&$url)
     @header('Location: '.$url);
