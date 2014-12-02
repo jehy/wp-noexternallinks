@@ -144,7 +144,9 @@ function redirect2($url)
 {  global $wp_rewrite,$wpdb,$hyper_cache_stop;
   //disable Hyper Cache plugin (http://www.satollo.net/plugins/hyper-cache) from caching this page
   $hyper_cache_stop = true;
-  
+  //disable WP Super Cache caching
+  define('DONOTCACHEPAGE',1);
+
   if($this->options['base64'])
   {
     $url=base64_decode($url);
