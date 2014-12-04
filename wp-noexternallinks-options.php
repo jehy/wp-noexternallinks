@@ -203,7 +203,4 @@ function admin_options()
 	echo '</div>';
 }
 }
-
-
-new wp_noexternallinks_admin();
 ?>

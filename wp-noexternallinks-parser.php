@@ -371,7 +371,4 @@ function set_filters()
   }
 }
 }
-
-
-$wp_noexternallinks_parser=new wp_noexternallinks_parser();
 ?>
