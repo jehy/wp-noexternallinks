@@ -320,12 +320,6 @@ function fullmask_end($text)
   return $r;
 }
 
-function check_if_admin()
-{
-  if( current_user_can( 'manage_options' ) )
-    return 1;
-  return 0;
-}
 function set_filters()
 {
   if($this->options['debug'])
