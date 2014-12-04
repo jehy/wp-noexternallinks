@@ -11,8 +11,8 @@ function wp_noexternallinks_admin()
   add_action('save_post', array($this,'save_postdata'));
   add_action('do_meta_boxes', array($this,'add_custom_box'), 15, 2);
   add_action('admin_menu', array($this,'modify_menu'));
-  register_activation_hook(__FILE__,array($this,'wp_noextrenallinks_Activate'));
-  register_deactivation_hook(__FILE__,array($this,'wp_noextrenallinks_DeActivate'));
+  #register_activation_hook(__FILE__,array($this,'wp_noextrenallinks_Activate'));
+  #register_deactivation_hook(__FILE__,array($this,'wp_noextrenallinks_DeActivate'));
 }
 
 function save_postdata( $post_id )
@@ -48,17 +48,17 @@ function inner_custom_box1() {
   if($mask==2)echo' checked';
   echo '>'.__('Don`t mask links','wpnoexternallinks');
 }
-
+/*
 function Activate()
 {
-  /*nothing now.*/
+  #nothing now.
 }
 
 function DeActivate()
 {
   #here could be option uninstall. But better not.
 }
-
+*/
 
 function update()
 {
@@ -142,7 +142,6 @@ function option_page()
 		<?php wp_nonce_field('update-options'); ?>
 		<div style="float:right;margin-right:2em;background-color:#CCCCCC;padding:5px;">
 			<b>WP NoExternalLinks</b><br>
-			<a href="http://jehy.ru/wp-plugins.en.html" target="_blank"><?php _e('Plugin home page','wpnoexternallinks');?></a><br />
 			<a href="http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/" target="_blank"><?php _e('Feedback','wpnoexternallinks');?></a>
 		</div>
 <a href="?page=<?php echo $_REQUEST['page'];?>&action=stats"><?php _e('View Stats','wpnoexternallinks');?></a><br>
@@ -170,11 +169,8 @@ foreach($opt as $i=>$arr)
 	echo '<br>';
 }
 
-?>			
-			
-		<div align="right"><input type="submit" name="submit" value="<?php _e('Save Changes') ?>" class="button-primary"/>
-</div>
-	</form>
+?><input type="submit" name="submit" value="<?php _e('Save Changes') ?>" class="button-primary"/>
+</form>
 <?php
 }
 

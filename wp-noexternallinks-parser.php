@@ -25,15 +25,44 @@ function debug_info($info,$return=0)
   }
 }
 
-function wp_noextrenallinks_parser($matches)
+function parser($matches)
 {
-  global $wp_rewrite,$wpdb;
-  #checking for entry in exclusion list
+  global $wp_rewrite,$wpdb;  
+  #parser init
+  
   $path=$matches[3];
   if($p=strpos($path,'/'))
     $path=substr($path,0,$p);
   $check_allowed=$matches[2] . '//' .$path;
-  $this->debug_info('Parser called. Parsing argument {'.var_export($matches,1)."}\nMade url {".$check_allowed."}\n Checking VS argument list {".var_export($this->options['exclude_links_'],1).'}');
+  $this->debug_info('Parser called. Parsing argument {'.var_export($matches,1)."}\nMade url {".$check_allowed."}\n ");
+  
+  #support of "meta=follow" option for admins. disabled by default to minify processing.
+  if($this->options['dont_mask_admin_follow'])
+  {
+    $id=array(get_comment_ID(),get_the_ID());//it is either page or post
+    if($id[0])
+      $this->debug_info('It is a comment. id '.$id[0]);
+    elseif($id[1])
+      $this->debug_info('It is a page. id '.$id[1]);
+    $author=false;
+    if($id[0])
+      $author=get_comment_author($id[0]);
+    else if($id[1])
+      $author=get_the_author_meta('ID');
+    if(!$author)
+      $this->debug_info('it is neither post or page, applying usual rules');
+    elseif(current_user_can( 'manage_options' )&&(stripos($matches[0],'rel="follow"')!==FALSE || stripos($matches[0],"rel='follow'")!==FALSE))
+    {
+      $this->debug_info('This link has a follow atribute and is posted by admin, not masking it.');
+      #wordpress adds rel="nofollow" by itself when posting new link in comments. get rid of it! Also, remove our follow attibute - it is unneccesary.
+      return str_ireplace(array('rel="follow"',"rel='follow'",'rel="nofollow"'),'',$matches[0]);
+    }
+    else
+      $this->debug_info('it does not have rel follow or is not posted by admin, masking it');
+  }  
+  
+  #checking for entry in exclusion list
+  $this->debug_info('Checking link VS exclusion list {'.var_export($this->options['exclude_links_'],1).'}');
   foreach($this->options['exclude_links_'] as $val)
     if(stripos($val,$check_allowed)===0)
   {
@@ -116,7 +145,7 @@ function wp_noextrenallinks_parser($matches)
 }
 
 
-function wp_noexternallinks_parser()
+function wp_noexternallinks_parser()#constructor
 {  $this->load_options();  $this->set_filters();  add_filter('template_redirect',array($this,'Redirect'),1);  $this->debug_info("Options: \n".var_export($this->options, true));}
 function Redirect()
 {
@@ -145,7 +174,8 @@ function redirect2($url)
   //disable Hyper Cache plugin (http://www.satollo.net/plugins/hyper-cache) from caching this page
   $hyper_cache_stop = true;
   //disable WP Super Cache caching
-  define('DONOTCACHEPAGE',1);
+  if(!defined('DONOTCACHEPAGE'))
+    define('DONOTCACHEPAGE',1);
 
   if($this->options['base64'])
   {
@@ -193,7 +223,7 @@ function redirect2($url)
     $site=get_option('home');
     if(!$site)
       $site=get_option('siteurl');
-    if(stripos(wp_get_referer(),$site)!==0)#oh, god, ir happened!
+    if(stripos(wp_get_referer(),$site)!==0)#oh, god, it happened!
       {
       ?>
          <html><head><title><?php _e('Redirecting...','wpnoexternallinks');?></title>
@@ -232,15 +262,15 @@ else
 
 function filter($content)
 {
-  $this->debug_info("Processing text (htmlspecialchars on it to stay like comment): \n".htmlspecialchars($content));
+  $this->debug_info("Processing text: \n".str_replace('-->','--&gt;',$content));
   if(function_exists('is_feed') && is_feed())
   {
-	 $this->debug_info('It is feed, no processing');
+	  $this->debug_info('It is feed, no processing');
     return $content;
   }
   $pattern = '/<a (.*?)href=[\"\'](.*?)\/\/(.*?)[\"\'](.*?)>(.*?)<\/a>/i';
-  $content = preg_replace_callback($pattern,array($this,'wp_noextrenallinks_parser'),$content);
-  $this->debug_info("Filter returned(htmlspecialchars on it to stay like comment): \n".htmlspecialchars($content));
+  $content = preg_replace_callback($pattern,array($this,'parser'),$content,-1,$count);
+  $this->debug_info($count." replacements done.\nFilter returned: \n".str_replace('-->','--&gt;',$content));
   return $content;
 }
 
@@ -290,6 +320,12 @@ function fullmask_end($text)
   return $r;
 }
 
+function check_if_admin()
+{
+  if( current_user_can( 'manage_options' ) )
+    return 1;
+  return 0;
+}
 function set_filters()
 {
   if($this->options['debug'])
