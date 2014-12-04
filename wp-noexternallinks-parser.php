@@ -86,45 +86,7 @@ function parser($matches)
   /*masking url with numbers*/
   if(!$this->options['disable_mask_links'])
   {
-    if($this->options['base64'])
-    {
-      $url=base64_encode($url);
-    }
-    elseif($this->options['maskurl'])
-    {
-  	  $sql='select id from '.$wpdb->prefix.'masklinks where url= %s limit 1';
-  	  $result=$wpdb->get_var($wpdb->prepare($sql,addslashes($url)));
-    	if(is_null($result)&&strpos($wpdb->last_error,"doesn't exist"))//no table found
-    	{
-    	  /*create masklink table*/
-    	  echo'<font color="red">'.__('Failed to make masked link. MySQL link table does not exist. Trying to create table.').'</font>';
-    	  $sql2='CREATE TABLE '.$wpdb->prefix.'masklinks(`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,`url` VARCHAR(255),  PRIMARY KEY (`id`))';
-     		$res=$wpdb->query($sql2);
-     		if(!$res)
-         {
-     			echo '<br>'.__('Failed to create table. Please, check mysql permissions.','wpnoexternallinks');
-            $this->debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.$wpdb->last_error);
-         }
-     		else
-     		{
-     		  echo '<br>'.__('Table created.','wpnoexternallinks');
-           $wpdb->query($sql);
-     		}
-    	}
-      elseif(is_null($result))
-      {
-            $this->debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.$wpdb->last_error);
-      }
-    	if(!$result)
-    	{
-    		$sql='INSERT INTO '.$wpdb->prefix.'masklinks VALUES("",%s)';
-         $wpdb->query($wpdb->prepare($sql,addslashes($url)));
-    		$url=$wpdb->insert_id ;
-    	}
-    	else
-    		$url=$result;
-    }
-    
+    $url=$this->encode_link($url);    
     if(!$wp_rewrite->using_permalinks())
       $url=urlencode($url);
     //add "/" to site url- some servers dont't work with urls like xxx.ru?goto, but with xxx.ru/?goto
@@ -144,6 +106,64 @@ function parser($matches)
   return $link;
 }
 
+function encode_link($url)
+{
+  global $wpdb;
+  if($this->options['base64'])
+  {
+    $url=base64_encode($url);
+  }
+  elseif($this->options['maskurl'])
+  {
+    $sql='select id from '.$wpdb->prefix.'masklinks where url= %s limit 1';
+    $result=$wpdb->get_var($wpdb->prepare($sql,addslashes($url)));
+    if(is_null($result)&&strpos($wpdb->last_error,"doesn't exist"))//no table found
+    {
+      /*create masklink table*/
+    	echo'<div class="error">'.__('Failed to make masked link. MySQL link table does not exist. Trying to create table.','wpnoexternallinks').'</div>';
+    	$sql2='CREATE TABLE '.$wpdb->prefix.'masklinks(`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,`url` VARCHAR(255),  PRIMARY KEY (`id`))';
+     	$res=$wpdb->query($sql2);
+     	if(!$res)
+      {
+     		echo '<div class="error">'.__('Failed to create table. Please, check mysql permissions.','wpnoexternallinks').'</div>';
+        $this->debug_info(__('Failed SQL: ','wpnoexternallinks').'<br>'.$sql2.'<br>'.__('Error was:','wpnoexternallinks').'<br>'.$wpdb->last_error);
+      }
+     	else
+     	{
+     	  echo '<div class="updated">'.__('Table created.','wpnoexternallinks').'</div>';
+        $wpdb->query($sql);
+     	}
+    }
+    elseif(is_null($result))
+    {
+      $this->debug_info(__('Failed SQL: ','wpnoexternallinks').'<br>'.$sql2.'<br>'.__('Error was:','wpnoexternallinks').'<br>'.$wpdb->last_error);
+    }
+    if(!$result)
+    {
+      $sql='INSERT INTO '.$wpdb->prefix.'masklinks VALUES("",%s)';
+      $wpdb->query($wpdb->prepare($sql,addslashes($url)));
+    	$url=$wpdb->insert_id ;
+    }
+    else
+      $url=$result;
+  }
+  return $url;
+}
+
+function decode_link($url)
+{
+  global $wpdb;
+  if($this->options['base64'])
+  {
+    $url=base64_decode($url);
+  }
+  elseif($this->options['maskurl'])
+  {
+    $sql='select url from '.$wpdb->prefix.'masklinks where id= %s limit 1';
+    $url=$wpdb->get_var($wpdb->prepare($sql,addslashes($url)));
+  }
+  return $url;
+}
 
 function wp_noexternallinks_parser()#constructor
 {  $this->load_options();  $this->set_filters();  add_filter('template_redirect',array($this,'check_redirect'),1);  $this->debug_info("Options: \n".var_export($this->options, true));}
@@ -177,30 +197,21 @@ function redirect($url)
   if(!defined('DONOTCACHEPAGE'))
     define('DONOTCACHEPAGE',1);
 
-  if($this->options['base64'])
-  {
-    $url=base64_decode($url);
-  }
-  elseif($this->options['maskurl'])
-  {
-    $sql='select url from '.$wpdb->prefix.'masklinks where id= %s limit 1';
-    $url=$wpdb->get_var($wpdb->prepare($sql,addslashes($url)));
-  }
-  
+  $url=$this->decode_link($url);
   if($this->options['stats'])
   {
   	$sql='INSERT INTO '.$wpdb->prefix.'links_stats VALUES("", %s ,NOW())';
    $res=$wpdb->query($wpdb->prepare($sql,addslashes($url)));
   	if($res===FALSE)
   	{
-      $this->debug_info(__('Failed SQL: ').'<br>'.$sql.'<br>'.__('Error was:').'<br>'.$wpdb->last_error);
-  		echo'<div class="error">'.__('Failed to save statistic data. Trying to create table.').'</div>';
+      $this->debug_info(__('Failed SQL: ','wpnoexternallinks').'<br>'.$sql.'<br>'.__('Error was:','wpnoexternallinks').'<br>'.$wpdb->last_error);
+  		echo'<div class="error">'.__('Failed to save statistic data. Trying to create table.','wpnoexternallinks').'</div>';
   		$sql2='CREATE TABLE '.$wpdb->prefix.'links_stats(`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,`url` VARCHAR(255), `date` DATETIME, PRIMARY KEY (`id`))';
    		$res=$wpdb->query($sql2);
    		if($res===FALSE)
       {
    		  echo '<div class="error">'.__('Failed to create table. Please, check mysql permissions.','wpnoexternallinks').'</div>';
-        $this->debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.$wpdb->last_error);
+        $this->debug_info(__('Failed SQL: ','wpnoexternallinks').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.$wpdb->last_error);
       }
    		else
    		{
@@ -322,6 +333,7 @@ function fullmask_end($text)
 
 function set_filters()
 {
+  register_activation_hook(__FILE__,array($this,'activate'));
   if($this->options['debug'])
     add_action('wp_footer',array($this,'output_debug'),99);
   

@@ -11,7 +11,7 @@ function wp_noexternallinks_admin()
   add_action('save_post', array($this,'save_postdata'));
   add_action('do_meta_boxes', array($this,'add_custom_box'), 15, 2);
   add_action('admin_menu', array($this,'modify_menu'));
-  #register_activation_hook(__FILE__,array($this,'wp_noextrenallinks_Activate'));
+  register_activation_hook(__FILE__,array($this,'activate'));
   #register_deactivation_hook(__FILE__,array($this,'wp_noextrenallinks_DeActivate'));
 }
 
