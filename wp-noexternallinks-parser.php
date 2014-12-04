@@ -146,8 +146,8 @@ function parser($matches)
 
 
 function wp_noexternallinks_parser()#constructor
-{  $this->load_options();  $this->set_filters();  add_filter('template_redirect',array($this,'Redirect'),1);  $this->debug_info("Options: \n".var_export($this->options, true));}
-function Redirect()
+{  $this->load_options();  $this->set_filters();  add_filter('template_redirect',array($this,'check_redirect'),1);  $this->debug_info("Options: \n".var_export($this->options, true));}
+function check_redirect()
 {
   $goto='';
   $p=strpos($_SERVER['REQUEST_URI'],'/'.$this->options['LINK_SEP'].'/');
@@ -166,10 +166,10 @@ function Redirect()
   	  $goto=str_replace(':/','://',$goto);
   
   if($goto)
-    $this->redirect2($goto);
+    $this->redirect($goto);
 }
 
-function redirect2($url)
+function redirect($url)
 {  global $wp_rewrite,$wpdb,$hyper_cache_stop;
   //disable Hyper Cache plugin (http://www.satollo.net/plugins/hyper-cache) from caching this page
   $hyper_cache_stop = true;
@@ -194,17 +194,17 @@ function redirect2($url)
   	if($res===FALSE)
   	{
       $this->debug_info(__('Failed SQL: ').'<br>'.$sql.'<br>'.__('Error was:').'<br>'.$wpdb->last_error);
-  		echo'<font color="red">'.__('Failed to save statistic data. Trying to create table.').'</font>';
+  		echo'<div class="error">'.__('Failed to save statistic data. Trying to create table.').'</div>';
   		$sql2='CREATE TABLE '.$wpdb->prefix.'links_stats(`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,`url` VARCHAR(255), `date` DATETIME, PRIMARY KEY (`id`))';
    		$res=$wpdb->query($sql2);
    		if($res===FALSE)
-         {
-   			echo '<br>'.__('Failed to create table. Please, check mysql permissions.','wpnoexternallinks');
-            $this->debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.$wpdb->last_error);
-         }
+      {
+   		  echo '<div class="error">'.__('Failed to create table. Please, check mysql permissions.','wpnoexternallinks').'</div>';
+        $this->debug_info(__('Failed SQL: ').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.$wpdb->last_error);
+      }
    		else
    		{
-   			echo '<br>'.__('Table created.','wpnoexternallinks');
+   			echo '<div class="updated">'.__('Table created.','wpnoexternallinks').'</div>';
    			$wpdb->query($sql);
    		}
   	}
@@ -295,7 +295,7 @@ function fullmask_begin()
 {
 	$a=ob_start(array($this,'fullmask_end'));
   if(!$a)
-  	  echo '<font color="red">'.__('Can not get output buffer!').__('WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and use other filters.','wpnoexternallinks').'</font>';
+  	  echo '<div class="error">'.__('Can not get output buffer!').__('WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and use other filters.','wpnoexternallinks').'</div>';
 	if($this->options['debug'])
   	  $this->debug_info("Starting full mask.");
 }
@@ -305,7 +305,7 @@ function fullmask_end($text)
   $r='';
   $r.=$this->debug_info("Full mask finished. Applying filter",1);
   if(!$text)
-  	  $r.= '<font color="red">'.__('Output buffer empty!').__('WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and use other filters.','wpnoexternallinks',1).'</font>';
+  	  $r.= '<div class="error">'.__('Output buffer empty!').__('WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and use other filters.','wpnoexternallinks',1).'</div>';
   else
   {
   	 $r.=$this->debug_info("Processing text (htmlspecialchars on it to stay like comment): \n".htmlspecialchars($text),1);

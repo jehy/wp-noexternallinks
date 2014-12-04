@@ -2,8 +2,8 @@
 Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
-Tested up to: 4.0
-Stable tag: 3.4.5
+Tested up to: 4.1
+Stable tag: 3.5
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -127,6 +127,7 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 3.4.3 - Added detection and prevention of possible spoofing attacks. See new option in plugin settings. It is enabled by default.   
 3.4.4 - Added exclusion for polugin from WP SUper Cache.   
 3.4.5 - Added option to disable links masking when link is made by admin and has **rel="follow"** attribute   
+3.5 - Redesigned user friendly admin area!   
 
 ####Localization
 

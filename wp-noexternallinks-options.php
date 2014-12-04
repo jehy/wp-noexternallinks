@@ -64,6 +64,7 @@ function update()
 {
     $this->options=$_REQUEST['options'];
     $this->update_options();
+    echo '<div class="updated">'.__('Options updated.','wpnoexternallinks').'</div>';
     $this->load_options();
 }
 
@@ -84,11 +85,8 @@ function view_stats()
 	<form method="post" action="">
 		<input type="hidden" name="page" value="<?php echo $_REQUEST['page'];?>">
 		<?php wp_nonce_field('update-options'); ?>
-		<div style="float:right;margin-right:2em;background-color:#CCCCCC;padding:5px;">
-			<b>WP NoExternalLinks Stats</b><br>
-			<a href="http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/" target="_blank"><?php _e('Feedback','wpnoexternallinks');?></a>
-		</div>
-<a href="?page=<?php echo $_REQUEST['page'];?>"><?php _e('View options','wpnoexternallinks');?></a><br>
+<a href="?page=<?php echo $_REQUEST['page'];?>" class="button-primary"><?php _e('View options','wpnoexternallinks');?></a>
+<a href="http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/" class="button-primary"><?php _e('Feedback','wpnoexternallinks');?></a><br><br>
 <?php
 	
 if(!$this->options['stats'])
@@ -109,7 +107,7 @@ else
 _e('View stats from ','wpnoexternallinks');
 ?>
 		<input type="text" name="date1" value="<?php echo $date1;?>"><?php _e(' to ','wpnoexternallinks');?><input type="text" name="date2" value="<?php echo $date2;?>"><input type="submit" value="<?php _e('View','wpnoexternallinks');?>" class="button-primary">
-		</form>
+		</form><br><style>.urlul{padding:5px 0px 0px 25px;}</style>
 <?php
 	$sql='select * from '.$wpdb->prefix.'links_stats where `date` between "'.addslashes($date1).' 00:00:00" and "'.addslashes($date2).' 23:59:59"';
 	$result=$wpdb->get_results($sql,ARRAY_A);
@@ -119,11 +117,12 @@ _e('View stats from ','wpnoexternallinks');
    	foreach($result as $row)
    	{
    		$nfo=parse_url($row['url']);
-   		$out[$nfo['host']][$row['url']]++;
+      if($row['url']&&$nfo['host'])
+   		  $out[$nfo['host']][$row['url']]++;
    	}
    	foreach($out as $host=>$arr)
    	{
-   		echo '<br>'.$host.'<ul>';
+   		echo '<br>'.$host.'<ul class="urlul">';
    		foreach($arr as $url=>$outs)
    			echo '<li><a href="'.$url.'">'.$url.'</a> ('.$outs.')</li>';
    		echo '</ul>';
@@ -137,20 +136,45 @@ _e('View stats from ','wpnoexternallinks');
 
 function option_page()
 {
-?><p style="font-size:smaller;"><?php _e('That plugins allows you to mask all external links and make them internal or hidden - using PHP redirect or special link tags and attributes. Yeah, by the way - it does not change anything in the base - only replaces links on output.<br>P.S. It doesn`t mask internal and excluded links.','wpnoexternallinks');?></p>
+?><p><?php _e('That plugins allows you to mask all external links and make them internal or hidden - using PHP redirect or special link tags and attributes. Yeah, by the way - it does not change anything in the base - only replaces links on output. If you disabled this plugin and still have links masked - it is your caching plugin`s fault!','wpnoexternallinks');?></p>
 	<form method="post" action="">
 		<?php wp_nonce_field('update-options'); ?>
-		<div style="float:right;margin-right:2em;background-color:#CCCCCC;padding:5px;">
-			<b>WP NoExternalLinks</b><br>
-			<a href="http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/" target="_blank"><?php _e('Feedback','wpnoexternallinks');?></a>
-		</div>
-<a href="?page=<?php echo $_REQUEST['page'];?>&action=stats"><?php _e('View Stats','wpnoexternallinks');?></a><br>
-<?php _e('<h3>Global links masking settings</h3>(You can also disable plugin on per-post basis)','wpnoexternallinks');?><br><br>
+<a href="?page=<?php echo $_REQUEST['page'];?>&action=stats" class="button-primary"><?php _e('View Stats','wpnoexternallinks');?></a>
+<a href="http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/" class="button-primary"><?php _e('Feedback','wpnoexternallinks');?></a><br>
+<?php echo '<h2>'.__('Global links masking settings','wpnoexternallinks').'</h2>'.'('.__('You can also disable plugin on per-post basis','wpnoexternallinks').')';?><br><br>
 <?php
 $opt=$this->GetOptionInfo();
-foreach($opt as $i=>$arr)
+echo '<h3>'.__('Choose masking type','wpnoexternallinks').'</h3><p>'.__('Default masking type is via 302 redirects. Please choose one of the following mods if you do not like it:','wpnoexternallinks').'</p>';
+$this->show_option_group($opt,'type');
+echo '<h3>'.__('What to mask','wpnoexternallinks').'</h3>';
+$this->show_option_group($opt,'what');
+echo '<h3>'.__('What to exclude from masking','wpnoexternallinks').'</h3>';
+$this->show_option_group($opt,'exclude');
+echo '<h3>'.__('Common configuration','wpnoexternallinks').'</h3>';
+$this->show_option_group($opt,'common');
+echo '<h3>'.__('Link encoding','wpnoexternallinks').'</h3><p>'.__('Those options are not secure enough if you want to protect your data from someone but are quite enough to make link not human-readable. Please choose one of them:','wpnoexternallinks').'</p>';
+$this->show_option_group($opt,'encode');
+echo '<h3>'.__('Configuration for javascript redirects (if enabled)','wpnoexternallinks').'</h3>';
+$this->show_option_group($opt,'java');
+
+?><input type="submit" name="submit" value="<?php _e('Save Changes','wpnoexternallinks') ?>" class="button-primary"/>
+</form>
+<?php
+}
+function show_option_group($opt,$name)
 {
-	if($arr['type']=='chk')
+  foreach($opt as $arr)
+  {
+    if($arr['grp']===$name)
+	  {
+      $this->show_option($arr);
+	    echo '<br>';
+    }
+  }
+}
+function show_option($arr)
+{
+  if($arr['type']=='chk')
 	{
 		echo'<br><input type="checkbox" name="options['.$arr['new_name'].']" value="1"';
 		if($this->options[$arr['new_name']])
@@ -163,21 +187,12 @@ foreach($opt as $i=>$arr)
 	}
 	elseif($arr['type']=='text')
 	{
-		echo '<br>'.$arr['name'].':<br>';
-		echo'<textarea name="options['.$arr['new_name'].']" style="width: 400px;height:100px;">'.$this->options[$arr['new_name']].'</textarea>';
+		echo '<p>'.$arr['name'].':</p>';
+		echo'<textarea name="options['.$arr['new_name'].']" class="large-text code" rows="6" cols="50">'.$this->options[$arr['new_name']].'</textarea>';
 	}
-	echo '<br>';
 }
-
-?><input type="submit" name="submit" value="<?php _e('Save Changes') ?>" class="button-primary"/>
-</form>
-<?php
-}
-
-
 function admin_options()
 {
-global $_REQUEST;
 	echo '<div class="wrap"><h2>WP-NoExternalLinks</h2>';
 	if($_REQUEST['submit'])
 		$this->update();

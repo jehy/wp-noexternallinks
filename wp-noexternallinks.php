@@ -34,6 +34,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 class wp_noexternallinks
 {
 var $options;/*all plugin options*/
+var $redirect_javascript=1,$redirect_header=2,$redirect_none=3;
 function init_lang()
 {
 $plugin_dir = basename(dirname(__FILE__));
@@ -66,29 +67,29 @@ function update_options()
 function GetOptionInfo()
 {
 	return array(
-	array('old_name'=>'noexternallinks_mask_mine','new_name'=>'mask_mine','def_value'=>1,'type'=>'chk','name'=>__('Mask links in your posts','wpnoexternallinks')),
-	array('old_name'=>'noexternallinks_mask_comment','new_name'=>'mask_comment','def_value'=>1,'type'=>'chk','name'=>__('Mask links in comments','wpnoexternallinks')),
-	array('old_name'=>'noexternallinks_mask_author','new_name'=>'mask_author','def_value'=>1,'type'=>'chk','name'=>__('Mask comments authors`s links','wpnoexternallinks')),
-	array('old_name'=>'noexternallinks_add_nofollow','new_name'=>'add_nofollow','def_value'=>1,'type'=>'chk','name'=>__('Add <b>rel=nofollow</b> for masked links (for google)','wpnoexternallinks')),
-	array('old_name'=>'noexternallinks_add_blank','new_name'=>'add_blank','def_value'=>1,'type'=>'chk','name'=>__('Add <b>target="blank"</b> for all links to other sites (links will open in new window)','wpnoexternallinks')),
-	array('old_name'=>'noexternallinks_put_noindex','new_name'=>'put_noindex','def_value'=>0,'type'=>'chk','name'=>__('Surround masked links with <b>&lt;noindex&gt;link&lt;/noindex&gt;</b> tag (for yandex search engine)','wpnoexternallinks')),
-	array('old_name'=>'noexternallinks_disable_mask_links','new_name'=>'disable_mask_links','def_value'=>0,'type'=>'chk','name'=>__('Disable url rewrite of all links (you can be OK with just <b>noindex</b> tag and <b>rel=nofollow</b>)','wpnoexternallinks')),
-	array('old_name'=>'noexternallinks_link_separator','new_name'=>'LINK_SEP','def_value'=>'goto','type'=>'txt','name'=>__('Link separator (default="goto")','wpnoexternallinks')),
-	array('old_name'=>'noexternallinks_exclude_links','new_name'=>'exclude_links','def_value'=>'','type'=>'text','name'=>__('Exclude URLs that you don`t want to mask (all urls, beginning with those, won`t be masked). Put one adress on each line, including protocol prefix (for example,').' "<b>http://</b>jehy.ru" '.__('or','wpnoexternallinks').' <b>https://</b>google.com '.__('or','wpnoexternallinks').' <b>ftp://</b>microsoft.com). '.__('Skype, javascript and mail links are excluded by default. To exclude full protocol, just add line with it`s prefix - for example,','wpnoexternallinks').' "<b>ftp://</b>"'),
-	array('new_name'=>'fullmask','def_value'=>0,'type'=>'chk','name'=>__('Mask ALL links in document (can slow down your blog and conflict with some cache and other plugins. Please use it on your own risk.','wpnoexternallinks')),
-	array('new_name'=>'stats','def_value'=>0,'type'=>'chk','name'=>__('Log all outgoing clicks','wpnoexternallinks')),
-	array('new_name'=>'keep_stats','def_value'=>30,'type'=>'txt','name'=>__('Days to keep clicks stats','wpnoexternallinks')),
-	array('new_name'=>'no302','def_value'=>0,'type'=>'chk','name'=>__('Do not use 302 redirect, only javascript redirect','wpnoexternallinks')),
-	array('new_name'=>'redtime','def_value'=>3,'type'=>'txt','name'=>__('Redirect time (seconds) when using javascript redirect instead of 302','wpnoexternallinks')),
-	array('new_name'=>'redtxt','def_value'=>'This page demonstrates link redirect with "WP-NoExternalLinks" plugin. You will be redirected in 3 seconds. Otherwise, please click on <a href="LINKURL">this link</a>.','type'=>'text','name'=>__('Custom redirect text (if 302 redirects disabled). Use word "LINKURL" where you want to use redirect url. For example, <b>CLICK &lt;a href="LINK"&gt;HERE NOW&lt;/a&gt;</b>','wpnoexternallinks')),
-	array('new_name'=>'noforauth','def_value'=>0,'type'=>'chk','name'=>__('Do not mask links when registered users visit site','wpnoexternallinks')),
-	array('new_name'=>'maskurl','def_value'=>0,'type'=>'chk','name'=>__('Mask url with special numeric code. Be careful, this option may slow down your blog. Option is design for easy and quick personal use, it is not secure enough for commercial plans.','wpnoexternallinks')),
-	array('new_name'=>'remove_links','def_value'=>0,'type'=>'chk','name'=>__('Completely remove links from your posts. Someone needed it...','wpnoexternallinks')),
-	array('new_name'=>'link2text','def_value'=>0,'type'=>'chk','name'=>__('Turn all links into text. For perverts.','wpnoexternallinks')),
-	array('new_name'=>'base64','def_value'=>0,'type'=>'chk','name'=>__('Use base64 encoding for links (no need for special mysql table but no stats).','wpnoexternallinks')),
-	array('new_name'=>'debug','def_value'=>0,'type'=>'chk','name'=>__('Debug mode (Adds comments lines like "&lt;!--wpnoexternallinks debug: some info--&gt;" to output. For testing only!)','wpnoexternallinks')),
-	array('new_name'=>'restrict_referer','def_value'=>1,'type'=>'chk','name'=>__('Check for document referer and restrict redirect if it is not your own web site. Useful against spoofing attacks. User will be redirected to main page of your web site.','wpnoexternallinks')),
-	array('new_name'=>'dont_mask_admin_follow','def_value'=>0,'type'=>'chk','name'=>__('Do not mask links which have <b>rel="follow"</b> atribute and are posted by admin','wpnoexternallinks')),
+	array('old_name'=>'noexternallinks_mask_mine','new_name'=>'mask_mine','def_value'=>1,'type'=>'chk','name'=>__('Mask links in posts and pages','wpnoexternallinks'),'grp'=>'what'),
+	array('old_name'=>'noexternallinks_mask_comment','new_name'=>'mask_comment','def_value'=>1,'type'=>'chk','name'=>__('Mask links in comments','wpnoexternallinks'),'grp'=>'what'),
+	array('old_name'=>'noexternallinks_mask_author','new_name'=>'mask_author','def_value'=>1,'type'=>'chk','name'=>__('Mask comments authors`s homepage links','wpnoexternallinks'),'grp'=>'what'),
+	array('old_name'=>'noexternallinks_add_nofollow','new_name'=>'add_nofollow','def_value'=>1,'type'=>'chk','name'=>__('Add <b>rel=nofollow</b> for masked links (for google)','wpnoexternallinks'),'grp'=>'common'),
+	array('old_name'=>'noexternallinks_add_blank','new_name'=>'add_blank','def_value'=>1,'type'=>'chk','name'=>__('Add <b>target="blank"</b> for all links to other sites (links will open in new window)','wpnoexternallinks'),'grp'=>'common'),
+	array('old_name'=>'noexternallinks_put_noindex','new_name'=>'put_noindex','def_value'=>0,'type'=>'chk','name'=>__('Surround masked links with <b>&lt;noindex&gt;link&lt;/noindex&gt;</b> tag (for yandex search engine)','wpnoexternallinks'),'grp'=>'common'),
+	array('old_name'=>'noexternallinks_disable_mask_links','new_name'=>'disable_mask_links','def_value'=>0,'type'=>'chk','name'=>__('No redirect','wpnoexternallinks'),'grp'=>'type'),
+	array('old_name'=>'noexternallinks_link_separator','new_name'=>'LINK_SEP','def_value'=>'goto','type'=>'txt','name'=>__('Link separator for redirects (default="goto")','wpnoexternallinks'),'grp'=>'common'),
+	array('old_name'=>'noexternallinks_exclude_links','new_name'=>'exclude_links','def_value'=>'','type'=>'text','name'=>__('Exclude URLs that you don`t want to mask (all urls, beginning with those, won`t be masked). Put one adress on each line, including protocol prefix (for example,','wpnoexternallinks').' "<b>http://</b>jehy.ru" '.__('or','wpnoexternallinks').' <b>https://</b>google.com '.__('or','wpnoexternallinks').' <b>ftp://</b>microsoft.com). '.__('Skype, javascript and mail links are excluded by default. To exclude full protocol, just add line with it`s prefix - for example,','wpnoexternallinks').' "<b>ftp://</b>"','grp'=>'exclude'),
+	array('new_name'=>'fullmask','def_value'=>0,'type'=>'chk','name'=>__('Mask ALL links in document (can slow down your blog and conflict with some cache and other plugins. Not recommended).','wpnoexternallinks'),'grp'=>'what'),
+	array('new_name'=>'stats','def_value'=>0,'type'=>'chk','name'=>__('Log all outgoing clicks.','wpnoexternallinks'),'grp'=>'common'),
+	array('new_name'=>'keep_stats','def_value'=>30,'type'=>'txt','name'=>__('Days to keep clicks stats','wpnoexternallinks'),'grp'=>'common'),
+	array('new_name'=>'no302','def_value'=>0,'type'=>'chk','name'=>__('Use javascript redirect','wpnoexternallinks'),'grp'=>'type'),
+	array('new_name'=>'redtime','def_value'=>3,'type'=>'txt','name'=>__('Redirect time (seconds)','wpnoexternallinks'),'grp'=>'java'),
+	array('new_name'=>'redtxt','def_value'=>'This page demonstrates link redirect with "WP-NoExternalLinks" plugin. You will be redirected in 3 seconds. Otherwise, please click on <a href="LINKURL">this link</a>.','type'=>'text','name'=>__('Custom redirect text. Use word "LINKURL" where you want to use redirect url. For example, <b>CLICK &lt;a href="LINKURL"&gt;HERE NOW&lt;/a&gt;</b>','wpnoexternallinks'),'grp'=>'java'),
+	array('new_name'=>'noforauth','def_value'=>0,'type'=>'chk','name'=>__('Do not mask links when registered users visit site','wpnoexternallinks'),'grp'=>'exclude'),
+	array('new_name'=>'maskurl','def_value'=>0,'type'=>'chk','name'=>__('Mask url with special numeric code. Be careful, this option may slow down your blog.','wpnoexternallinks'),'grp'=>'encode'),
+	array('new_name'=>'remove_links','def_value'=>0,'type'=>'chk','name'=>__('Completely remove links from your posts. Someone needed it...','wpnoexternallinks'),'grp'=>'common'),
+	array('new_name'=>'link2text','def_value'=>0,'type'=>'chk','name'=>__('Turn all links into text. For perverts.','wpnoexternallinks'),'grp'=>'common'),
+	array('new_name'=>'base64','def_value'=>0,'type'=>'chk','name'=>__('Use base64 encoding for links.','wpnoexternallinks'),'grp'=>'encode'),
+	array('new_name'=>'debug','def_value'=>0,'type'=>'chk','name'=>__('Debug mode (Adds comments lines like "&lt;!--wpnoexternallinks debug: some info--&gt;" to output. For testing only!)','wpnoexternallinks'),'grp'=>'common'),
+	array('new_name'=>'restrict_referer','def_value'=>1,'type'=>'chk','name'=>__('Check for document referer and restrict redirect if it is not your own web site. Useful against spoofing attacks. User will be redirected to main page of your web site.','wpnoexternallinks'),'grp'=>'common'),
+	array('new_name'=>'dont_mask_admin_follow','def_value'=>0,'type'=>'chk','name'=>__('Do not mask links which have <b>rel="follow"</b> atribute and are posted by admin','wpnoexternallinks'),'grp'=>'exclude'),
 	);
 }
 
@@ -111,7 +112,7 @@ function load_options()
 			{
 				$val=get_option($arr['old_name'],'omg');
 				/*set default value. we can't use default false return because user valur could be set to false*/
-				if($val=='omg')
+				if($val==='omg')
 					$val=$arr['def_value'];
 			}
 			else
@@ -121,7 +122,7 @@ function load_options()
 		}
 	}
 	
-
+  
   if($update)/*upgrade or just some kind of shit*/
   {
   	  /*if we're going back from old version - let's check for excludes...*/
