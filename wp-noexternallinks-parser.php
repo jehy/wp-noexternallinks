@@ -25,51 +25,71 @@ function debug_info($info,$return=0)
   }
 }
 
-function parser($matches)
+function check_exclusions($matches)
 {
-  global $wp_rewrite,$wpdb;  
-  #parser init
-  
+  if($r=$this->check_follow($matches))
+     return $r;
+  if($r=$this->check_excl_list($matches))
+     return $r;
+  return false;
+}
+
+function check_excl_list($matches)
+{
+  #checking for entry in exclusion list
+
   $path=$matches[3];
   if($p=strpos($path,'/'))
     $path=substr($path,0,$p);
   $check_allowed=$matches[2] . '//' .$path;
-  $this->debug_info('Parser called. Parsing argument {'.var_export($matches,1)."}\nMade url {".$check_allowed."}\n ");
   
-  #support of "meta=follow" option for admins. disabled by default to minify processing.
-  if($this->options['dont_mask_admin_follow'])
-  {
-    $id=array(get_comment_ID(),get_the_ID());//it is either page or post
-    if($id[0])
-      $this->debug_info('It is a comment. id '.$id[0]);
-    elseif($id[1])
-      $this->debug_info('It is a page. id '.$id[1]);
-    $author=false;
-    if($id[0])
-      $author=get_comment_author($id[0]);
-    else if($id[1])
-      $author=get_the_author_meta('ID');
-    if(!$author)
-      $this->debug_info('it is neither post or page, applying usual rules');
-    elseif(user_can($author,'manage_options' )&&(stripos($matches[0],'rel="follow"')!==FALSE || stripos($matches[0],"rel='follow'")!==FALSE))
-    {
-      $this->debug_info('This link has a follow atribute and is posted by admin, not masking it.');
-      #wordpress adds rel="nofollow" by itself when posting new link in comments. get rid of it! Also, remove our follow attibute - it is unneccesary.
-      return str_ireplace(array('rel="follow"',"rel='follow'",'rel="nofollow"'),'',$matches[0]);
-    }
-    else
-      $this->debug_info('it does not have rel follow or is not posted by admin, masking it');
-  }  
-  
-  #checking for entry in exclusion list
-  $this->debug_info('Checking link VS exclusion list {'.var_export($this->options['exclude_links_'],1).'}');
+  $this->debug_info('Checking link "'.$check_allowed.'" VS exclusion list {'.var_export($this->options['exclude_links_'],1).'}');
   foreach($this->options['exclude_links_'] as $val)
     if(stripos($val,$check_allowed)===0)
-  {
+    {
       $this->debug_info('In exclusion list, not masking...');
       return $matches[0];
-  }
+    }
   $this->debug_info('Not in exclusion list, masking...');
+  return false;
+}
+
+function check_follow($matches)
+{
+  #support of "meta=follow" option for admins. disabled by default to minify processing.
+  if(!$this->options['dont_mask_admin_follow'])
+    return false;
+  $id=array(get_comment_ID(),get_the_ID());//it is either page or post
+  if($id[0])
+    $this->debug_info('It is a comment. id '.$id[0]);
+  elseif($id[1])
+    $this->debug_info('It is a page. id '.$id[1]);
+  $author=false;
+  if($id[0])
+    $author=get_comment_author($id[0]);
+  else if($id[1])
+    $author=get_the_author_meta('ID');
+  if(!$author)
+    $this->debug_info('it is neither post or page, applying usual rules');
+  elseif(user_can($author,'manage_options' )&&(stripos($matches[0],'rel="follow"')!==FALSE || stripos($matches[0],"rel='follow'")!==FALSE))
+  {
+    $this->debug_info('This link has a follow atribute and is posted by admin, not masking it.');
+    #wordpress adds rel="nofollow" by itself when posting new link in comments. get rid of it! Also, remove our follow attibute - it is unneccesary.
+    return str_ireplace(array('rel="follow"',"rel='follow'",'rel="nofollow"'),'',$matches[0]);
+  }
+  else
+    $this->debug_info('it does not have rel follow or is not posted by admin, masking it');
+  return false;
+}
+
+function parser($matches)
+{
+  global $wp_rewrite,$wpdb;  
+  #parser init
+  $this->debug_info('Parser called. Parsing argument {'.var_export($matches,1)."}\nMade url {".$check_allowed."}\n ");
+  $r=$this->check_exclusions($matches);
+  if($r!==FALSE)
+    return $r;
   
   #checking for different options, setting other
   if(!$wp_rewrite->using_permalinks())
@@ -80,13 +100,11 @@ function parser($matches)
       $ifblank=' target="_blank"';
   if($this->options['add_nofollow'])
       $ifnofollow=' rel="nofollow"';
-
-    $url=($matches[2] . '//' . $matches[3]);
-  
+    $url=$matches[2].'//' .$matches[3];
   /*masking url with numbers*/
   if(!$this->options['disable_mask_links'])
   {
-    $url=$this->encode_link($url);    
+    $url=$this->encode_link($url);
     if(!$wp_rewrite->using_permalinks())
       $url=urlencode($url);
     //add "/" to site url- some servers dont't work with urls like xxx.ru?goto, but with xxx.ru/?goto
@@ -167,7 +185,8 @@ function decode_link($url)
 
 function wp_noexternallinks_parser()#constructor
 {  $this->load_options();  $this->set_filters();  add_filter('template_redirect',array($this,'check_redirect'),1);  $this->debug_info("Options: \n".var_export($this->options, true));}
-function check_redirect()
+
+function check_redirect()#checking if it is redirect page
 {
   $goto='';
   $p=strpos($_SERVER['REQUEST_URI'],'/'.$this->options['LINK_SEP'].'/');
@@ -189,6 +208,45 @@ function check_redirect()
     $this->redirect($goto);
 }
 
+function show_referer_warning()
+{
+?>
+<html><head><title><?php _e('Redirecting...','wpnoexternallinks');?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="robots" content="noindex,nofollow" />
+<meta http-equiv="refresh" content="5; url=<?php echo get_home_url();?>" />
+</head><body style="margin:0;"><div align="center" style="margin-top: 15em;">
+<?php
+  echo __('You have been redirected through this website from a suspicious source. We prevented it and you are going to be redirected to our ','wpnoexternallinks').'<a href="'.get_home_url().'">'.__('safe web site.','wpnoexternallinks').'</a>';?>
+</div></body></html><?php die();
+}
+
+function add_stats_record($url)
+{
+  if($this->options['stats'])
+    return;
+  $sql='INSERT INTO '.$wpdb->prefix.'links_stats VALUES("", %s ,NOW())';
+  $res=$wpdb->query($wpdb->prepare($sql,addslashes($url)));
+  if($res!==FALSE)
+    return;#all ok
+  #error - stats record could not be created
+  $this->debug_info(__('Failed SQL: ','wpnoexternallinks').'<br>'.$sql.'<br>'.__('Error was:','wpnoexternallinks').'<br>'.$wpdb->last_error);
+  echo'<div class="error">'.__('Failed to save statistic data. Trying to create table.','wpnoexternallinks').'</div>';
+  $sql2='CREATE TABLE '.$wpdb->prefix.'links_stats(`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,`url` VARCHAR(255), `date` DATETIME, PRIMARY KEY (`id`))';
+  $res=$wpdb->query($sql2);
+  if($res===FALSE)
+  {
+    echo '<div class="error">'.__('Failed to create table. Please, check mysql permissions.','wpnoexternallinks').'</div>';
+    $this->debug_info(__('Failed SQL: ','wpnoexternallinks').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.$wpdb->last_error);
+  }
+  else
+  {
+    echo '<div class="updated">'.__('Table created.','wpnoexternallinks').'</div>';
+    $wpdb->query($sql);
+  }  
+}
+
+
 function redirect($url)
 {  global $wp_rewrite,$wpdb,$hyper_cache_stop;
   //disable Hyper Cache plugin (http://www.satollo.net/plugins/hyper-cache) from caching this page
@@ -196,33 +254,8 @@ function redirect($url)
   //disable WP Super Cache caching
   if(!defined('DONOTCACHEPAGE'))
     define('DONOTCACHEPAGE',1);
-
   $url=$this->decode_link($url);
-  if($this->options['stats'])
-  {
-  	$sql='INSERT INTO '.$wpdb->prefix.'links_stats VALUES("", %s ,NOW())';
-   $res=$wpdb->query($wpdb->prepare($sql,addslashes($url)));
-  	if($res===FALSE)
-  	{
-      $this->debug_info(__('Failed SQL: ','wpnoexternallinks').'<br>'.$sql.'<br>'.__('Error was:','wpnoexternallinks').'<br>'.$wpdb->last_error);
-  		echo'<div class="error">'.__('Failed to save statistic data. Trying to create table.','wpnoexternallinks').'</div>';
-  		$sql2='CREATE TABLE '.$wpdb->prefix.'links_stats(`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,`url` VARCHAR(255), `date` DATETIME, PRIMARY KEY (`id`))';
-   		$res=$wpdb->query($sql2);
-   		if($res===FALSE)
-      {
-   		  echo '<div class="error">'.__('Failed to create table. Please, check mysql permissions.','wpnoexternallinks').'</div>';
-        $this->debug_info(__('Failed SQL: ','wpnoexternallinks').'<br>'.$sql2.'<br>'.__('Error was:').'<br>'.$wpdb->last_error);
-      }
-   		else
-   		{
-   			echo '<div class="updated">'.__('Table created.','wpnoexternallinks').'</div>';
-   			$wpdb->query($sql);
-   		}
-  	}
-  
-  }
-  
-  
+  $this->add_stats_record($url);
   $this->init_lang();
   if(!$wp_rewrite->using_permalinks())
     $url=urldecode($url);
@@ -235,18 +268,14 @@ function redirect($url)
     if(!$site)
       $site=get_option('siteurl');
     if(stripos(wp_get_referer(),$site)!==0)#oh, god, it happened!
-      {
-      ?>
-         <html><head><title><?php _e('Redirecting...','wpnoexternallinks');?></title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="robots" content="noindex,nofollow" />
-<meta http-equiv="refresh" content="5; url=<?php echo get_home_url();?>" />
-</head><body style="margin:0;"><div align="center" style="margin-top: 15em;">
-<?php
-  echo __('You have been redirected through this website from a suspicious source. We prevented it and you are going to be redirected to our ','wpnoexternallinks').'<a href="'.get_home_url().'">'.__('safe web site.','wpnoexternallinks').'</a>';?>
-</div></body></html><?php die();
-      }
+        $this->show_referer_warning();
   }
+  $this->show_redirect_page($url);
+}
+
+
+function show_redirect_page($url)
+{
   header('Content-type: text/html; charset="utf-8"',true);
   if(!$this->options['no302']&&$url)
     @header('Location: '.$url);
@@ -269,7 +298,6 @@ else
   _e('Sorry, no url redirect specified. Can`t complete request.','wpnoexternallinks');?>
 </div></body></html><?php die();
 }
-
 
 function filter($content)
 {
