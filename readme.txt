@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 4.1
-Stable tag: 3.5.5
+Stable tag: 3.5.6
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -133,6 +133,7 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 3.5.3 - Do not disable error reporting on server any more.  
 3.5.4 - Fixed "rel=follow" feature.  Added icon for admin menu.  
 3.5.5 - Divided code to smaller functions for easier overwrite with custom modes.  
+3.5.6 - Fixed bug with writing click stats to database.  
 
 ####Localization
 
