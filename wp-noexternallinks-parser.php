@@ -51,7 +51,7 @@ function parser($matches)
       $author=get_the_author_meta('ID');
     if(!$author)
       $this->debug_info('it is neither post or page, applying usual rules');
-    elseif(current_user_can( 'manage_options' )&&(stripos($matches[0],'rel="follow"')!==FALSE || stripos($matches[0],"rel='follow'")!==FALSE))
+    elseif(user_can($author,'manage_options' )&&(stripos($matches[0],'rel="follow"')!==FALSE || stripos($matches[0],"rel='follow'")!==FALSE))
     {
       $this->debug_info('This link has a follow atribute and is posted by admin, not masking it.');
       #wordpress adds rel="nofollow" by itself when posting new link in comments. get rid of it! Also, remove our follow attibute - it is unneccesary.

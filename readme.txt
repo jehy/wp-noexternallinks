@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 4.1
-Stable tag: 3.5.3
+Stable tag: 3.5.4
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -131,6 +131,7 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 3.5.1 - Added option for developers - now you can extend plugin with custom parsing functions! Just rename "custom-parser.sample.php" to "custom-parser.php" and extend the class (see sample file for details). Your modifications will stay even after plugin upgrade!  
 3.5.2 - Some refactoring.  
 3.5.3 - Do not disable error reporting on server any more.  
+3.5.4 - Fixed "rel=follow" feature.  Added icon for admin menu.  
 
 ####Localization
 

@@ -71,8 +71,8 @@ function update()
 
 function modify_menu(){
 	add_options_page(
-		'WP-NoExternalLinks',
-		'WP-NoExternalLinks',
+		'NoExternalLinks&nbsp;<img src="'.plugin_dir_url( __FILE__ ).'externallink.png">',
+		'NoExternalLinks&nbsp;<img src="'.plugin_dir_url( __FILE__ ).'externallink.png">',
 		'manage_options',
 		__FILE__,
 		array($this,'admin_options')
