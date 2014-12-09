@@ -57,9 +57,12 @@ To make the long story short, your links like "http://gmail.com" will be masked 
 Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&lt;/a&gt;" to   
 "&lt;noindex&gt;&lt;a rel="nofollow" target="_blank" href="http://google.com"&gt;google&lt;/a&gt;&lt;/noindex&gt;"
 
-####Just one poplular question :)
+####Just one popular question :)
 >  **- Is it an evil hack and black SEO?!**   
  - Before you say such awful things, read at least [Google's topics on SEO](http://www.google.com/support/webmasters/bin/topic.py?topic=8522)   
+
+####Donate or help?
+If you want to ensure the future development and support of this plugin, you can make donation [on this page](http://jehy.ru/articles/donate/) or just write about this plugin in your blog.
 
 ####Note
 &lt;noindex&gt; tag is used mostly by russian search system "Yandex" (yandex.ru), and non-russian users don't usually need it.
@@ -76,10 +79,6 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 
 ####Please!
 If you don't rate my plugin as 5/5 - please write why - and I will add or change options and fix bugs. It's very unpleasant to see silient low rates.
-
-####Donate or help?
-If you want to ensure the future development and support of this plugin, you can make donation [on this page](http://jehy.ru/donate.en.html) or just write about this plugin in your blog.
-
 
 == Changelog ==
 
@@ -133,6 +132,7 @@ If you want to ensure the future development and support of this plugin, you can
 3.3.9 - Updated for correct work with enabled statistics and Hyper Cache plugin.    
 3.3.9.1 - Added some more debug.    
 3.3.9.2 - Now debug mode does not mess up web site. Also added some text to options page.    
+
 3.4 - Replaced direct SQL queries with WPDB interface.   
 3.4.1, 3.4.2 - Fixed displaying error where there are no stats for today.   
 3.4.3 - Added detection and prevention of possible spoofing attacks. See new option in plugin settings. It is enabled by default.   

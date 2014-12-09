@@ -1,6 +1,6 @@
 === WP No External Links ===
 Автор: Jehy
-Ссылка: http://jehy.ru/index.html
+Ссылка: http://jehy.ru/articles
 Категория: seo, link, links, publisher, post, posts,comments
 Требует как минимум: 2.6
 Протестирован до: 4.1
