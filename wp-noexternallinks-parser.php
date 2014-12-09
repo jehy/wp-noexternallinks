@@ -308,7 +308,7 @@ function filter($content)
 	  $this->debug_info('It is feed, no processing');
     return $content;
   }
-  $pattern = '/<a (.*?)href=[\"\'](.*?)\/\/(.*?)[\"\'](.*?)>(.*?)<\/a>/i';
+  $pattern = '/<a (.*?)href=[\"\'](.*?)\/\/(.*?)[\"\'](.*?)>(.*?)<\/a>/si';
   $content = preg_replace_callback($pattern,array($this,'parser'),$content,-1,$count);
   $this->debug_info($count." replacements done.\nFilter returned: \n".str_replace('-->','--&gt;',$content));
   return $content;
