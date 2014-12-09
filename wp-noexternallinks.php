@@ -7,7 +7,7 @@ if(!defined('DB_NAME'))
 Plugin Name: WP No External Links
 Plugin URI: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
 Description: This plugin will allow you to mask all external links to internal, or to hide them. Your own posts, comments pages, authors pages... To set up, visit <a href="options-general.php?page=wp-noexternallinks/wp-noexternallinks-options.php">configuration panel</a>.
-Version: 3.5.6
+Version: 3.5.7
 Author: Jehy
 Author URI: http://jehy.ru/articles/
 Update Server: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
@@ -34,11 +34,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 class wp_noexternallinks
 {
 var $options;/*all plugin options*/
-var $redirect_javascript=1,$redirect_header=2,$redirect_none=3;
 function init_lang()
 {
-$plugin_dir = basename(dirname(__FILE__));
-load_plugin_textdomain( 'wpnoexternallinks', false, $plugin_dir.'/lang');
+  $plugin_dir = basename(dirname(__FILE__));
+  load_plugin_textdomain( 'wpnoexternallinks', false, $plugin_dir.'/lang');
 }
 
 function activate()
@@ -65,7 +64,7 @@ function update_options()
 		if(serialize($this->options)!=serialize(get_option('wp_noexternallinks')))
 		{
 			init_lang();
-			_e('Failed to update options!');
+			echo '<div class="error">'.__('Failed to update options!','wpnoexternallinks').'</div>';
 		}
 		/*else echo 'nothing changed ;_;';*/
 	}
@@ -180,13 +179,14 @@ if(is_admin())
   include_once(ABSPATH . 'wp-content/plugins/wp-noexternallinks/wp-noexternallinks-options.php');
   new wp_noexternallinks_admin();
 }
-elseif(file_exists(ABSPATH . 'wp-content/plugins/wp-noexternallinks/custom-parser.php'))
+
+elseif(file_exists(ABSPATH . 'wp-content/uploads/custom-parser.php'))
 {
   include_once(ABSPATH . 'wp-content/plugins/wp-noexternallinks/custom-parser.php');
   if(class_exists('custom_parser'))
     new custom_parser();
   else
-    echo '<div class="error">Custom parser file found but <b>custom_parser</b> class not defined!</div>';
+    echo '<div class="error">'.__('Custom parser file found but <b>custom_parser</b> class not defined!','wpnoexternallinks').'</div>';
 }
 else
 {

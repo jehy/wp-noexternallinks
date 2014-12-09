@@ -3,28 +3,22 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 4.1
-Stable tag: 3.5.6
+Stable tag: 3.5.7
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
->**Check out new feature - masking links to digital short code and base64!**
->Versions 3+ have many cool features - outgoing clicks stats, fulllink masking, custom redirects and so on - but it may be not compatible with strange server configurations. Any feedback is much appreciated. If plugin is not working for you - [try 2.172](http://downloads.wordpress.org/plugin/wp-noexternallinks.2.172.zip).
+>** New feature - [extend plugin with your own functions](http://jehy.ru/articles/2014/12/08/custom-parser-for-wp-noexternallinks/)!**
 
->If you upgraded to version 2.10 and higher and have problems - please [download version 2.05](http://downloads.wordpress.org/plugin/wp-noexternallinks.2.05.zip) or help me to debug - currently It seems like I'm having problems with blogs on PHP4.
-
->If you are having problems even with 2.05
->Then please [download version 0.071](http://downloads.wordpress.org/plugin/wp-noexternallinks.0.071.zip) - it's slower, doesn't have functionality, but works fine on servers with the worst settings. 
-
->Still not good?
->Tell me about your problems in [my blog](http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/).
-
-This plugin is designed for specialists who sell different kind of advertisment on their web site (for example, with [sape](http://www.sape.ru/r.f6054dfcc2.php) system) and care about the number of outgoing links that can be found by search engines. Now you can make all external links - internal! In your own posts, comments pages, authors page... Plugin does not change anything or write to base - just processes output.
+This plugin has many cool features - outgoing clicks stats, fulllink masking, custom redirects,masking links to digital short code and base64 encoding and so on.It is designed for specialists who sell different kind of advertisment on their web site (for example, with [sape](http://www.sape.ru/r.f6054dfcc2.php) system) and care about the number of outgoing links that can be found by search engines. Now you can make all external links internal! In your own posts, comments pages, authors page... Plugin does not change anything or write to base - just processes output.
 
 Now you don't need to worry about your page rank or index, dropping because of spam bots. You write any kind of http link - and it becomes internal or hidden! Of cause, all the links will still be usable :).
 
-Warning: this plugin may conflict with your caching plugins, including Hyper Cache. Usually adding redirect page to caching plugin exclusions works fine, but I can't garantee that everything will go smoothly. By the way, after deactivation this plugins leaves no traces in your database or hard drive - so if you have you have problems after deactivation - please, search them in another source.
+Warning: this plugin may conflict with your caching plugins, including Hyper Cache. Usually adding redirect page to caching plugin exclusions works fine, but I can't garantee that everything will go smoothly. By the way, after deactivation this plugins leaves no traces in your database or hard drive - so if you have you have problems after deactivation - please, search them in another source, for example, caching plugins. Flushing cache should help.
 
 ###New Features:    
+
+####Version 3.5.1 implemented:   
++ Extending plugin with custom functions   
 
 ####Version 3.3.2 implemented:   
 + Debug mode   
@@ -56,7 +50,7 @@ Have fun!
 
 ####Example
 
-In short, your links like "http://gmail.com" will be masked into  
+To make the long story short, your links like "http://gmail.com" will be masked into  
 "http://YourBlog.com/goto/http://gmail.com" - or  
 "http://YourBlog.com?goto=http://gmail.com"
 
@@ -70,7 +64,24 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 ####Note
 &lt;noindex&gt; tag is used mostly by russian search system "Yandex" (yandex.ru), and non-russian users don't usually need it.
 
-####History
+[You can view changelog here](https://wordpress.org/plugins/wp-noexternallinks/changelog/).
+
+####Localization
+
+* English
+* Russian
+* Spanish
+* Your language also can be here - just send me language file :)
+
+
+####Please!
+If you don't rate my plugin as 5/5 - please write why - and I will add or change options and fix bugs. It's very unpleasant to see silient low rates.
+
+####Donate or help?
+If you want to ensure the future development and support of this plugin, you can make donation [on this page](http://jehy.ru/donate.en.html) or just write about this plugin in your blog.
+
+
+== Changelog ==
 
 0.01 - First release.  
 0.02 - Multilanguagal release.  
@@ -125,7 +136,7 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 3.4 - Replaced direct SQL queries with WPDB interface.   
 3.4.1, 3.4.2 - Fixed displaying error where there are no stats for today.   
 3.4.3 - Added detection and prevention of possible spoofing attacks. See new option in plugin settings. It is enabled by default.   
-3.4.4 - Added exclusion for polugin from WP SUper Cache.   
+3.4.4 - Added exclusion for polugin from WP Super Cache.   
 3.4.5 - Added option to disable links masking when link is made by admin and has **rel="follow"** attribute   
 3.5 - Redesigned user friendly admin area!   
 3.5.1 - Added option for developers - now you can extend plugin with custom parsing functions! Just rename "custom-parser.sample.php" to "custom-parser.php" and extend the class (see sample file for details). Your modifications will stay even after plugin upgrade!  
@@ -134,20 +145,7 @@ Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&
 3.5.4 - Fixed "rel=follow" feature.  Added icon for admin menu.  
 3.5.5 - Divided code to smaller functions for easier overwrite with custom modes.  
 3.5.6 - Fixed bug with writing click stats to database.  
-
-####Localization
-
-* English
-* Russian
-* Spanish
-* Your language also can be here - just send me language file :)
-
-
-####Please!
-If you don't rate my plugin as 5/5 - please write why - and I will add or change options and fix bugs. It's very unpleasant to see silient low rates.
-
-####Donate or help?
-If you want to ensure the future development and support of this plugin, you can make donation [on this page](http://jehy.ru/donate.en.html) or just write about this plugin in your blog.
+3.5.7 - Custom parser file moved to uploads directory to avoid deletion.  
 
 == Installation ==
 
