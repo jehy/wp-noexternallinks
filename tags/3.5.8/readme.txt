@@ -7,7 +7,7 @@ Stable tag: 3.5.8
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
-> New feature - [extend plugin with your own functions](http://jehy.ru/articles/2014/12/08/custom-parser-for-wp-noexternallinks/)! For example, you can [encrypt them](http://jehy.ru/articles/2014/12/09/encrypting-links-for-wp-noexternallinks/).
+> New feature - [extend plugin with your own functions](http://jehy.ru/articles/2014/12/08/custom-parser-for-wp-noexternallinks/)! For example, you can [encrypt links](http://jehy.ru/articles/2014/12/09/encrypting-links-for-wp-noexternallinks/).
 
 This plugin has many cool features - outgoing clicks stats, fulllink masking, custom redirects,masking links to digital short code and base64 encoding and so on.It is designed for specialists who sell different kind of advertisment on their web site (for example, with [sape](http://www.sape.ru/r.f6054dfcc2.php) system) and care about the number of outgoing links that can be found by search engines. Now you can make all external links internal! In your own posts, comments pages, authors page... Plugin does not change anything or write to base - just processes output.
 
