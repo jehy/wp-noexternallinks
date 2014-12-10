@@ -224,7 +224,7 @@ function show_referer_warning()
 function add_stats_record($url)
 {
   global $wpdb;
-  if($this->options['stats'])
+  if(!$this->options['stats'])
     return;
   $sql='INSERT INTO '.$wpdb->prefix.'links_stats VALUES("", %s ,NOW())';
   $res=$wpdb->query($wpdb->prepare($sql,addslashes($url)));

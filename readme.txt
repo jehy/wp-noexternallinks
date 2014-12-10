@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 4.1
-Stable tag: 3.5.9
+Stable tag: 3.5.9.1
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -147,6 +147,7 @@ If you don't rate my plugin as 5/5 - please write why - and I will add or change
 3.5.6 - Fixed bug with writing click stats to database.  
 3.5.7,3.5.8 - Custom parser file moved to uploads directory to avoid deletion.  
 3.5.9 - Updated filter to support multiline links code.  
+3.5.9.1 - Fixed bug when statistic was not written.  
 
 == Installation ==
 
