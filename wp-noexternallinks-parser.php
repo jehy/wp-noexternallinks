@@ -38,16 +38,13 @@ function check_excl_list($matches)
 {
   #checking for entry in exclusion list
 
-  $path=$matches[3];
-  if($p=strpos($path,'/'))
-    $path=substr($path,0,$p);
-  $check_allowed=$matches[2] . '//' .$path;
+  $check_allowed=$matches[2];
   
   $this->debug_info('Checking link "'.$check_allowed.'" VS exclusion list {'.var_export($this->options['exclude_links_'],1).'}');
   foreach($this->options['exclude_links_'] as $val)
-    if(stripos($val,$check_allowed)===0)
+    if(stripos($check_allowed,$val)===0)
     {
-      $this->debug_info('In exclusion list, not masking...');
+      $this->debug_info('In exclusion list ('.$val.'), not masking...');
       return $matches[0];
     }
   $this->debug_info('Not in exclusion list, masking...');
@@ -86,7 +83,8 @@ function parser($matches)
 {
   global $wp_rewrite,$wpdb;  
   #parser init
-  $this->debug_info('Parser called. Parsing argument {'.var_export($matches,1)."}\nMade url {".$check_allowed."}\n ");
+  $url=$matches[2];
+  $this->debug_info('Parser called. Parsing argument {'.var_export($matches,1)."}\nAgainst link {".$url."}\n ");
   $r=$this->check_exclusions($matches);
   if($r!==FALSE)
     return $r;
@@ -100,7 +98,6 @@ function parser($matches)
       $ifblank=' target="_blank"';
   if($this->options['add_nofollow'])
       $ifnofollow=' rel="nofollow"';
-    $url=$matches[2].'//' .$matches[3];
   /*masking url with numbers*/
   if(!$this->options['disable_mask_links'])
   {
@@ -115,10 +112,10 @@ function parser($matches)
     $url=$this->options['site'].$sep.$url;
   }
   if($this->options['remove_links'])
-    return '<span class="waslinkname">'.$matches[5].'</span>';
+    return '<span class="waslinkname">'.$matches[4].'</span>';
   if($this->options['link2text'])
-    return '<span class="waslinkname">'.$matches[5].'</span> ^(<span class="waslinkurl">'.$url.')</span>';
-  $link='<a'.$ifblank.$ifnofollow.' href="'.$url.'" '.$matches[1].$matches[4].'>'.$matches[5].'</a>';
+    return '<span class="waslinkname">'.$matches[4].'</span> ^(<span class="waslinkurl">'.$url.')</span>';
+  $link='<a'.$ifblank.$ifnofollow.' href="'.$url.'" '.$matches[1].$matches[3].'>'.$matches[4].'</a>';
   if($this->options['put_noindex'])
     $link='<noindex>'.$link.'</noindex>';
   return $link;
@@ -308,7 +305,7 @@ function filter($content)
 	  $this->debug_info('It is feed, no processing');
     return $content;
   }
-  $pattern = '/<a (.*?)href=[\"\'](.*?)\/\/(.*?)[\"\'](.*?)>(.*?)<\/a>/si';
+  $pattern = '/<a (.*?)href=[\"\'](.*?)[\"\'](.*?)>(.*?)<\/a>/si';
   $content = preg_replace_callback($pattern,array($this,'parser'),$content,-1,$count);
   $this->debug_info($count." replacements done.\nFilter returned: \n".str_replace('-->','--&gt;',$content));
   return $content;

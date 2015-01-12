@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp-noexternallinks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-09 11:56+0300\n"
-"PO-Revision-Date: 2014-12-09 11:56+0300\n"
+"POT-Creation-Date: 2015-01-12 09:56+0300\n"
+"PO-Revision-Date: 2015-01-12 09:57+0300\n"
 "Last-Translator: Jehy <fate@jehy.ru>\n"
 "Language-Team: jehy <fate@jehy.ru>\n"
 "Language: ru_RU\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.5.3\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: wp-noexternallinks-options.php:34 wp-noexternallinks-options.php:35
@@ -147,7 +147,7 @@ msgstr "Настройки редиректа через яваскрипт (е�
 msgid "Save Changes"
 msgstr "Сохранить измения"
 
-#: wp-noexternallinks-parser.php:141
+#: wp-noexternallinks-parser.php:138
 msgid ""
 "Failed to make masked link. MySQL link table does not exist. Trying to "
 "create table."
@@ -155,29 +155,29 @@ msgstr ""
 "Не удалось сохранить маску ссылки. Таблица MySQL не существует. Попытаемся "
 "её создать."
 
-#: wp-noexternallinks-parser.php:146 wp-noexternallinks-parser.php:240
+#: wp-noexternallinks-parser.php:143 wp-noexternallinks-parser.php:237
 msgid "Failed to create table. Please, check mysql permissions."
 msgstr "Не удалось создать таблицу. Пожалуйста, проверьте полномочия MySQL."
 
-#: wp-noexternallinks-parser.php:147 wp-noexternallinks-parser.php:157
-#: wp-noexternallinks-parser.php:234 wp-noexternallinks-parser.php:241
+#: wp-noexternallinks-parser.php:144 wp-noexternallinks-parser.php:154
+#: wp-noexternallinks-parser.php:231 wp-noexternallinks-parser.php:238
 msgid "Failed SQL: "
 msgstr "SQL запрос, вызвавший ошибку:"
 
-#: wp-noexternallinks-parser.php:147 wp-noexternallinks-parser.php:157
-#: wp-noexternallinks-parser.php:234 wp-noexternallinks-parser.php:241
+#: wp-noexternallinks-parser.php:144 wp-noexternallinks-parser.php:154
+#: wp-noexternallinks-parser.php:231 wp-noexternallinks-parser.php:238
 msgid "Error was:"
 msgstr "Ошибка была:"
 
-#: wp-noexternallinks-parser.php:151 wp-noexternallinks-parser.php:245
+#: wp-noexternallinks-parser.php:148 wp-noexternallinks-parser.php:242
 msgid "Table created."
 msgstr "Таблица создана."
 
-#: wp-noexternallinks-parser.php:214 wp-noexternallinks-parser.php:284
+#: wp-noexternallinks-parser.php:211 wp-noexternallinks-parser.php:281
 msgid "Redirecting..."
 msgstr "Перенаправляю..."
 
-#: wp-noexternallinks-parser.php:220
+#: wp-noexternallinks-parser.php:217
 msgid ""
 "You have been redirected through this website from a suspicious source. We "
 "prevented it and you are going to be redirected to our "
@@ -185,15 +185,15 @@ msgstr ""
 "Вас перенеправили по этой сссылке из подозрительного источника. Мы "
 "предотвратили переход, и вы будете перенаправлены на наш "
 
-#: wp-noexternallinks-parser.php:220
+#: wp-noexternallinks-parser.php:217
 msgid "safe web site."
 msgstr "безопасный веб сайт."
 
-#: wp-noexternallinks-parser.php:235
+#: wp-noexternallinks-parser.php:232
 msgid "Failed to save statistic data. Trying to create table."
 msgstr "Не удалось сохранить статистику. Пытаюсь создать таблицу."
 
-#: wp-noexternallinks-parser.php:297
+#: wp-noexternallinks-parser.php:294
 msgid ""
 "You were going to the redirect link, but something did not work properly."
 "<br>Please, click "
@@ -201,27 +201,27 @@ msgstr ""
 "Вы должны были быть перенаправлены по ссылке, но что-то не получилось.<br> "
 "Пожалуйста, нажмите "
 
-#: wp-noexternallinks-parser.php:297
+#: wp-noexternallinks-parser.php:294
 msgid "HERE "
 msgstr "СЮДА "
 
-#: wp-noexternallinks-parser.php:297
+#: wp-noexternallinks-parser.php:294
 msgid " to go to "
 msgstr "чтобы перейти по ссылке "
 
-#: wp-noexternallinks-parser.php:297
+#: wp-noexternallinks-parser.php:294
 msgid " manually. "
 msgstr "вручную."
 
-#: wp-noexternallinks-parser.php:299
+#: wp-noexternallinks-parser.php:296
 msgid "Sorry, no url redirect specified. Can`t complete request."
 msgstr "Не был определён адрес, невозможно перенаправить."
 
-#: wp-noexternallinks-parser.php:338
+#: wp-noexternallinks-parser.php:335
 msgid "Can not get output buffer!"
 msgstr "Не получилось установить контроль над буфером вывода!"
 
-#: wp-noexternallinks-parser.php:338 wp-noexternallinks-parser.php:348
+#: wp-noexternallinks-parser.php:335 wp-noexternallinks-parser.php:345
 msgid ""
 "WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and "
 "use other filters."
@@ -230,7 +230,7 @@ msgstr ""
 "Пожалуйста, выключите опцию полной маскировки ссылок в настройках плагина и "
 "используйте другие опции."
 
-#: wp-noexternallinks-parser.php:348
+#: wp-noexternallinks-parser.php:345
 msgid "Output buffer empty!"
 msgstr "Буфер вывода пуст!"
 
