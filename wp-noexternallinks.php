@@ -7,7 +7,7 @@ if(!defined('DB_NAME'))
 Plugin Name: WP No External Links
 Plugin URI: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
 Description: This plugin will allow you to mask all external links to internal, or to hide them. Your own posts, comments pages, authors pages... To set up, visit <a href="options-general.php?page=wp-noexternallinks/wp-noexternallinks-options.php">configuration panel</a>.
-Version: 3.5.9.2
+Version: 3.5.9.3
 Author: Jehy
 Author URI: http://jehy.ru/articles/
 Update Server: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
@@ -78,6 +78,7 @@ function GetOptionInfo()
 	array('old_name'=>'noexternallinks_add_nofollow','new_name'=>'add_nofollow','def_value'=>1,'type'=>'chk','name'=>__('Add <b>rel=nofollow</b> for masked links (for google)','wpnoexternallinks'),'grp'=>'common'),
 	array('old_name'=>'noexternallinks_add_blank','new_name'=>'add_blank','def_value'=>1,'type'=>'chk','name'=>__('Add <b>target="blank"</b> for all links to other sites (links will open in new window)','wpnoexternallinks'),'grp'=>'common'),
 	array('old_name'=>'noexternallinks_put_noindex','new_name'=>'put_noindex','def_value'=>0,'type'=>'chk','name'=>__('Surround masked links with <b>&lt;noindex&gt;link&lt;/noindex&gt;</b> tag (for yandex search engine)','wpnoexternallinks'),'grp'=>'common'),
+	array('new_name'=>'put_noindex_comment','def_value'=>0,'type'=>'chk','name'=>__('Surround masked links with comment <b>&lt;!--noindex--&gt;link&lt;!--/noindex--&gt;</b> (for yandex search engine, better then noindex tag because valid)','wpnoexternallinks'),'grp'=>'common'),
 	array('old_name'=>'noexternallinks_disable_mask_links','new_name'=>'disable_mask_links','def_value'=>0,'type'=>'chk','name'=>__('No redirect','wpnoexternallinks'),'grp'=>'type'),
 	array('old_name'=>'noexternallinks_link_separator','new_name'=>'LINK_SEP','def_value'=>'goto','type'=>'txt','name'=>__('Link separator for redirects (default="goto")','wpnoexternallinks'),'grp'=>'common'),
 	array('old_name'=>'noexternallinks_exclude_links','new_name'=>'exclude_links','def_value'=>'','type'=>'text','name'=>__('Exclude URLs that you don`t want to mask (all urls, beginning with those, won`t be masked). Put one adress on each line, including protocol prefix (for example,','wpnoexternallinks').' "<b>http://</b>jehy.ru" '.__('or','wpnoexternallinks').' <b>https://</b>google.com '.__('or','wpnoexternallinks').' <b>ftp://</b>microsoft.com). '.__('Skype, javascript and mail links are excluded by default. To exclude full protocol, just add line with it`s prefix - for example,','wpnoexternallinks').' "<b>ftp://</b>"','grp'=>'exclude'),

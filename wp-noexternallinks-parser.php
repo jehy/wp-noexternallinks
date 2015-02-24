@@ -118,6 +118,8 @@ function parser($matches)
   $link='<a'.$ifblank.$ifnofollow.' href="'.$url.'" '.$matches[1].$matches[3].'>'.$matches[4].'</a>';
   if($this->options['put_noindex'])
     $link='<noindex>'.$link.'</noindex>';
+  if($this->options['put_noindex_comment'])
+    $link='<!--noindex-->'.$link.'<!--/noindex-->';
   return $link;
 }
 
