@@ -399,9 +399,12 @@ function set_filters()
     if($this->options['mask_comment'])
     {
       add_filter('comment_text',array($this,'filter'),99);
-      add_filter('comment_text_rss',array($this,'filter'),99);
       add_filter('comment_url',array($this,'filter'),99);
     }
+    if($this->options['mask_rss'])
+      add_filter('the_content_feed',array($this,'filter'),99);
+    if($this->options['mask_rss_comment'])
+      add_filter('comment_text_rss',array($this,'filter'),99);
     if($this->options['mask_author'])
     {
       add_filter('get_comment_author_url_link',array($this,'filter'),99);
