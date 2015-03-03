@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp-noexternallinks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-24 16:17+0300\n"
-"PO-Revision-Date: 2015-02-24 16:18+0300\n"
+"POT-Creation-Date: 2015-03-03 15:36+0300\n"
+"PO-Revision-Date: 2015-03-03 15:37+0300\n"
 "Last-Translator: Jehy <fate@jehy.ru>\n"
 "Language-Team: jehy <fate@jehy.ru>\n"
 "Language: ru_RU\n"
@@ -251,10 +251,24 @@ msgid "Mask comments authors`s homepage links"
 msgstr "Маскировать ссылки  авторов комментариев на свои страницы"
 
 #: wp-noexternallinks.php:78
+msgid "Mask links in your RSS post content"
+msgstr "Маскировать ссылки в ваших постах в RSS"
+
+#: wp-noexternallinks.php:78 wp-noexternallinks.php:79
+msgid "(may result in invalid RSS if used with some masking options)"
+msgstr ""
+"(может привести к невалидному RSS при использованию некоторых настроек "
+"маскировки ссылок)"
+
+#: wp-noexternallinks.php:79
+msgid "Mask links in RSS comments"
+msgstr "Маскировать ссылки в комментариях в RSS"
+
+#: wp-noexternallinks.php:80
 msgid "Add <b>rel=nofollow</b> for masked links (for google)"
 msgstr "Добавлять <b>rel=nofollow</b> в маскируемые ссылки (для google)"
 
-#: wp-noexternallinks.php:79
+#: wp-noexternallinks.php:81
 msgid ""
 "Add <b>target=\"blank\"</b> for all links to other sites (links will open in "
 "new window)"
@@ -262,7 +276,7 @@ msgstr ""
 "Добавлять <b>target=\"blank\"</b> для всех ссылок на другие сайты (ссылки "
 "будут открываться в новом окне)"
 
-#: wp-noexternallinks.php:80
+#: wp-noexternallinks.php:82
 msgid ""
 "Surround masked links with <b>&lt;noindex&gt;link&lt;/noindex&gt;</b> tag "
 "(for yandex search engine)"
@@ -270,7 +284,7 @@ msgstr ""
 "Окружать маскируемые ссылки тегом <b>&lt;noindex&gt;link&lt;/noindex&gt;</b> "
 "(для яндекса)"
 
-#: wp-noexternallinks.php:81
+#: wp-noexternallinks.php:83
 msgid ""
 "Surround masked links with comment <b>&lt;!--noindex--&gt;link&lt;!--/"
 "noindex--&gt;</b> (for yandex search engine, better then noindex tag because "
@@ -280,15 +294,15 @@ msgstr ""
 "noindex--&gt;</b> (для яндекса, это лучшая альтернатива тегу noindex, "
 "поскольку HTML остаётся валидным)"
 
-#: wp-noexternallinks.php:82
+#: wp-noexternallinks.php:84
 msgid "No redirect"
 msgstr "Не использовать редирект"
 
-#: wp-noexternallinks.php:83
+#: wp-noexternallinks.php:85
 msgid "Link separator for redirects (default=\"goto\")"
 msgstr "Разделитель ссылок для редиректа (по молчанию = \"goto\")"
 
-#: wp-noexternallinks.php:84
+#: wp-noexternallinks.php:86
 msgid ""
 "Exclude URLs that you don`t want to mask (all urls, beginning with those, "
 "won`t be masked). Put one adress on each line, including protocol prefix "
@@ -297,11 +311,11 @@ msgstr ""
 "Укажите адреса, которые вы не хотите маскировать - все адреса, начинающиеся "
 "с указанных, не будут маскированы. По одному на каждой строчке (например,"
 
-#: wp-noexternallinks.php:84
+#: wp-noexternallinks.php:86
 msgid "or"
 msgstr "или"
 
-#: wp-noexternallinks.php:84
+#: wp-noexternallinks.php:86
 msgid ""
 "Skype, javascript and mail links are excluded by default. To exclude full "
 "protocol, just add line with it`s prefix - for example,"
@@ -309,7 +323,7 @@ msgstr ""
 "Ссылки на скайп, яваскрипт и почту уже исключены из маскировки. Чтобы "
 "исключить весь протокол, добавьте строчку с его префиксом - например,"
 
-#: wp-noexternallinks.php:85
+#: wp-noexternallinks.php:87
 msgid ""
 "Mask ALL links in document (can slow down your blog and conflict with some "
 "cache and other plugins. Not recommended)."
@@ -317,23 +331,23 @@ msgstr ""
 "Маскировать ВСЕ ссылки в документе (может замедлить ваш блог и конфликтовать "
 "с кеширующими плагинами. Не рекомендуется)."
 
-#: wp-noexternallinks.php:86
+#: wp-noexternallinks.php:88
 msgid "Log all outgoing clicks."
 msgstr "Логировать все исходящие клики."
 
-#: wp-noexternallinks.php:87
+#: wp-noexternallinks.php:89
 msgid "Days to keep clicks stats"
 msgstr "Время (в днях) хранения статистики по кликам"
 
-#: wp-noexternallinks.php:88
+#: wp-noexternallinks.php:90
 msgid "Use javascript redirect"
 msgstr "Использовать яваскриптовый редирект"
 
-#: wp-noexternallinks.php:89
+#: wp-noexternallinks.php:91
 msgid "Redirect time (seconds)"
 msgstr "Время редиректа (в секундах)"
 
-#: wp-noexternallinks.php:90
+#: wp-noexternallinks.php:92
 msgid ""
 "Custom redirect text. Use word \"LINKURL\" where you want to use redirect "
 "url. For example, <b>CLICK &lt;a href=\"LINKURL\"&gt;HERE NOW&lt;/a&gt;</b>"
@@ -341,31 +355,31 @@ msgstr ""
 "Свой текст редиректа. Используйте слово \"LINKURL\"  где должен быть адрес. "
 "Например, <b>НАЖМИ &lt;a href=\"LINKURL\"&gt;СЮДА ПРЯМО СЕЙЧАС&lt;/a&gt;</b>"
 
-#: wp-noexternallinks.php:91
+#: wp-noexternallinks.php:93
 msgid "Do not mask links when registered users visit site"
 msgstr ""
 "Не маскировать ссылки при выдаче сайта зарегистрированным пользователям"
 
-#: wp-noexternallinks.php:92
+#: wp-noexternallinks.php:94
 msgid ""
 "Mask url with special numeric code. Be careful, this option may slow down "
 "your blog."
 msgstr ""
 "Маскировать ссылки цифровым кодом. Осторожно, это может замедлить ваш блог."
 
-#: wp-noexternallinks.php:93
+#: wp-noexternallinks.php:95
 msgid "Completely remove links from your posts. Someone needed it..."
 msgstr "Полностью удалить ссылки из постов. Кому-то было нужно..."
 
-#: wp-noexternallinks.php:94
+#: wp-noexternallinks.php:96
 msgid "Turn all links into text. For perverts."
 msgstr "Превратить все ссылки в текст. Опция для извращенцев."
 
-#: wp-noexternallinks.php:95
+#: wp-noexternallinks.php:97
 msgid "Use base64 encoding for links."
 msgstr "Кодировать ссылки при помощи base64."
 
-#: wp-noexternallinks.php:96
+#: wp-noexternallinks.php:98
 msgid ""
 "Debug mode (Adds comments lines like \"&lt;!--wpnoexternallinks debug: some "
 "info--&gt;\" to output. For testing only!)"
@@ -373,7 +387,7 @@ msgstr ""
 "Режим отладки (Добавляет в код комментарии типа \"&lt;!--wpnoexternallinks "
 "debug: some info--&gt;\" . Только для тестирования!)"
 
-#: wp-noexternallinks.php:97
+#: wp-noexternallinks.php:99
 msgid ""
 "Check for document referer and restrict redirect if it is not your own web "
 "site. Useful against spoofing attacks. User will be redirected to main page "
@@ -383,7 +397,7 @@ msgstr ""
 "случае, если он пришёл не с вашего веб сайта. Это защита от атак с подменой "
 "адреса. Пользователи будут перенаправлены на главную страницу вашего сайта."
 
-#: wp-noexternallinks.php:98
+#: wp-noexternallinks.php:100
 msgid ""
 "Do not mask links which have <b>rel=\"follow\"</b> atribute and are posted "
 "by admin"
@@ -391,7 +405,7 @@ msgstr ""
 "Не маскировать сссылки с атрибутом <b>rel=\"follow\"</b>, написанные "
 "администратором"
 
-#: wp-noexternallinks.php:190
+#: wp-noexternallinks.php:192
 msgid "Custom parser file found but <b>custom_parser</b> class not defined!"
 msgstr ""
 "Найден файл расширения плагина, но класс <b>custom_parser</b> не определён!"

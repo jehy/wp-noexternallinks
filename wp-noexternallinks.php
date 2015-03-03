@@ -7,7 +7,7 @@ if(!defined('DB_NAME'))
 Plugin Name: WP No External Links
 Plugin URI: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
 Description: This plugin will allow you to mask all external links to internal, or to hide them. Your own posts, comments pages, authors pages... To set up, visit <a href="options-general.php?page=wp-noexternallinks/wp-noexternallinks-options.php">configuration panel</a>.
-Version: 3.5.9.3
+Version: 3.5.9.4
 Author: Jehy
 Author URI: http://jehy.ru/articles/
 Update Server: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
@@ -75,6 +75,8 @@ function GetOptionInfo()
 	array('old_name'=>'noexternallinks_mask_mine','new_name'=>'mask_mine','def_value'=>1,'type'=>'chk','name'=>__('Mask links in posts and pages','wpnoexternallinks'),'grp'=>'what'),
 	array('old_name'=>'noexternallinks_mask_comment','new_name'=>'mask_comment','def_value'=>1,'type'=>'chk','name'=>__('Mask links in comments','wpnoexternallinks'),'grp'=>'what'),
 	array('old_name'=>'noexternallinks_mask_author','new_name'=>'mask_author','def_value'=>1,'type'=>'chk','name'=>__('Mask comments authors`s homepage links','wpnoexternallinks'),'grp'=>'what'),
+	array('new_name'=>'mask_rss','def_value'=>0,'type'=>'chk','name'=>__('Mask links in your RSS post content','wpnoexternallinks').' '.__('(may result in invalid RSS if used with some masking options)','wpnoexternallinks'),'grp'=>'what'),
+	array('new_name'=>'mask_rss_comment','def_value'=>0,'type'=>'chk','name'=>__('Mask links in RSS comments','wpnoexternallinks').' '.__('(may result in invalid RSS if used with some masking options)','wpnoexternallinks'),'grp'=>'what'),
 	array('old_name'=>'noexternallinks_add_nofollow','new_name'=>'add_nofollow','def_value'=>1,'type'=>'chk','name'=>__('Add <b>rel=nofollow</b> for masked links (for google)','wpnoexternallinks'),'grp'=>'common'),
 	array('old_name'=>'noexternallinks_add_blank','new_name'=>'add_blank','def_value'=>1,'type'=>'chk','name'=>__('Add <b>target="blank"</b> for all links to other sites (links will open in new window)','wpnoexternallinks'),'grp'=>'common'),
 	array('old_name'=>'noexternallinks_put_noindex','new_name'=>'put_noindex','def_value'=>0,'type'=>'chk','name'=>__('Surround masked links with <b>&lt;noindex&gt;link&lt;/noindex&gt;</b> tag (for yandex search engine)','wpnoexternallinks'),'grp'=>'common'),
