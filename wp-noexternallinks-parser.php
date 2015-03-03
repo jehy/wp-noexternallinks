@@ -20,8 +20,6 @@ function debug_info($info,$return=0)
     $this->debug_log[]=$info;
      if($return)
        return $t;
-     #else
-     #  echo $t;
   }
 }
 
