@@ -300,7 +300,7 @@ else
 function filter($content)
 {
   $this->debug_info("Processing text: \n".str_replace('-->','--&gt;',$content));
-  if(function_exists('is_feed') && is_feed())
+  if(function_exists('is_feed') && is_feed() &&!$this->options['mask_rss']&&!$this->options['mask_rss_comment'])
   {
 	  $this->debug_info('It is feed, no processing');
     return $content;
@@ -400,7 +400,10 @@ function set_filters()
       add_filter('comment_url',array($this,'filter'),99);
     }
     if($this->options['mask_rss'])
+    {
       add_filter('the_content_feed',array($this,'filter'),99);
+      add_filter('the_content_rss',array($this,'filter'),99);
+    }
     if($this->options['mask_rss_comment'])
       add_filter('comment_text_rss',array($this,'filter'),99);
     if($this->options['mask_author'])
