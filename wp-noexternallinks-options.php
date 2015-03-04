@@ -79,14 +79,23 @@ function modify_menu(){
 		);
 }
 
+function show_navi()
+{
+if($_REQUEST['action']=='stats'){?>
+<a href="?page=<?php echo $_REQUEST['page'];?>" class="button-primary"><?php _e('View options','wpnoexternallinks');?></a>
+  <?php }else{?>
+<a href="?page=<?php echo $_REQUEST['page'];?>&action=stats" class="button-primary"><?php _e('View Stats','wpnoexternallinks');?></a>
+  <?php }?>
+<a href="http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/" class="button-primary"><?php _e('Feedback','wpnoexternallinks');?></a>
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EE8RM4N7BSNZ6" class="button-primary"><?php _e('Donate','wpnoexternallinks');?></a>
+<?php
+}
 function view_stats()
 {global $wpdb;
 ?>
 	<form method="post" action="">
 		<input type="hidden" name="page" value="<?php echo $_REQUEST['page'];?>">
-		<?php wp_nonce_field('update-options'); ?>
-<a href="?page=<?php echo $_REQUEST['page'];?>" class="button-primary"><?php _e('View options','wpnoexternallinks');?></a>
-<a href="http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/" class="button-primary"><?php _e('Feedback','wpnoexternallinks');?></a><br><br>
+		<?php wp_nonce_field('update-options'); $this->show_navi();?><br><br>
 <?php
 	
 if(!$this->options['stats'])
@@ -141,9 +150,9 @@ function option_page()
 <?php echo __('If you need to make custom modifications for plugin - you can simply extend it, according to','wpnoexternallinks').' <a href="http://jehy.ru/articles/2014/12/08/custom-parser-for-wp-noexternallinks/">'.__('this article.','wpnoexternallinks').'</a>';?>
 </p>
 	<form method="post" action="">
-		<?php wp_nonce_field('update-options'); ?>
-<a href="?page=<?php echo $_REQUEST['page'];?>&action=stats" class="button-primary"><?php _e('View Stats','wpnoexternallinks');?></a>
-<a href="http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/" class="button-primary"><?php _e('Feedback','wpnoexternallinks');?></a><br>
+		<?php wp_nonce_field('update-options');
+    $this->show_navi();?>
+<br>
 <?php echo '<h2>'.__('Global links masking settings','wpnoexternallinks').'</h2>'.'('.__('You can also disable plugin on per-post basis','wpnoexternallinks').')';?><br><br>
 <?php
 $opt=$this->GetOptionInfo();
