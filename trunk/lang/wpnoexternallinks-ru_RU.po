@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp-noexternallinks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-03 15:36+0300\n"
-"PO-Revision-Date: 2015-03-03 15:37+0300\n"
+"POT-Creation-Date: 2015-03-04 12:45+0300\n"
+"PO-Revision-Date: 2015-03-04 12:46+0300\n"
 "Last-Translator: Jehy <fate@jehy.ru>\n"
 "Language-Team: jehy <fate@jehy.ru>\n"
 "Language: ru_RU\n"
@@ -36,11 +36,15 @@ msgstr "Настройки обновлены."
 msgid "View options"
 msgstr "Настройки"
 
-#: wp-noexternallinks-options.php:89 wp-noexternallinks-options.php:146
+#: wp-noexternallinks-options.php:89 wp-noexternallinks-options.php:147
 msgid "Feedback"
 msgstr "Обратная связь"
 
-#: wp-noexternallinks-options.php:94
+#: wp-noexternallinks-options.php:90
+msgid "Donate"
+msgstr "Пожертвовать"
+
+#: wp-noexternallinks-options.php:95
 msgid ""
 "Statistic for plugin is disabled! Please, go to options page and enable it "
 "via checkbox \"Log all outgoing clicks\"."
@@ -48,23 +52,23 @@ msgstr ""
 "Статистика для плагина отключена. Пожалуйста, зайдите в настройки и "
 "установите галочку \"Вести статистику по кликам на внешние ссылки\"."
 
-#: wp-noexternallinks-options.php:107
+#: wp-noexternallinks-options.php:108
 msgid "View stats from "
 msgstr "Просмотреть статистику с "
 
-#: wp-noexternallinks-options.php:109
+#: wp-noexternallinks-options.php:110
 msgid " to "
 msgstr "до "
 
-#: wp-noexternallinks-options.php:109
+#: wp-noexternallinks-options.php:110
 msgid "View"
 msgstr "Смотреть"
 
-#: wp-noexternallinks-options.php:132
+#: wp-noexternallinks-options.php:133
 msgid "No statistic for given period."
 msgstr "За указанный период времени статистики не найдено."
 
-#: wp-noexternallinks-options.php:139
+#: wp-noexternallinks-options.php:140
 msgid ""
 "That plugins allows you to mask all external links and make them internal or "
 "hidden - using PHP redirect or special link tags and attributes. Yeah, by "
@@ -78,7 +82,7 @@ msgstr ""
 "пользователю. Если вы отключили этот плагин, а ваши ссылки всё ещё "
 "маскируются - скорее всего, это связано с вашим кеширующим плагином!"
 
-#: wp-noexternallinks-options.php:141
+#: wp-noexternallinks-options.php:142
 msgid ""
 "If you need to make custom modifications for plugin - you can simply extend "
 "it, according to"
@@ -86,27 +90,27 @@ msgstr ""
 "Если вам требуется сделать модификации в работе плагина - просто расширьте "
 "его по примеру"
 
-#: wp-noexternallinks-options.php:141
+#: wp-noexternallinks-options.php:142
 msgid "this article."
 msgstr "этой статьи"
 
-#: wp-noexternallinks-options.php:145
+#: wp-noexternallinks-options.php:146
 msgid "View Stats"
 msgstr "Статистика"
 
-#: wp-noexternallinks-options.php:147
+#: wp-noexternallinks-options.php:148
 msgid "Global links masking settings"
 msgstr "Глобальные настройки маскировки ссылок"
 
-#: wp-noexternallinks-options.php:147
+#: wp-noexternallinks-options.php:148
 msgid "You can also disable plugin on per-post basis"
 msgstr "Так же вы можете отключить плагин для конкретных постов"
 
-#: wp-noexternallinks-options.php:150
+#: wp-noexternallinks-options.php:151
 msgid "Choose masking type"
 msgstr "Выберите тип маскировки"
 
-#: wp-noexternallinks-options.php:150
+#: wp-noexternallinks-options.php:151
 msgid ""
 "Default masking type is via 302 redirects. Please choose one of the "
 "following mods if you do not like it:"
@@ -114,23 +118,23 @@ msgstr ""
 "По умолчанию, при маскировке используются 302е редиректы. Пожалуйста, "
 "выберите один из вариантов ниже, если вас это не устраивает:"
 
-#: wp-noexternallinks-options.php:152
+#: wp-noexternallinks-options.php:153
 msgid "What to mask"
 msgstr "Что маскировать"
 
-#: wp-noexternallinks-options.php:154
+#: wp-noexternallinks-options.php:155
 msgid "What to exclude from masking"
 msgstr "Что не маскировать"
 
-#: wp-noexternallinks-options.php:156
+#: wp-noexternallinks-options.php:157
 msgid "Common configuration"
 msgstr "Общие настройки"
 
-#: wp-noexternallinks-options.php:158
+#: wp-noexternallinks-options.php:159
 msgid "Link encoding"
 msgstr "Шифрование ссылок"
 
-#: wp-noexternallinks-options.php:158
+#: wp-noexternallinks-options.php:159
 msgid ""
 "Those options are not secure enough if you want to protect your data from "
 "someone but are quite enough to make link not human-readable. Please choose "
@@ -139,15 +143,15 @@ msgstr ""
 "Эти виды шифрования небезопасно, если вы хотите защитить от кого-то данные, "
 "но его вполне хватает, чтобы сделать ссылку нечитаемой для человека."
 
-#: wp-noexternallinks-options.php:160
+#: wp-noexternallinks-options.php:161
 msgid "Configuration for javascript redirects (if enabled)"
 msgstr "Настройки редиректа через яваскрипт (если он выбран)"
 
-#: wp-noexternallinks-options.php:163
+#: wp-noexternallinks-options.php:164
 msgid "Save Changes"
 msgstr "Сохранить измения"
 
-#: wp-noexternallinks-parser.php:140
+#: wp-noexternallinks-parser.php:138
 msgid ""
 "Failed to make masked link. MySQL link table does not exist. Trying to "
 "create table."
@@ -155,29 +159,29 @@ msgstr ""
 "Не удалось сохранить маску ссылки. Таблица MySQL не существует. Попытаемся "
 "её создать."
 
-#: wp-noexternallinks-parser.php:145 wp-noexternallinks-parser.php:239
+#: wp-noexternallinks-parser.php:143 wp-noexternallinks-parser.php:237
 msgid "Failed to create table. Please, check mysql permissions."
 msgstr "Не удалось создать таблицу. Пожалуйста, проверьте полномочия MySQL."
 
-#: wp-noexternallinks-parser.php:146 wp-noexternallinks-parser.php:156
-#: wp-noexternallinks-parser.php:233 wp-noexternallinks-parser.php:240
+#: wp-noexternallinks-parser.php:144 wp-noexternallinks-parser.php:154
+#: wp-noexternallinks-parser.php:231 wp-noexternallinks-parser.php:238
 msgid "Failed SQL: "
 msgstr "SQL запрос, вызвавший ошибку:"
 
-#: wp-noexternallinks-parser.php:146 wp-noexternallinks-parser.php:156
-#: wp-noexternallinks-parser.php:233 wp-noexternallinks-parser.php:240
+#: wp-noexternallinks-parser.php:144 wp-noexternallinks-parser.php:154
+#: wp-noexternallinks-parser.php:231 wp-noexternallinks-parser.php:238
 msgid "Error was:"
 msgstr "Ошибка была:"
 
-#: wp-noexternallinks-parser.php:150 wp-noexternallinks-parser.php:244
+#: wp-noexternallinks-parser.php:148 wp-noexternallinks-parser.php:242
 msgid "Table created."
 msgstr "Таблица создана."
 
-#: wp-noexternallinks-parser.php:213 wp-noexternallinks-parser.php:283
+#: wp-noexternallinks-parser.php:211 wp-noexternallinks-parser.php:281
 msgid "Redirecting..."
 msgstr "Перенаправляю..."
 
-#: wp-noexternallinks-parser.php:219
+#: wp-noexternallinks-parser.php:217
 msgid ""
 "You have been redirected through this website from a suspicious source. We "
 "prevented it and you are going to be redirected to our "
@@ -185,15 +189,15 @@ msgstr ""
 "Вас перенеправили по этой сссылке из подозрительного источника. Мы "
 "предотвратили переход, и вы будете перенаправлены на наш "
 
-#: wp-noexternallinks-parser.php:219
+#: wp-noexternallinks-parser.php:217
 msgid "safe web site."
 msgstr "безопасный веб сайт."
 
-#: wp-noexternallinks-parser.php:234
+#: wp-noexternallinks-parser.php:232
 msgid "Failed to save statistic data. Trying to create table."
 msgstr "Не удалось сохранить статистику. Пытаюсь создать таблицу."
 
-#: wp-noexternallinks-parser.php:296
+#: wp-noexternallinks-parser.php:294
 msgid ""
 "You were going to the redirect link, but something did not work properly."
 "<br>Please, click "
@@ -201,27 +205,27 @@ msgstr ""
 "Вы должны были быть перенаправлены по ссылке, но что-то не получилось.<br> "
 "Пожалуйста, нажмите "
 
-#: wp-noexternallinks-parser.php:296
+#: wp-noexternallinks-parser.php:294
 msgid "HERE "
 msgstr "СЮДА "
 
-#: wp-noexternallinks-parser.php:296
+#: wp-noexternallinks-parser.php:294
 msgid " to go to "
 msgstr "чтобы перейти по ссылке "
 
-#: wp-noexternallinks-parser.php:296
+#: wp-noexternallinks-parser.php:294
 msgid " manually. "
 msgstr "вручную."
 
-#: wp-noexternallinks-parser.php:298
+#: wp-noexternallinks-parser.php:296
 msgid "Sorry, no url redirect specified. Can`t complete request."
 msgstr "Не был определён адрес, невозможно перенаправить."
 
-#: wp-noexternallinks-parser.php:337
+#: wp-noexternallinks-parser.php:335
 msgid "Can not get output buffer!"
 msgstr "Не получилось установить контроль над буфером вывода!"
 
-#: wp-noexternallinks-parser.php:337 wp-noexternallinks-parser.php:347
+#: wp-noexternallinks-parser.php:335 wp-noexternallinks-parser.php:345
 msgid ""
 "WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and "
 "use other filters."
@@ -230,7 +234,7 @@ msgstr ""
 "Пожалуйста, выключите опцию полной маскировки ссылок в настройках плагина и "
 "используйте другие опции."
 
-#: wp-noexternallinks-parser.php:347
+#: wp-noexternallinks-parser.php:345
 msgid "Output buffer empty!"
 msgstr "Буфер вывода пуст!"
 
@@ -405,7 +409,7 @@ msgstr ""
 "Не маскировать сссылки с атрибутом <b>rel=\"follow\"</b>, написанные "
 "администратором"
 
-#: wp-noexternallinks.php:192
+#: wp-noexternallinks.php:193
 msgid "Custom parser file found but <b>custom_parser</b> class not defined!"
 msgstr ""
 "Найден файл расширения плагина, но класс <b>custom_parser</b> не определён!"
