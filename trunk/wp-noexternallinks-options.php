@@ -147,7 +147,10 @@ function option_page()
 {
 ?><p><?php _e('That plugins allows you to mask all external links and make them internal or hidden - using PHP redirect or special link tags and attributes. Yeah, by the way - it does not change anything in the base - only replaces links on output. If you disabled this plugin and still have links masked - it is your caching plugin`s fault!','wpnoexternallinks');?></p>
 <p>
-<?php echo __('If you need to make custom modifications for plugin - you can simply extend it, according to','wpnoexternallinks').' <a href="http://jehy.ru/articles/2014/12/08/custom-parser-for-wp-noexternallinks/">'.__('this article.','wpnoexternallinks').'</a>';?>
+<?php echo __('If you need to make custom modifications for plugin - you can simply extend it, according to','wpnoexternallinks').' <a href="http://jehy.ru/articles/2014/12/08/custom-parser-for-wp-noexternallinks/">'.__('this article.','wpnoexternallinks').'</a>.';?>
+</p>
+<p>
+<?php echo __('If you need to mask links in posts`s custom field, take a look at','wpnoexternallinks').' <a href="http://jehy.ru/articles/2015/03/06/masking-links-in-custom-fields-with-wp-noexternallinks/">'.__('this article.','wpnoexternallinks').'</a>.';?>
 </p>
 	<form method="post" action="">
 		<?php wp_nonce_field('update-options');

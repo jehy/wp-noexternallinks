@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp-noexternallinks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-04 12:45+0300\n"
-"PO-Revision-Date: 2015-03-04 12:46+0300\n"
+"POT-Creation-Date: 2015-03-06 13:59+0300\n"
+"PO-Revision-Date: 2015-03-06 14:03+0300\n"
 "Last-Translator: Jehy <fate@jehy.ru>\n"
 "Language-Team: jehy <fate@jehy.ru>\n"
 "Language: ru_RU\n"
@@ -32,11 +32,15 @@ msgstr "Не маскировать ссылки"
 msgid "Options updated."
 msgstr "Настройки обновлены."
 
-#: wp-noexternallinks-options.php:88
+#: wp-noexternallinks-options.php:85
 msgid "View options"
 msgstr "Настройки"
 
-#: wp-noexternallinks-options.php:89 wp-noexternallinks-options.php:147
+#: wp-noexternallinks-options.php:87
+msgid "View Stats"
+msgstr "Статистика"
+
+#: wp-noexternallinks-options.php:89
 msgid "Feedback"
 msgstr "Обратная связь"
 
@@ -44,7 +48,7 @@ msgstr "Обратная связь"
 msgid "Donate"
 msgstr "Пожертвовать"
 
-#: wp-noexternallinks-options.php:95
+#: wp-noexternallinks-options.php:103
 msgid ""
 "Statistic for plugin is disabled! Please, go to options page and enable it "
 "via checkbox \"Log all outgoing clicks\"."
@@ -52,23 +56,23 @@ msgstr ""
 "Статистика для плагина отключена. Пожалуйста, зайдите в настройки и "
 "установите галочку \"Вести статистику по кликам на внешние ссылки\"."
 
-#: wp-noexternallinks-options.php:108
+#: wp-noexternallinks-options.php:116
 msgid "View stats from "
 msgstr "Просмотреть статистику с "
 
-#: wp-noexternallinks-options.php:110
+#: wp-noexternallinks-options.php:118
 msgid " to "
 msgstr "до "
 
-#: wp-noexternallinks-options.php:110
+#: wp-noexternallinks-options.php:118
 msgid "View"
 msgstr "Смотреть"
 
-#: wp-noexternallinks-options.php:133
+#: wp-noexternallinks-options.php:141
 msgid "No statistic for given period."
 msgstr "За указанный период времени статистики не найдено."
 
-#: wp-noexternallinks-options.php:140
+#: wp-noexternallinks-options.php:148
 msgid ""
 "That plugins allows you to mask all external links and make them internal or "
 "hidden - using PHP redirect or special link tags and attributes. Yeah, by "
@@ -82,7 +86,7 @@ msgstr ""
 "пользователю. Если вы отключили этот плагин, а ваши ссылки всё ещё "
 "маскируются - скорее всего, это связано с вашим кеширующим плагином!"
 
-#: wp-noexternallinks-options.php:142
+#: wp-noexternallinks-options.php:150
 msgid ""
 "If you need to make custom modifications for plugin - you can simply extend "
 "it, according to"
@@ -90,27 +94,29 @@ msgstr ""
 "Если вам требуется сделать модификации в работе плагина - просто расширьте "
 "его по примеру"
 
-#: wp-noexternallinks-options.php:142
+#: wp-noexternallinks-options.php:150 wp-noexternallinks-options.php:153
 msgid "this article."
 msgstr "этой статьи"
 
-#: wp-noexternallinks-options.php:146
-msgid "View Stats"
-msgstr "Статистика"
+#: wp-noexternallinks-options.php:153
+msgid "If you need to mask links in posts`s custom field, take a look at"
+msgstr ""
+"Если вам требуется маскировать ссылки из произвольных полей постов, сделайте "
+"это по примеру"
 
-#: wp-noexternallinks-options.php:148
+#: wp-noexternallinks-options.php:159
 msgid "Global links masking settings"
 msgstr "Глобальные настройки маскировки ссылок"
 
-#: wp-noexternallinks-options.php:148
+#: wp-noexternallinks-options.php:159
 msgid "You can also disable plugin on per-post basis"
 msgstr "Так же вы можете отключить плагин для конкретных постов"
 
-#: wp-noexternallinks-options.php:151
+#: wp-noexternallinks-options.php:162
 msgid "Choose masking type"
 msgstr "Выберите тип маскировки"
 
-#: wp-noexternallinks-options.php:151
+#: wp-noexternallinks-options.php:162
 msgid ""
 "Default masking type is via 302 redirects. Please choose one of the "
 "following mods if you do not like it:"
@@ -118,23 +124,23 @@ msgstr ""
 "По умолчанию, при маскировке используются 302е редиректы. Пожалуйста, "
 "выберите один из вариантов ниже, если вас это не устраивает:"
 
-#: wp-noexternallinks-options.php:153
+#: wp-noexternallinks-options.php:164
 msgid "What to mask"
 msgstr "Что маскировать"
 
-#: wp-noexternallinks-options.php:155
+#: wp-noexternallinks-options.php:166
 msgid "What to exclude from masking"
 msgstr "Что не маскировать"
 
-#: wp-noexternallinks-options.php:157
+#: wp-noexternallinks-options.php:168
 msgid "Common configuration"
 msgstr "Общие настройки"
 
-#: wp-noexternallinks-options.php:159
+#: wp-noexternallinks-options.php:170
 msgid "Link encoding"
 msgstr "Шифрование ссылок"
 
-#: wp-noexternallinks-options.php:159
+#: wp-noexternallinks-options.php:170
 msgid ""
 "Those options are not secure enough if you want to protect your data from "
 "someone but are quite enough to make link not human-readable. Please choose "
@@ -143,11 +149,11 @@ msgstr ""
 "Эти виды шифрования небезопасно, если вы хотите защитить от кого-то данные, "
 "но его вполне хватает, чтобы сделать ссылку нечитаемой для человека."
 
-#: wp-noexternallinks-options.php:161
+#: wp-noexternallinks-options.php:172
 msgid "Configuration for javascript redirects (if enabled)"
 msgstr "Настройки редиректа через яваскрипт (если он выбран)"
 
-#: wp-noexternallinks-options.php:164
+#: wp-noexternallinks-options.php:175
 msgid "Save Changes"
 msgstr "Сохранить измения"
 
