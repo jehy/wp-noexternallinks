@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 4.1.1
-Stable tag: 3.5.9.6
+Stable tag: 3.5.9.7
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -153,6 +153,7 @@ If you don't rate my plugin as 5/5 - please write why - and I will add or change
 3.5.9.4 - Added masking options for RSS feed.  
 3.5.9.5 - Added support for relative links, beginning with slash (/).  
 3.5.9.6 - Fix for RSS masking.  
+3.5.9.7 - Add support for custom location of wp-content dir.  
 
 == Installation ==
 
