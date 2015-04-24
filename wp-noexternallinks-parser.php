@@ -412,6 +412,8 @@ function set_filters()
       add_filter('get_comment_author_link',array($this,'filter'),99);
       add_filter('get_comment_author_url',array($this,'filter'),99);
   	}
+    #add custom filter for user usage
+    add_filter( 'wp_noexternallinks', array($this,'filter'),99 );
   }
 }
 }
