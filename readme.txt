@@ -2,8 +2,8 @@
 Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
-Tested up to: 4.2
-Stable tag: 3.5.9.9
+Tested up to: 4.2.3
+Stable tag: 3.5.10
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -155,7 +155,8 @@ If you don't rate my plugin as 5/5 - please write why - and I will add or change
 3.5.9.6 - Fix for RSS masking.  
 3.5.9.7 - Add support for custom location of wp-content dir.  
 3.5.9.8 - Fixed custom parser load.  
-3.5.9.9 - Added custom filter with name "wp_noexternallinks". Please use it for custom fields and so on.  
+3.5.9.9 - Added custom filter with name "wp_noexternallinks". Please use it for custom fields and so on.
+3.5.9.10 - Disabled full masking when running cron job to avoid collisions.
 
 == Installation ==
 
