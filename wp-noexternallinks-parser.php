@@ -9,17 +9,18 @@ class wp_noexternallinks_parser extends wp_noexternallinks
 
     function output_debug()
     {
-        echo "\n<!--wpnoexternallinks debug:\n" . implode("\n\n", $this->debug_log) . "\n-->";
+        echo "\n<!--wp-noexternallinks debug:\n" . implode("\n\n", $this->debug_log) . "\n-->";
     }
 
     function debug_info($info, $return = 0)
     {
         if ($this->options['debug']) {
-            $t = "\n<!--wpnoexternallinks debug:\n" . $info . "\n-->";
+            $t = "\n<!--wp-noexternallinks debug:\n" . $info . "\n-->";
             $this->debug_log[] = $info;
             if ($return)
                 return $t;
         }
+        return '';
     }
 
     function check_exclusions($matches)
@@ -97,12 +98,13 @@ class wp_noexternallinks_parser extends wp_noexternallinks
             $url = $this->encode_link($url);
             if (!$wp_rewrite->using_permalinks())
                 $url = urlencode($url);
-            //add "/" to site url- some servers dont't work with urls like xxx.ru?goto, but with xxx.ru/?goto
-            if ($this->options['site'][strlen($this->options['site']) - 1] != '/')
-                $this->options['site'] .= '/';
             if ($sep[0] == '/')#to not create double backslashes
                 $sep = substr($sep, 1);
-            $url = $this->options['site'] . $sep . $url;
+            $tmp = $this->options['site'];
+            //add "/" to site url- some servers dont't work with urls like xxx.ru?goto, but with xxx.ru/?goto
+            if (substr($this->options['site'], 0, -1) !== '/')
+                $tmp .= '/';
+            $url = $tmp . $sep . $url;
         }
         if ($this->options['remove_links'])
             return '<span class="waslinkname">' . $matches[4] . '</span>';
@@ -123,26 +125,26 @@ class wp_noexternallinks_parser extends wp_noexternallinks
             $url = base64_encode($url);
         } elseif ($this->options['maskurl']) {
             $sql = 'select id from ' . $wpdb->prefix . 'masklinks where url= %s limit 1';
-            $result = $wpdb->get_var($wpdb->prepare($sql, addslashes($url)));
+            $result = $wpdb->get_var($wpdb->prepare($sql, $url));
             if (is_null($result) && strpos($wpdb->last_error, "doesn't exist"))//no table found
             {
                 /*create masklink table*/
-                echo '<div class="error">' . __('Failed to make masked link. MySQL link table does not exist. Trying to create table.', 'wpnoexternallinks') . '</div>';
+                echo '<div class="error">' . __('Failed to make masked link. MySQL link table does not exist. Trying to create table.', 'wp-noexternallinks') . '</div>';
                 $sql2 = 'CREATE TABLE ' . $wpdb->prefix . 'masklinks(`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,`url` VARCHAR(255),  PRIMARY KEY (`id`))';
                 $res = $wpdb->query($sql2);
                 if (!$res) {
-                    echo '<div class="error">' . __('Failed to create table. Please, check mysql permissions.', 'wpnoexternallinks') . '</div>';
-                    $this->debug_info(__('Failed SQL: ', 'wpnoexternallinks') . '<br>' . $sql2 . '<br>' . __('Error was:', 'wpnoexternallinks') . '<br>' . $wpdb->last_error);
+                    echo '<div class="error">' . __('Failed to create table. Please, check mysql permissions.', 'wp-noexternallinks') . '</div>';
+                    $this->debug_info(__('Failed SQL: ', 'wp-noexternallinks') . '<br>' . $sql2 . '<br>' . __('Error was:', 'wp-noexternallinks') . '<br>' . $wpdb->last_error);
                 } else {
-                    echo '<div class="updated">' . __('Table created.', 'wpnoexternallinks') . '</div>';
+                    echo '<div class="updated">' . __('Table created.', 'wp-noexternallinks') . '</div>';
                     $wpdb->query($sql);
                 }
             } elseif (is_null($result)) {
-                $this->debug_info(__('Failed SQL: ', 'wpnoexternallinks') . '<br>' . $sql2 . '<br>' . __('Error was:', 'wpnoexternallinks') . '<br>' . $wpdb->last_error);
+                $this->debug_info(__('Failed SQL: ', 'wp-noexternallinks') . '<br>' . $sql . '<br>' . __('Error was:', 'wp-noexternallinks') . '<br>' . $wpdb->last_error);
             }
             if (!$result) {
                 $sql = 'INSERT INTO ' . $wpdb->prefix . 'masklinks VALUES("",%s)';
-                $wpdb->query($wpdb->prepare($sql, addslashes($url)));
+                $wpdb->query($wpdb->prepare($sql, $url));
                 $url = $wpdb->insert_id;
             } else
                 $url = $result;
@@ -157,7 +159,7 @@ class wp_noexternallinks_parser extends wp_noexternallinks
             $url = base64_decode($url);
         } elseif ($this->options['maskurl']) {
             $sql = 'select url from ' . $wpdb->prefix . 'masklinks where id= %s limit 1';
-            $url = $wpdb->get_var($wpdb->prepare($sql, addslashes($url)));
+            $url = $wpdb->get_var($wpdb->prepare($sql, $url));
         }
         return $url;
     }
@@ -178,7 +180,9 @@ class wp_noexternallinks_parser extends wp_noexternallinks
             $goto = $_REQUEST[$this->options['LINK_SEP']];
         elseif ($p !== FALSE)
             $goto = substr($_SERVER['REQUEST_URI'], $p + strlen($this->options['LINK_SEP']) + 2);
-        else {
+        $goto=strip_tags($goto);//just in case of xss
+        //what is this block?! Better remove it...
+        /*else {
             $url = $_SERVER['REQUEST_URI'];
             $url = explode('/', $url);
             if ($url[sizeof($url) - 2] == $this->options['LINK_SEP'])
@@ -186,7 +190,7 @@ class wp_noexternallinks_parser extends wp_noexternallinks
         }
         if (!strpos($goto, '://'))
             $goto = str_replace(':/', '://', $goto);
-
+        */
         if ($goto)
             $this->redirect($goto);
     }
@@ -195,7 +199,7 @@ class wp_noexternallinks_parser extends wp_noexternallinks
     {
         ?>
         <html>
-    <head><title><?php _e('Redirecting...', 'wpnoexternallinks'); ?></title>
+    <head><title><?php _e('Redirecting...', 'wp-noexternallinks'); ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="robots" content="noindex,nofollow"/>
         <meta http-equiv="refresh" content="5; url=<?php echo get_home_url(); ?>"/>
@@ -203,7 +207,7 @@ class wp_noexternallinks_parser extends wp_noexternallinks
     <body style="margin:0;">
     <div align="center" style="margin-top: 15em;">
         <?php
-        echo __('You have been redirected through this website from a suspicious source. We prevented it and you are going to be redirected to our ', 'wpnoexternallinks') . '<a href="' . get_home_url() . '">' . __('safe web site.', 'wpnoexternallinks') . '</a>';?>
+        echo __('You have been redirected through this website from a suspicious source. We prevented it and you are going to be redirected to our ', 'wp-noexternallinks') . '<a href="' . get_home_url() . '">' . __('safe web site.', 'wp-noexternallinks') . '</a>'; ?>
     </div>
     </body></html><?php die();
     }
@@ -214,19 +218,19 @@ class wp_noexternallinks_parser extends wp_noexternallinks
         if (!$this->options['stats'])
             return;
         $sql = 'INSERT INTO ' . $wpdb->prefix . 'links_stats VALUES("", %s ,NOW())';
-        $res = $wpdb->query($wpdb->prepare($sql, addslashes($url)));
+        $res = $wpdb->query($wpdb->prepare($sql, $url));
         if ($res !== FALSE)
             return;#all ok
         #error - stats record could not be created
-        $this->debug_info(__('Failed SQL: ', 'wpnoexternallinks') . '<br>' . $sql . '<br>' . __('Error was:', 'wpnoexternallinks') . '<br>' . $wpdb->last_error);
-        echo '<div class="error">' . __('Failed to save statistic data. Trying to create table.', 'wpnoexternallinks') . '</div>';
+        $this->debug_info(__('Failed SQL: ', 'wp-noexternallinks') . '<br>' . $sql . '<br>' . __('Error was:', 'wp-noexternallinks') . '<br>' . $wpdb->last_error);
+        echo '<div class="error">' . __('Failed to save statistic data. Trying to create table.', 'wp-noexternallinks') . '</div>';
         $sql2 = 'CREATE TABLE ' . $wpdb->prefix . 'links_stats(`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,`url` VARCHAR(255), `date` DATETIME, PRIMARY KEY (`id`))';
         $res = $wpdb->query($sql2);
         if ($res === FALSE) {
-            echo '<div class="error">' . __('Failed to create table. Please, check mysql permissions.', 'wpnoexternallinks') . '</div>';
-            $this->debug_info(__('Failed SQL: ', 'wpnoexternallinks') . '<br>' . $sql2 . '<br>' . __('Error was:') . '<br>' . $wpdb->last_error);
+            echo '<div class="error">' . __('Failed to create table. Please, check mysql permissions.', 'wp-noexternallinks') . '</div>';
+            $this->debug_info(__('Failed SQL: ', 'wp-noexternallinks') . '<br>' . $sql2 . '<br>' . __('Error was:') . '<br>' . $wpdb->last_error);
         } else {
-            echo '<div class="updated">' . __('Table created.', 'wpnoexternallinks') . '</div>';
+            echo '<div class="updated">' . __('Table created.', 'wp-noexternallinks') . '</div>';
             $wpdb->query($sql);
         }
     }
@@ -249,10 +253,8 @@ class wp_noexternallinks_parser extends wp_noexternallinks
 
         if ($this->options['restrict_referer']) {
             #checking for spamer attack, redirect should happen from your own website
-            $site = get_option('home');
-            if (!$site)
-                $site = get_option('siteurl');
-            if (stripos(wp_get_referer(), $site) !== 0)#oh, god, it happened!
+
+            if (stripos(wp_get_referer(), $this->options['site']) !== 0)#oh, god, it happened!
                 $this->show_referer_warning();
         }
         $this->show_redirect_page($url);
@@ -266,7 +268,7 @@ class wp_noexternallinks_parser extends wp_noexternallinks
             @header('Location: ' . $url);
         ?>
         <html>
-    <head><title><?php _e('Redirecting...', 'wpnoexternallinks'); ?></title>
+    <head><title><?php _e('Redirecting...', 'wp-noexternallinks'); ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="robots" content="noindex,nofollow"/>
         <?php if ($url) echo '<meta http-equiv="refresh" content="';
@@ -281,9 +283,9 @@ class wp_noexternallinks_parser extends wp_noexternallinks
         if ($this->options['redtxt'] && $url)
             echo str_replace('LINKURL', $url, $this->options['redtxt']);
         elseif ($url)
-            echo __('You were going to the redirect link, but something did not work properly.<br>Please, click ', 'wpnoexternallinks') . '<a href="' . $url . '">' . __('HERE ', 'wpnoexternallinks') . '</a>' . __(' to go to ', 'wpnoexternallinks') . $url . __(' manually. ', 'wpnoexternallinks');
+            echo __('You were going to the redirect link, but something did not work properly.<br>Please, click ', 'wp-noexternallinks') . '<a href="' . $url . '">' . __('HERE ', 'wp-noexternallinks') . '</a>' . __(' to go to ', 'wp-noexternallinks') . $url . __(' manually. ', 'wp-noexternallinks');
         else
-            _e('Sorry, no url redirect specified. Can`t complete request.', 'wpnoexternallinks');?>
+            _e('Sorry, no url redirect specified. Can`t complete request.', 'wp-noexternallinks'); ?>
     </div>
     </body></html><?php die();
     }
@@ -321,7 +323,7 @@ class wp_noexternallinks_parser extends wp_noexternallinks
             return;//do not try to use output buffering on cron
         $a = ob_start(array($this, 'fullmask_end'));
         if (!$a)
-            echo '<div class="error">' . __('Can not get output buffer!') . __('WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and use other filters.', 'wpnoexternallinks') . '</div>';
+            echo '<div class="error">' . __('Can not get output buffer!') . __('WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and use other filters.', 'wp-noexternallinks') . '</div>';
         if ($this->options['debug'])
             $this->debug_info("Starting full mask.");
     }
@@ -330,11 +332,11 @@ class wp_noexternallinks_parser extends wp_noexternallinks
     {
         global $post;
         if (defined('DOING_CRON'))
-            return;//do not try to use output buffering on cron
+            return '';//do not try to use output buffering on cron
         $r = '';
         $r .= $this->debug_info("Full mask finished. Applying filter", 1);
         if (!$text)
-            $r .= '<div class="error">' . __('Output buffer empty!') . __('WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and use other filters.', 'wpnoexternallinks', 1) . '</div>';
+            $r .= '<div class="error">' . __('Output buffer empty!') . __('WP_NoExternalLinks Can`t use output buffer. Please, disable full masking and use other filters.', 'wp-noexternallinks', 1) . '</div>';
         else {
             $r .= $this->debug_info("Processing text (htmlspecialchars on it to stay like comment): \n" . htmlspecialchars($text), 1);
             if (is_object($post) && (get_post_meta($post->ID, 'wp_noextrenallinks_mask_links', true) == 2))
