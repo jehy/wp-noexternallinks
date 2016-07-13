@@ -1,12 +1,14 @@
-=== WP No External Links ===
-Author: Jehy
-Tags: seo, link, links, publisher, post, posts, comments
-Requires at least: 2.6
-Tested up to: 4.5.3
-Stable tag: 3.5.16
+### WP No External Links ###
+
+Author: Jehy  
+Tags: seo, link, links, publisher, post, posts, comments  
+Requires at least: 2.6  
+Tested up to: 4.5.3  
+Stable tag: 3.5.16  
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
-== Description ==
+### Description ###
+
 > New feature - [extend plugin with your own functions](http://jehy.ru/articles/2014/12/08/custom-parser-for-wp-noexternallinks/)! For example, you can [encrypt links](http://jehy.ru/articles/2014/12/09/encrypting-links-for-wp-noexternallinks/).
 
 This plugin has many cool features - outgoing clicks stats, fulllink masking, custom redirects,masking links to digital short code and base64 encoding and so on.It is designed for specialists who sell different kind of advertisment on their web site (for example, with [sape](http://www.sape.ru/r.f6054dfcc2.php) system) and care about the number of outgoing links that can be found by search engines. Now you can make all external links internal! In your own posts, comments pages, authors page... Plugin does not change anything or write to base - just processes output.
@@ -80,7 +82,7 @@ If you want to ensure the future development and support of this plugin, you can
 ####Please!
 If you don't rate my plugin as 5/5 - please write why - and I will add or change options and fix bugs. It's very unpleasant to see silient low rates.
 
-== Changelog ==
+## Changelog ##
 
 0.01 - First release.  
 0.02 - Multilanguagal release.  
@@ -164,14 +166,14 @@ If you don't rate my plugin as 5/5 - please write why - and I will add or change
 3.5.15 - fix masking issues with mixed http/https
 3.5.16 - minor security fix
 
-== Installation ==
+## Installation ##
 
 1. Upload the complete folder `wp-noexternallinks` to the `/wp-content/plugins/` directory
 3. Activate the plugin through the 'Plugins' menu in WordPress
 2. [Optional] Configure plugin via admin options-&gt;Wp-NoExternalLinks link
 4. Write posts with any kind of links, watch comments with links - and enjoy =^___^=
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions ##
 ####How can I exclude my page with links from masking?   
 Now you just put URLS you need to the exclusion list, or disable masking for concrete post - and everything's OK!!!
 
