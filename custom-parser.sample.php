@@ -3,7 +3,10 @@ if (!defined('DB_NAME'))
     die('Error: Plugin "wp-noexternallinks" does not support standalone calls, damned hacker.');
 
 #include base parser
-include_once(ABSPATH . 'wp-content/plugins/wp-noexternallinks/wp-noexternallinks-parser.php');
+if (!defined('WP_PLUGIN_DIR'))
+    include_once(ABSPATH . 'wp-content/plugins/wp-noexternallinks/wp-noexternallinks-parser.php');
+else
+    include_once(WP_PLUGIN_DIR . '/wp-noexternallinks/wp-noexternallinks-parser.php');
 
 class custom_parser extends wp_noexternallinks_parser
 {
