@@ -164,7 +164,7 @@ class wp_noexternallinks_parser extends wp_noexternallinks
         return $url;
     }
 
-    function wp_noexternallinks_parser()#constructor
+    function __construct()
     {
         $this->load_options();
         $this->set_filters();

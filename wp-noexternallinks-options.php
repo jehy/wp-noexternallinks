@@ -4,7 +4,7 @@ if (!defined('DB_NAME'))
 
 class wp_noexternallinks_admin extends wp_noexternallinks
 {
-    function wp_noexternallinks_admin()
+    function __construct()
     {
         $this->init_lang();
         $this->load_options();

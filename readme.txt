@@ -3,7 +3,7 @@ Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
 Tested up to: 4.5.3
-Stable tag: 3.5.16
+Stable tag: 3.5.17
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 == Description ==
@@ -14,6 +14,8 @@ This plugin has many cool features - outgoing clicks stats, fulllink masking, cu
 Now you don't need to worry about your page rank or index, dropping because of spam bots. You write any kind of http link - and it becomes internal or hidden! Of cause, all the links will still be usable :).
 
 Warning: this plugin may conflict with your caching plugins, including Hyper Cache. Usually adding redirect page to caching plugin exclusions works fine, but I can't garantee that everything will go smoothly. By the way, after deactivation this plugins leaves no traces in your database or hard drive - so if you have you have problems after deactivation - please, search them in another source, for example, caching plugins. Flushing cache should help.
+
+You can take part in plugin development on [github](https://github.com/jehy/wp-noexternallinks).
 
 ###New Features:    
 
@@ -163,6 +165,7 @@ If you don't rate my plugin as 5/5 - please write why - and I will add or change
 3.5.14 - fallback to 3.5.11  
 3.5.15 - fix masking issues with mixed http/https
 3.5.16 - minor security fix
+3.5.17 - fix for better compatibility with php7
 
 == Installation ==
 
