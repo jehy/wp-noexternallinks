@@ -2,7 +2,7 @@
 Author: Jehy
 Tags: seo, link, links, publisher, post, posts, comments
 Requires at least: 2.6
-Tested up to: 4.7.2
+Tested up to: 4.7.3
 Stable tag: 3.5.17
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 

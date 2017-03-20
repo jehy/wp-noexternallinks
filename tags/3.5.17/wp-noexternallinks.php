@@ -12,7 +12,7 @@ Author: Jehy
 Author URI: http://jehy.ru/articles/
 Update Server: http://jehy.ru/articles/2008/10/05/wordpress-plugin-no-external-links/
 Min WP Version: 2.6
-Max WP Version: 4.7.2
+Max WP Version: 4.7.3
 */
 
 /*  Copyright 2012  Jehy  (email : fate@jehy.ru)
