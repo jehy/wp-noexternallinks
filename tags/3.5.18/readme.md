@@ -19,32 +19,32 @@ Warning: this plugin may conflict with your caching plugins, including Hyper Cac
 
 You can take part in plugin development on [github](https://github.com/jehy/wp-noexternallinks).
 
-###New Features:    
+### New Features:    
 
-####Version 3.5.1 implemented:   
+#### Version 3.5.1 implemented:   
 + Extending plugin with custom functions   
 
-####Version 3.3.2 implemented:   
+#### Version 3.3.2 implemented:   
 + Debug mode   
 
-####Version 3.3 implemented:   
+#### Version 3.3 implemented:   
 + Masking links with base64 (quick and no need for mysql table)   
 
-####Version 3.2 implemented:   
+#### Version 3.2 implemented:   
 + Completely removing links from your posts (someone requested this option)   
 + Masking links to text. Option for perverts.   
 
-####Version 3.1 implemented:  
+#### Version 3.1 implemented:  
 + Masking links with digital short codes    
 
-####Version 3.0 implemented:    
+#### Version 3.0 implemented:    
 + Outgoing clicks stats    
 + Javascript redirect with custom text and timeout    
 + .po file translation (sorry, now only english and russian versions are available)    
 + FULL link masking    
 + No masking for registered users    
 
-####Version 2.0 implemented:
+#### Version 2.0 implemented:
 + You can configure plugin to mask ALL LINKS on your blog - including widget, theme footer, etc.    
 + Now you can also disable link rewriting, and use **"rel=nofollow"** and **&lt;noindex&gt;** tag instead of it - everything as you wish!   
 + From version 2.0 you can **make all links open in new window!**   
@@ -52,28 +52,27 @@ You can take part in plugin development on [github](https://github.com/jehy/wp-n
 + Plugin works now without any magic with .htacess - you just install it and it works, and determines itself, if you need to rewrite permalinks, or use default link structure.  
 Have fun!
 
-####Example
+#### Example
 
-To make the long story short, your links like "http://gmail.com" will be masked into  
-"http://YourBlog.com/goto/http://gmail.com" - or  
-"http://YourBlog.com?goto=http://gmail.com"
+To make the long story short, your links like `http://gmail.com` will be masked into
+`http://YourBlog.com/goto/http://gmail.com` - or  `http://YourBlog.com?goto=http://gmail.com`
 
-Now you can even tansform simple link "&lt;a href="http://google.com"&gt;google&lt;/a&gt;" to   
-"&lt;noindex&gt;&lt;a rel="nofollow" target="_blank" href="http://google.com"&gt;google&lt;/a&gt;&lt;/noindex&gt;"
+Now you can even tansform simple link `<a href="http://google.com">google</a>` to 
+`<noindex><a rel="nofollow" target="_blank" href="http://google.com">google</a></noindex>`
 
-####Just one popular question :)
+#### Just one popular question :)
 >  **- Is it an evil hack and black SEO?!**   
  - Before you say such awful things, read at least [Google's topics on SEO](http://www.google.com/support/webmasters/bin/topic.py?topic=8522)   
 
-####Donate or help?
+#### Donate or help?
 If you want to ensure the future development and support of this plugin, you can make donation [on this page](http://jehy.ru/articles/donate/) or just write about this plugin in your blog.
 
-####Note
+#### Note
 &lt;noindex&gt; tag is used mostly by russian search system "Yandex" (yandex.ru), and non-russian users don't usually need it.
 
 [You can view changelog here](https://wordpress.org/plugins/wp-noexternallinks/changelog/).
 
-####Localization
+#### Localization
 
 * English
 * Russian
@@ -81,10 +80,10 @@ If you want to ensure the future development and support of this plugin, you can
 * Your language also can be here - just send me language file :)
 
 
-####Please!
+#### Please!
 If you don't rate my plugin as 5/5 - please write why - and I will add or change options and fix bugs. It's very unpleasant to see silient low rates.
 
-## Changelog ##
+## Changelog
 
 0.01 - First release.  
 0.02 - Multilanguagal release.  
@@ -170,24 +169,24 @@ If you don't rate my plugin as 5/5 - please write why - and I will add or change
 3.5.17 - fix for better compatibility with php7  
 3.5.18 - added index on links table  
 
-## Installation ##
+## Installation
 
 1. Upload the complete folder `wp-noexternallinks` to the `/wp-content/plugins/` directory
 3. Activate the plugin through the 'Plugins' menu in WordPress
 2. [Optional] Configure plugin via admin options-&gt;Wp-NoExternalLinks link
 4. Write posts with any kind of links, watch comments with links - and enjoy =^___^=
 
-## Frequently Asked Questions ##
-####How can I exclude my page with links from masking?   
+## Frequently Asked Questions
+#### How can I exclude my page with links from masking?   
 Now you just put URLS you need to the exclusion list, or disable masking for concrete post - and everything's OK!!!
 
-####I removed your plugin but all links are masked!!!   
+#### I removed your plugin but all links are masked!!!   
 This plugin can't do it after uninstall. It doesn't change base or code of wordpress. Please,
 * Remove another links plugin.
 * Update your cache.
 * Deactivate your caching plugin.
 
-####How can I mask links in custom field?
+#### How can I mask links in custom field?
 You will have to add just a line in theme code where you output custom field data.    
 To add same preprocessing for data as for comment text, use    
  ```php
