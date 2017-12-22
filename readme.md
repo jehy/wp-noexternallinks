@@ -13,16 +13,16 @@ from here will always be safe.
 * Tags: seo, link, links, publisher, post, posts, comments  
 * Requires at least: 2.6  
 * Tested up to: 4.5.3  
-* Stable tag: 3.5.20  
+* Stable tag: 5.0.0  
 
 Mask all external links - make them internal or hide. On your own posts, comments pages, authors page - no more PR\CY dropping!
 
 ## Installation
-
-1. Upload the complete folder `wp-noexternallinks` to the `/wp-content/plugins/` directory
+1. `Git clone` this repo or [download it as a zip](https://github.com/jehy/wp-noexternallinks/archive/master.zip).
+2. Upload the complete folder `wp-noexternallinks` to the `/wp-content/plugins/` directory
 3. Activate the plugin through the 'Plugins' menu in WordPress
-2. [Optional] Configure plugin via admin options-&gt;Wp-NoExternalLinks link
-4. Write posts with any kind of links, watch comments with links - and enjoy =^___^=
+4. [Optional] Configure plugin via admin options-&gt;Wp-NoExternalLinks link
+5. Write posts with any kind of links, watch comments with links - and enjoy =^___^=
 
 
 ### Description
@@ -33,31 +33,6 @@ Now you don't need to worry about your page rank or index, dropping because of s
 Warning: this plugin may conflict with your caching plugins, including Hyper Cache. Usually adding redirect page to caching plugin exclusions works fine, but I can't garantee that everything will go smoothly. By the way, after deactivation this plugins leaves no traces in your database or hard drive - so if you have you have problems after deactivation - please, search them in another source, for example, caching plugins. Flushing cache should help.
 
 You can take part in plugin development on [github](https://github.com/jehy/wp-noexternallinks).
-
-### New Features:    
-
-#### Version 3.5.1 implemented:   
-+ Extending plugin with custom functions   
-
-#### Version 3.3.2 implemented:   
-+ Debug mode   
-
-#### Version 3.3 implemented:   
-+ Masking links with base64 (quick and no need for mysql table)   
-
-#### Version 3.2 implemented:   
-+ Completely removing links from your posts (someone requested this option)   
-+ Masking links to text. Option for perverts.   
-
-#### Version 3.1 implemented:  
-+ Masking links with digital short codes    
-
-#### Version 3.0 implemented:    
-+ Outgoing clicks stats    
-+ Javascript redirect with custom text and timeout    
-+ .po file translation (sorry, now only english and russian versions are available)    
-+ FULL link masking    
-+ No masking for registered users    
 
 #### Example
 

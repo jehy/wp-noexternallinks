@@ -1,4 +1,29 @@
 
+## New Features:    
+
+#### Version 3.5.1 implemented:   
+* Extending plugin with custom functions   
+
+#### Version 3.3.2 implemented:   
+* Debug mode   
+
+#### Version 3.3 implemented:   
+* Masking links with base64 (quick and no need for mysql table)   
+
+#### Version 3.2 implemented:   
+* Completely removing links from your posts (someone requested this option)   
+* Masking links to text. Option for perverts.   
+
+#### Version 3.1 implemented:  
++ Masking links with digital short codes    
+
+#### Version 3.0 implemented:    
+* Outgoing clicks stats    
+* Javascript redirect with custom text and timeout    
+* .po file translation (sorry, now only english and russian versions are available)    
+* FULL link masking    
+* No masking for registered users  
+
 ## Changelog
 
 0.01 - First release.  
@@ -86,3 +111,4 @@
 3.5.18 - added index on links table  
 3.5.19 - minor XSS fix (thanks to DefenseCode WebScanner), more debug, fix possible bug with numeric masking  
 3.5.20 - minor text fixes  
+5.0.0 - simply bumped version to avoid confusion
